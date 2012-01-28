@@ -26,7 +26,7 @@
         <scene sceneID="8Op-na-8J8">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="th3-Sr-iZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="6HJ-ix-Tf7" sceneMemberID="viewController">
+                <tableViewController id="6HJ-ix-Tf7" customClass="IntervalTrainerViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QnP-pD-eIU">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,6 +283,11 @@
             <point key="canvasLocation" x="123" y="-716"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="IntervalTrainerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IntervalTrainerViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

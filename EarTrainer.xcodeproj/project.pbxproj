@@ -47,6 +47,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF36DBC214D4A34F0056D087 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */,
+				FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		FF36DBC314D4A3610056D087 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF8E8C5114D4943000CC8818 /* MainStoryboard.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		FF36DBC414D4A36D0056D087 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
@@ -77,11 +101,11 @@
 		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				FF36DBC414D4A36D0056D087 /* Model */,
+				FF36DBC314D4A3610056D087 /* View */,
+				FF36DBC214D4A34F0056D087 /* Controller */,
 				FF8E8C4E14D4943000CC8818 /* AppDelegate.h */,
 				FF8E8C4F14D4943000CC8818 /* AppDelegate.m */,
-				FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */,
-				FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */,
-				FF8E8C5114D4943000CC8818 /* MainStoryboard.storyboard */,
 				FF8E8C4614D4942F00CC8818 /* Supporting Files */,
 			);
 			path = EarTrainer;

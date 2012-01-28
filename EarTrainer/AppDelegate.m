@@ -6,7 +6,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [(UINavigationController *)self.window.rootViewController setToolbarHidden:NO animated:YES];
     return YES;
 }
 							
