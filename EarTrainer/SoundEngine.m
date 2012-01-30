@@ -19,10 +19,13 @@ static SoundEngine *inst = nil;
 #pragma mark - Load and play sound
 
 - (void)playSoundWithName:(NSString *)name {
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@".caf"];
-    NSURL *fileUrl = [NSURL fileURLWithPath:path];
-    SystemSoundID soundID;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileUrl,&soundID);
+    
+    SystemSoundID note;
+	
+	NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"aiff"];
+	CFURLRef url = (__bridge CFURLRef) [NSURL fileURLWithPath:path];
+	AudioServicesCreateSystemSoundID(url, &note);
+    AudioServicesPlaySystemSound(note);
 }
 
 @end

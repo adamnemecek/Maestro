@@ -2,6 +2,8 @@
 
 #import "SettingsViewController.h"
 
+@class SoundEngine;
+
 #define kSegue_Identifier_Open_Settings @"OpenSettings"
 
 #define kImage_Playmode_Ascending   @"playmode_Ascending"

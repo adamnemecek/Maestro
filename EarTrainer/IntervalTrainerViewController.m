@@ -1,5 +1,7 @@
 #import "IntervalTrainerViewController.h"
 
+#import "SoundEngine.h"
+
 @interface IntervalTrainerViewController (Private)
 
 -(UIImage *)getCurrentPlaymodeImage;
@@ -130,6 +132,7 @@
 }
 
 - (IBAction)play:(id)sender {
+    [[SoundEngine sharedInstance] playSoundWithName:@"piano_36"];
 }
 
 - (IBAction)skip:(id)sender {

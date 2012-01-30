@@ -1,11 +1,3 @@
-//
-//  main.m
-//  EarTrainer
-//
-//  Created by Kyle Stewart on 1/28/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 #import "AppDelegate.h"
