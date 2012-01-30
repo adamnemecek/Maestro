@@ -16,6 +16,9 @@
 		C85A84AE14D4AB4D00394052 /* playmode_Descending.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AB14D4AB4D00394052 /* playmode_Descending.png */; };
 		C85A84B014D4AB7B00394052 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AF14D4AB7A00394052 /* background.png */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
+		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
+		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
+		FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */; };
 		FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C3F14D4942F00CC8818 /* UIKit.framework */; };
 		FF8E8C4214D4942F00CC8818 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C4114D4942F00CC8818 /* Foundation.framework */; };
 		FF8E8C4414D4942F00CC8818 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C4314D4942F00CC8818 /* CoreGraphics.framework */; };
@@ -36,6 +39,11 @@
 		C85A84AF14D4AB7A00394052 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalTrainerViewController.h; sourceTree = "<group>"; };
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
+		FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
+		FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
+		FF659B3A14D62932000E7EC2 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		FF659B3B14D62932000E7EC2 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
+		FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		FF8E8C3B14D4942F00CC8818 /* EarTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8E8C3F14D4942F00CC8818 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FF8E8C4114D4942F00CC8818 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */,
 				FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */,
 				FF8E8C4214D4942F00CC8818 /* Foundation.framework in Frameworks */,
 				FF8E8C4414D4942F00CC8818 /* CoreGraphics.framework in Frameworks */,
@@ -83,6 +92,8 @@
 			children = (
 				FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */,
 				FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */,
+				FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */,
+				FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -98,6 +109,8 @@
 		FF36DBC414D4A36D0056D087 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FF659B3A14D62932000E7EC2 /* SoundEngine.h */,
+				FF659B3B14D62932000E7EC2 /* SoundEngine.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -105,6 +118,7 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
+				FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */,
 				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
 				FF8E8C3E14D4942F00CC8818 /* Frameworks */,
 				FF8E8C3C14D4942F00CC8818 /* Products */,
@@ -227,6 +241,8 @@
 				FF8E8C4C14D4942F00CC8818 /* main.m in Sources */,
 				FF8E8C5014D4943000CC8818 /* AppDelegate.m in Sources */,
 				FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */,
+				FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */,
+				FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
