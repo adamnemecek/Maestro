@@ -2,6 +2,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 @class SoundEngine;
+@class Note;
+@class Interval;
 
 @interface SoundEngine : NSObject
 
@@ -9,7 +11,13 @@
 +(SoundEngine *)sharedInstance;
 +(void)destroySharedInstance;
 
+// Intervals
+-(void)playInterval:(Interval *)interval;
+
 // Load and play sound
-- (void)playSoundWithName:(NSString *)name;
+-(void)playNote:(Note *)note;
+-(void)playSoundWithMidiId:(NSInteger)midiId;
+-(void)playSoundWithName:(NSString *)name;
+-(SystemSoundID)loadSoundWithName:(NSString *)name;
 
 @end

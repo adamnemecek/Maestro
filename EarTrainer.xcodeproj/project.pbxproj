@@ -75,6 +75,8 @@
 		C85A84AD14D4AB4D00394052 /* playmode_Chord.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AA14D4AB4D00394052 /* playmode_Chord.png */; };
 		C85A84AE14D4AB4D00394052 /* playmode_Descending.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AB14D4AB4D00394052 /* playmode_Descending.png */; };
 		C85A84B014D4AB7B00394052 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AF14D4AB7A00394052 /* background.png */; };
+		FF002B8C14DE0C1A00BF9A22 /* Interval.m in Sources */ = {isa = PBXBuildFile; fileRef = FF002B8B14DE0C1A00BF9A22 /* Interval.m */; };
+		FF1B4A3014DDB3EF00DBAB5A /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
 		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
@@ -86,6 +88,7 @@
 		FF8E8C4C14D4942F00CC8818 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8E8C4B14D4942F00CC8818 /* main.m */; };
 		FF8E8C5014D4943000CC8818 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8E8C4F14D4943000CC8818 /* AppDelegate.m */; };
 		FF8E8C5314D4943000CC8818 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8E8C5114D4943000CC8818 /* MainStoryboard.storyboard */; };
+		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +160,10 @@
 		C85A84AA14D4AB4D00394052 /* playmode_Chord.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playmode_Chord.png; sourceTree = "<group>"; };
 		C85A84AB14D4AB4D00394052 /* playmode_Descending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playmode_Descending.png; sourceTree = "<group>"; };
 		C85A84AF14D4AB7A00394052 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		FF002B8A14DE0C1A00BF9A22 /* Interval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interval.h; sourceTree = "<group>"; };
+		FF002B8B14DE0C1A00BF9A22 /* Interval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interval.m; sourceTree = "<group>"; };
+		FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
+		FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalTrainerViewController.h; sourceTree = "<group>"; };
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
 		FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
@@ -175,6 +182,8 @@
 		FF8E8C4E14D4943000CC8818 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF8E8C4F14D4943000CC8818 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FF8E8C5214D4943000CC8818 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		FFBE9A1114DDADA600C755DB /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		FFBE9A1214DDADA600C755DB /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,7 +314,6 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
-				FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */,
 				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
 				FF8E8C3E14D4942F00CC8818 /* Frameworks */,
 				FF8E8C3C14D4942F00CC8818 /* Products */,
@@ -323,6 +331,7 @@
 		FF8E8C3E14D4942F00CC8818 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */,
 				FF8E8C3F14D4942F00CC8818 /* UIKit.framework */,
 				FF8E8C4114D4942F00CC8818 /* Foundation.framework */,
 				FF8E8C4314D4942F00CC8818 /* CoreGraphics.framework */,
@@ -338,6 +347,12 @@
 				FF36DBC214D4A34F0056D087 /* Controller */,
 				FF8E8C4E14D4943000CC8818 /* AppDelegate.h */,
 				FF8E8C4F14D4943000CC8818 /* AppDelegate.m */,
+				FFBE9A1114DDADA600C755DB /* Note.h */,
+				FFBE9A1214DDADA600C755DB /* Note.m */,
+				FF002B8A14DE0C1A00BF9A22 /* Interval.h */,
+				FF002B8B14DE0C1A00BF9A22 /* Interval.m */,
+				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
+				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
 				FF8E8C4614D4942F00CC8818 /* Supporting Files */,
 			);
 			path = EarTrainer;
@@ -491,6 +506,9 @@
 				FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */,
 				FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */,
 				FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */,
+				FFBE9A1314DDADA600C755DB /* Note.m in Sources */,
+				FF1B4A3014DDB3EF00DBAB5A /* Defaults.m in Sources */,
+				FF002B8C14DE0C1A00BF9A22 /* Interval.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

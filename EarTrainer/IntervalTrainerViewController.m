@@ -2,6 +2,9 @@
 
 #import "SoundEngine.h"
 
+#import "Note.h"
+#import "Interval.h"
+
 @interface IntervalTrainerViewController (Private)
 
 -(UIImage *)getCurrentPlaymodeImage;
@@ -11,6 +14,7 @@
 
 @implementation IntervalTrainerViewController {
     PLAYMODE playmodeIndex;
+    Interval *currentInterval;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -29,7 +33,7 @@
 - (void)viewDidLoad {
     
     playmodeIndex = PLAYMODE_ASCENDING;
-    
+    currentInterval = [Interval getRandomInterval];
     [super viewDidLoad];
 }
 
@@ -89,6 +93,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *alertTitle, *alertMessage;
+    if (currentInterval.interval == indexPath.row) {
+        alertTitle = @"Correct";
+    } else {
+        alertTitle = @"Wrong";
+    }
+    alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentInterval getNoteNames], currentInterval.longName];
+    [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
 }
 
 #pragma mark - Playmode
@@ -106,7 +119,6 @@
             playmodeImageTitle = kImage_Playmode_Chord;
             break;
     }
-    
     return [UIImage imageNamed:playmodeImageTitle];
 }
 
@@ -114,7 +126,6 @@
 
 - (IBAction)changePlaymode:(id)sender {
     
-    // Chagne the playmode index
     switch (playmodeIndex) {
         case PLAYMODE_ASCENDING:
             playmodeIndex = PLAYMODE_DESCENDING;
@@ -126,16 +137,16 @@
             playmodeIndex = PLAYMODE_ASCENDING;
             break;
     }
-    
-    // Change the bar button image to match the current playmode
     [(UIBarButtonItem *)sender setImage:[self getCurrentPlaymodeImage]];
 }
 
 - (IBAction)play:(id)sender {
-    [[SoundEngine sharedInstance] playSoundWithName:@"piano_36"];
+    [[SoundEngine sharedInstance] playInterval:currentInterval];
 }
 
 - (IBAction)skip:(id)sender {
+    currentInterval = [Interval getRandomInterval];
+    [[SoundEngine sharedInstance] playInterval:currentInterval];
 }
 
 #pragma mark - Segue delegate connection
