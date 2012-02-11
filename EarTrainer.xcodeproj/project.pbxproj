@@ -88,6 +88,7 @@
 		FF8E8C4C14D4942F00CC8818 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8E8C4B14D4942F00CC8818 /* main.m */; };
 		FF8E8C5014D4943000CC8818 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8E8C4F14D4943000CC8818 /* AppDelegate.m */; };
 		FF8E8C5314D4943000CC8818 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8E8C5114D4943000CC8818 /* MainStoryboard.storyboard */; };
+		FFA0262C14E6E30600AA58E1 /* PushInSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA0262B14E6E30600AA58E1 /* PushInSegue.m */; };
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 /* End PBXBuildFile section */
 
@@ -182,6 +183,8 @@
 		FF8E8C4E14D4943000CC8818 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF8E8C4F14D4943000CC8818 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FF8E8C5214D4943000CC8818 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		FFA0262A14E6E30600AA58E1 /* PushInSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushInSegue.h; sourceTree = "<group>"; };
+		FFA0262B14E6E30600AA58E1 /* PushInSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushInSegue.m; sourceTree = "<group>"; };
 		FFBE9A1114DDADA600C755DB /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		FFBE9A1214DDADA600C755DB /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,6 +308,12 @@
 		FF36DBC414D4A36D0056D087 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FFBE9A1114DDADA600C755DB /* Note.h */,
+				FFBE9A1214DDADA600C755DB /* Note.m */,
+				FF002B8A14DE0C1A00BF9A22 /* Interval.h */,
+				FF002B8B14DE0C1A00BF9A22 /* Interval.m */,
+				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
+				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
 				FF659B3A14D62932000E7EC2 /* SoundEngine.h */,
 				FF659B3B14D62932000E7EC2 /* SoundEngine.m */,
 			);
@@ -347,12 +356,8 @@
 				FF36DBC214D4A34F0056D087 /* Controller */,
 				FF8E8C4E14D4943000CC8818 /* AppDelegate.h */,
 				FF8E8C4F14D4943000CC8818 /* AppDelegate.m */,
-				FFBE9A1114DDADA600C755DB /* Note.h */,
-				FFBE9A1214DDADA600C755DB /* Note.m */,
-				FF002B8A14DE0C1A00BF9A22 /* Interval.h */,
-				FF002B8B14DE0C1A00BF9A22 /* Interval.m */,
-				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
-				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
+				FFA0262A14E6E30600AA58E1 /* PushInSegue.h */,
+				FFA0262B14E6E30600AA58E1 /* PushInSegue.m */,
 				FF8E8C4614D4942F00CC8818 /* Supporting Files */,
 			);
 			path = EarTrainer;
@@ -509,6 +514,7 @@
 				FFBE9A1314DDADA600C755DB /* Note.m in Sources */,
 				FF1B4A3014DDB3EF00DBAB5A /* Defaults.m in Sources */,
 				FF002B8C14DE0C1A00BF9A22 /* Interval.m in Sources */,
+				FFA0262C14E6E30600AA58E1 /* PushInSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

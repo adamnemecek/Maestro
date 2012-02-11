@@ -22,7 +22,7 @@ typedef enum {
 @property (nonatomic, strong) NSArray *notes;
 @property (nonatomic, strong) NSString *shortName;
 @property (nonatomic, strong) NSString *longName;
-@property (nonatomic) INTERVALS interval;
+@property (nonatomic) INTERVALS interval;       // index of interval, not spacing
 
 -(id)initInterval:(INTERVALS)interval withRoot:(Note *)rootNote;
 -(NSString *)getNoteNames;

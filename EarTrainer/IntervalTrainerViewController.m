@@ -1,21 +1,23 @@
 #import "IntervalTrainerViewController.h"
 
+#import "Defaults.h"
 #import "SoundEngine.h"
 
 #import "Note.h"
 #import "Interval.h"
 
 @interface IntervalTrainerViewController (Private)
-
 -(UIImage *)getCurrentPlaymodeImage;
-
 @end
-
 
 @implementation IntervalTrainerViewController {
     PLAYMODE playmodeIndex;
     Interval *currentInterval;
 }
+
+@synthesize playmodeButton;
+
+#pragma mark - Initialization and deallocation
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
@@ -23,8 +25,7 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
@@ -32,13 +33,15 @@
 
 - (void)viewDidLoad {
     
-    playmodeIndex = PLAYMODE_ASCENDING;
+    playmodeIndex = [[Defaults sharedInstance] getPlaymode];
+    [playmodeButton setImage:[self getCurrentPlaymodeImage]];
     currentInterval = [Interval getRandomInterval];
     [super viewDidLoad];
 }
 
 - (void)viewDidUnload
 {
+    [self setPlaymodeButton:nil];
     [super viewDidUnload];
 }
 
@@ -137,6 +140,7 @@
             playmodeIndex = PLAYMODE_ASCENDING;
             break;
     }
+    [[Defaults sharedInstance] savePlaymode:playmodeIndex];
     [(UIBarButtonItem *)sender setImage:[self getCurrentPlaymodeImage]];
 }
 
@@ -162,7 +166,9 @@
 #pragma mark - Settings view controller delegate
 
 - (void)SettingsViewControllerDidFinish:(SettingsViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        playmodeIndex = [[Defaults sharedInstance] getPlaymode];
+    }];
 }
 
 @end

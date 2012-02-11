@@ -18,6 +18,8 @@ typedef enum {
 
 @interface IntervalTrainerViewController : UITableViewController <SettingsViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *playmodeButton;
+
 - (IBAction)changePlaymode:(id)sender;
 - (IBAction)play:(id)sender;
 - (IBAction)skip:(id)sender;
