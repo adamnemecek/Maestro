@@ -81,6 +81,8 @@
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
 		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
 		FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */; };
+		FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */; };
+		FF6A4A8A14E8438B00CE4145 /* HighOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */; };
 		FF7D7CE614E77C9B006E6362 /* PlaymodeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */; };
 		FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C3F14D4942F00CC8818 /* UIKit.framework */; };
 		FF8E8C4214D4942F00CC8818 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C4114D4942F00CC8818 /* Foundation.framework */; };
@@ -173,6 +175,10 @@
 		FF659B3A14D62932000E7EC2 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		FF659B3B14D62932000E7EC2 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FF6A4A8414E8410A00CE4145 /* RootOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootOctaveSettingsViewController.h; path = ../RootOctaveSettingsViewController.h; sourceTree = "<group>"; };
+		FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootOctaveSettingsViewController.m; path = ../RootOctaveSettingsViewController.m; sourceTree = "<group>"; };
+		FF6A4A8814E8438B00CE4145 /* HighOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighOctaveSettingsViewController.h; sourceTree = "<group>"; };
+		FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighOctaveSettingsViewController.m; sourceTree = "<group>"; };
 		FF7D7CE414E77C9B006E6362 /* PlaymodeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaymodeSettingsViewController.h; sourceTree = "<group>"; };
 		FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaymodeSettingsViewController.m; sourceTree = "<group>"; };
 		FF8E8C3B14D4942F00CC8818 /* EarTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -298,6 +304,10 @@
 				FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */,
 				FF7D7CE414E77C9B006E6362 /* PlaymodeSettingsViewController.h */,
 				FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */,
+				FF6A4A8414E8410A00CE4145 /* RootOctaveSettingsViewController.h */,
+				FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */,
+				FF6A4A8814E8438B00CE4145 /* HighOctaveSettingsViewController.h */,
+				FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -521,6 +531,8 @@
 				FF002B8C14DE0C1A00BF9A22 /* Interval.m in Sources */,
 				FFA0262C14E6E30600AA58E1 /* PushInSegue.m in Sources */,
 				FF7D7CE614E77C9B006E6362 /* PlaymodeSettingsViewController.m in Sources */,
+				FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */,
+				FF6A4A8A14E8438B00CE4145 /* HighOctaveSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

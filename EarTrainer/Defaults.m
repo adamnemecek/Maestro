@@ -16,7 +16,20 @@ static Defaults *inst = nil;
     inst = nil;
 }
 
+#pragma mark - Initial defaults
+
+- (void)initialDefaults {
+    [self saveHereBefore:YES];
+    [self savePlaymode:0];
+    [self saveRootOctave:1];
+    [self saveHighOctave:2];
+}
+
 #pragma mark - Saving defaults
+
+- (void)saveHereBefore:(BOOL)hereBefore {
+    [[NSUserDefaults standardUserDefaults] setBool:hereBefore forKey:@"keyHereBefore"];
+}
 
 - (void)savePlaymode:(NSInteger)playmode {
     [[NSUserDefaults standardUserDefaults] setInteger:playmode forKey:@"keyPlaymode"];
@@ -31,6 +44,10 @@ static Defaults *inst = nil;
 }
 
 #pragma mark - Retrieving defaults
+
+- (BOOL)getHereBefore {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"keyHereBefore"];
+}
 
 - (NSInteger)getPlaymode {
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyPlaymode"];

@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "Defaults.h"
 
 @implementation AppDelegate
 
@@ -6,6 +7,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if (![[Defaults sharedInstance] getHereBefore]) [[Defaults sharedInstance] initialDefaults];
     return YES;
 }
 							

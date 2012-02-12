@@ -450,7 +450,83 @@
                     <navigationItem key="navigationItem" title="Playmode" id="Ovh-eh-fAh"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1522" y="-863"/>
+            <point key="canvasLocation" x="1358" y="-1262"/>
+        </scene>
+        <scene sceneID="Hrf-6s-1qd">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Be-k5-BFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Rbh-xy-CoL" customClass="RootOctaveSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="WdT-AE-AcR">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OctaveCell" textLabel="9tK-SS-S92" style="IBUITableViewCellStyleDefault" id="KlO-K7-m2w">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9tK-SS-S92">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Rbh-xy-CoL" id="ATK-ni-21v"/>
+                            <outlet property="delegate" destination="Rbh-xy-CoL" id="P47-KO-EFf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root Octave" id="zFA-xX-R7a"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1736" y="-1262"/>
+        </scene>
+        <scene sceneID="Qoo-Ve-lae">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RWo-Fz-PRi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="pqY-uz-R0M" customClass="HighOctaveSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="EJa-cm-kbG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OctaveCell" textLabel="ckm-ng-WAc" style="IBUITableViewCellStyleDefault" id="t6C-6s-eny">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ckm-ng-WAc">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pqY-uz-R0M" id="QKC-O8-2v7"/>
+                            <outlet property="delegate" destination="pqY-uz-R0M" id="xuv-mY-MJg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="High Octave" id="3fq-gn-8C1"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2102" y="-1262"/>
         </scene>
         <scene sceneID="azE-4m-ggy">
             <objects>
@@ -517,6 +593,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="Rbh-xy-CoL" kind="push" id="ADt-ra-heN"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Sff-B1-BHg" detailTextLabel="lfK-co-gNq" style="IBUITableViewCellStyleValue1" id="9oV-u2-NnO">
                                         <rect key="frame" x="0.0" y="135" width="320" height="45"/>
@@ -543,6 +622,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="pqY-uz-R0M" kind="push" id="nCf-hI-LvU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -672,6 +754,9 @@
         <image name="playmode_Ascending.png" width="20" height="20"/>
     </resources>
     <classes>
+        <class className="HighOctaveSettingsViewController" superclassName="RootOctaveSettingsViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HighOctaveSettingsViewController.h"/>
+        </class>
         <class className="IntervalTrainerViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntervalTrainerViewController.h"/>
             <relationships>
@@ -683,6 +768,9 @@
         </class>
         <class className="PlaymodeSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaymodeSettingsViewController.h"/>
+        </class>
+        <class className="RootOctaveSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootOctaveSettingsViewController.h"/>
         </class>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>

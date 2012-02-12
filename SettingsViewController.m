@@ -60,7 +60,7 @@
     rootOctaveDetail.text = rootOctaveText;
     
     NSString *highOctaveText;
-    switch ([[Defaults sharedInstance] getRootOctave]) {
+    switch ([[Defaults sharedInstance] getHighOctave]) {
         case 0:
             highOctaveText = @"C2";
             break;

@@ -32,7 +32,6 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
-    currentInterval = [Interval getRandomInterval];
     [super viewDidLoad];
 }
 
@@ -141,6 +140,7 @@
 }
 
 - (IBAction)play:(id)sender {
+    if (!currentInterval) currentInterval = [Interval getRandomInterval];
     [[SoundEngine sharedInstance] playInterval:currentInterval];
 }
 
