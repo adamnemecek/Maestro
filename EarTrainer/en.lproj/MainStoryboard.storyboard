@@ -410,7 +410,47 @@
                     </tableView>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="466" y="-1246"/>
+            <point key="canvasLocation" x="418" y="-1248"/>
+        </scene>
+        <scene sceneID="VJR-sl-AIg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zFK-SF-AxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="g9s-mZ-tfg" customClass="PlaymodeSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="o7r-Q5-Zig">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlaymodeCell" textLabel="TDK-dF-S3a" style="IBUITableViewCellStyleDefault" id="WsC-Rc-eeC">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TDK-dF-S3a">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="g9s-mZ-tfg" id="BhO-9Z-8fH"/>
+                            <outlet property="delegate" destination="g9s-mZ-tfg" id="869-N4-dET"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Playmode" id="Ovh-eh-fAh"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1522" y="-863"/>
         </scene>
         <scene sceneID="azE-4m-ggy">
             <objects>
@@ -448,6 +488,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="g9s-mZ-tfg" kind="push" id="sWA-YE-O9x"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LOS-LI-rce" detailTextLabel="nRJ-85-K6c" style="IBUITableViewCellStyleValue1" id="x2x-rc-fVY">
                                         <rect key="frame" x="0.0" y="91" width="320" height="44"/>
@@ -503,10 +546,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Chord Training" id="OYX-nt-2zd">
+                            <tableViewSection id="OYX-nt-2zd">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="EHx-kP-iQm" detailTextLabel="x2s-l4-o05" style="IBUITableViewCellStyleValue1" id="Tfe-hR-KWl">
-                                        <rect key="frame" x="0.0" y="226" width="320" height="45"/>
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="EHx-kP-iQm" detailTextLabel="x2s-l4-o05" style="IBUITableViewCellStyleValue1" id="Tfe-hR-KWl">
+                                        <rect key="frame" x="0.0" y="200" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -531,8 +574,8 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="2N4-T6-Uqg" detailTextLabel="zGh-uA-nD9" style="IBUITableViewCellStyleValue1" id="TuQ-Eq-cO7">
-                                        <rect key="frame" x="0.0" y="271" width="320" height="44"/>
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="2N4-T6-Uqg" detailTextLabel="zGh-uA-nD9" style="IBUITableViewCellStyleValue1" id="TuQ-Eq-cO7">
+                                        <rect key="frame" x="0.0" y="245" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -557,8 +600,8 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="sfP-oa-JeZ" detailTextLabel="dri-MG-M1l" style="IBUITableViewCellStyleValue1" id="YnY-pz-qUa">
-                                        <rect key="frame" x="0.0" y="315" width="320" height="45"/>
+                                    <tableViewCell hidden="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="sfP-oa-JeZ" detailTextLabel="dri-MG-M1l" style="IBUITableViewCellStyleValue1" id="YnY-pz-qUa">
+                                        <rect key="frame" x="0.0" y="289" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -598,9 +641,14 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="highOctaveDetail" destination="lfK-co-gNq" id="If1-TW-NkT"/>
+                        <outlet property="playmodeDetail" destination="Fs6-8i-SEI" id="lMo-Yy-AXm"/>
+                        <outlet property="rootOctaveDetail" destination="nRJ-85-K6c" id="b4q-bB-2F3"/>
+                    </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="840" y="-612"/>
+            <point key="canvasLocation" x="828" y="-650"/>
         </scene>
         <scene sceneID="C2z-mH-VIB">
             <objects>
@@ -617,7 +665,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="314" y="-612"/>
+            <point key="canvasLocation" x="418" y="-650"/>
         </scene>
     </scenes>
     <resources>
@@ -633,10 +681,16 @@
                 <relationship kind="outlet" name="playmodeButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
+        <class className="PlaymodeSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaymodeSettingsViewController.h"/>
+        </class>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="highOctaveDetail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playmodeDetail" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rootOctaveDetail" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

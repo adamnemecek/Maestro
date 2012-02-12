@@ -2,15 +2,22 @@
 
 @class SettingsViewController;
 
+typedef enum {
+    SECTION_INTERVAL,
+    SECTION_CHORD
+}SECTIONS;
+
 @protocol SettingsViewControllerDelegate <NSObject>
-
 -(void)SettingsViewControllerDidFinish:(SettingsViewController *)controller;
-
 @end
 
 @interface SettingsViewController : UITableViewController
 
 @property (nonatomic, weak) id <SettingsViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *playmodeDetail;
+@property (weak, nonatomic) IBOutlet UILabel *rootOctaveDetail;
+@property (weak, nonatomic) IBOutlet UILabel *highOctaveDetail;
 
-- (IBAction)done:(id)sender;
+-(IBAction)done:(id)sender;
+
 @end

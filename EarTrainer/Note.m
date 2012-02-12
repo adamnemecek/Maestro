@@ -1,4 +1,5 @@
 #import "Note.h"
+#import "Defaults.h"
 
 @implementation Note
 
@@ -19,10 +20,29 @@
     return self;
 }
 
++ (NSInteger)midiFromOctave:(OCTAVE)octave {
+    NSInteger midi;
+    switch (octave) {
+        case C2:
+            midi = 36;
+            break;
+        case C3:
+            midi = 48;
+            break;
+        case C4:
+            midi = 60;
+            break;
+        case C5:
+            midi = 72;
+            break;
+    }
+    return midi;
+}
+
 + (Note *)getRandomNote {
-    // Last octave in random note selection not included
-    // That octave is reserved for follow up notes
-    return [[Note alloc] initNoteWithMidi:(arc4random()%48 + 36)];
+    NSInteger lowNote =  [Note midiFromOctave:[[Defaults sharedInstance] getRootOctave]];
+    NSInteger highNote = [Note midiFromOctave:[[Defaults sharedInstance] getHighOctave]];
+    return [[Note alloc] initNoteWithMidi:((arc4random()%((highNote - lowNote) + 1)) + lowNote)];
 }
 
 @end

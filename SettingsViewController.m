@@ -1,37 +1,81 @@
 #import "SettingsViewController.h"
-
+#import "Defaults.h"
 
 @implementation SettingsViewController
 
 @synthesize delegate;
+@synthesize playmodeDetail;
+@synthesize rootOctaveDetail;
+@synthesize highOctaveDetail;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
-    if (self) {
-    }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
+    [self setPlaymodeDetail:nil];
+    [self setRootOctaveDetail:nil];
+    [self setHighOctaveDetail:nil];
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
+    NSString *playmodeText;
+    switch ([[Defaults sharedInstance] getPlaymode]) {
+        case 0:
+            playmodeText = @"Ascending";
+            break;
+        case 1:
+            playmodeText = @"Descending";
+            break;
+        case 2:
+            playmodeText = @"Chord";
+            break;
+    }
+    playmodeDetail.text = playmodeText;
+    
+    NSString *rootOctaveText;
+    switch ([[Defaults sharedInstance] getRootOctave]) {
+        case 0:
+            rootOctaveText = @"C2";
+            break;
+        case 1:
+            rootOctaveText = @"C3";
+            break;
+        case 2:
+            rootOctaveText = @"C4";
+            break;
+    }
+    rootOctaveDetail.text = rootOctaveText;
+    
+    NSString *highOctaveText;
+    switch ([[Defaults sharedInstance] getRootOctave]) {
+        case 0:
+            highOctaveText = @"C2";
+            break;
+        case 1:
+            highOctaveText = @"C3";
+            break;
+        case 2:
+            highOctaveText = @"C4";
+            break;
+        case 3:
+            highOctaveText = @"C5";
+            break;
+    }
+    highOctaveDetail.text = highOctaveText;
+    
     [super viewWillAppear:animated];
 }
 
@@ -50,39 +94,9 @@
     [super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    // Return the number of sections.
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    // Return the number of rows in the section.
-//    return 1;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
 
 #pragma mark - Actions
 - (IBAction)done:(id)sender {
@@ -94,4 +108,5 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 @end

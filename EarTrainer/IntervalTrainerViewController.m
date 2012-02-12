@@ -32,21 +32,18 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
-    
-    playmodeIndex = [[Defaults sharedInstance] getPlaymode];
-    [playmodeButton setImage:[self getCurrentPlaymodeImage]];
     currentInterval = [Interval getRandomInterval];
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setPlaymodeButton:nil];
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
+    playmodeIndex = [[Defaults sharedInstance] getPlaymode];
+    [playmodeButton setImage:[self getCurrentPlaymodeImage]];
     [super viewWillAppear:animated];
 }
 
@@ -128,7 +125,6 @@
 #pragma mark - Actions
 
 - (IBAction)changePlaymode:(id)sender {
-    
     switch (playmodeIndex) {
         case PLAYMODE_ASCENDING:
             playmodeIndex = PLAYMODE_DESCENDING;
@@ -166,9 +162,7 @@
 #pragma mark - Settings view controller delegate
 
 - (void)SettingsViewControllerDidFinish:(SettingsViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:^{
-        playmodeIndex = [[Defaults sharedInstance] getPlaymode];
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
