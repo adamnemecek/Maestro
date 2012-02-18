@@ -32,5 +32,4 @@
 + (Interval *)getRandomInterval {
     return [[Interval alloc] initInterval:(arc4random()%12) withRoot:[Note getRandomNote]];
 }
-
 @end

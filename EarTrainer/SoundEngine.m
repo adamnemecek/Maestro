@@ -3,6 +3,11 @@
 #import "Note.h"
 #import "Interval.h"
 
+@interface SoundEngine (Private)
+-(SystemSoundID)loadSoundWithName:(NSString *)name;
+-(void)playOnNewThread:(NSArray *)properties;
+@end
+
 static SoundEngine *inst = nil;
 
 @implementation SoundEngine
@@ -19,15 +24,23 @@ static SoundEngine *inst = nil;
     inst = nil;
 }
 
+#pragma mark - Threading
+
+- (void)playOnNewThread:(NSArray *)properties {
+    Note *rootNote = (Note *)[properties objectAtIndex:0];
+    Note *nextNote = (Note *)[properties objectAtIndex:1];
+    [self playNote:rootNote];
+    [NSThread sleepForTimeInterval:0.5];
+    [self playNote:nextNote];
+}
+
 #pragma mark - Intervals
 
 - (void)playInterval:(Interval *)interval {
     Note *rootNote = (Note *)[interval.notes objectAtIndex:0];
     Note *nextNote = (Note *)[interval.notes objectAtIndex:1];
-    
-    [self playNote:rootNote];
-    [NSThread sleepForTimeInterval:0.5];
-    [self playNote:nextNote];
+    NSArray *properties = [NSArray arrayWithObjects:rootNote, nextNote, nil];
+    [NSThread detachNewThreadSelector:@selector(playOnNewThread:) toTarget:self withObject:properties];
 }
 
 #pragma mark - Load and play sound
@@ -37,7 +50,7 @@ static SoundEngine *inst = nil;
 }
 
 - (void)playSoundWithMidiId:(NSInteger)midiId {
-    NSLog(@"playing with Id: %i",midiId);
+//    NSLog(@"playing with Id: %i",midiId);
     SystemSoundID note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];
     AudioServicesPlaySystemSound(note);
 }
@@ -54,5 +67,4 @@ static SoundEngine *inst = nil;
 	AudioServicesCreateSystemSoundID(url, &note);
     return note;
 }
-
 @end

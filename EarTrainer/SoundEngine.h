@@ -7,17 +7,12 @@
 
 @interface SoundEngine : NSObject
 
-// Shared Instance
 +(SoundEngine *)sharedInstance;
 +(void)destroySharedInstance;
 
-// Intervals
 -(void)playInterval:(Interval *)interval;
 
-// Load and play sound
 -(void)playNote:(Note *)note;
 -(void)playSoundWithMidiId:(NSInteger)midiId;
 -(void)playSoundWithName:(NSString *)name;
--(SystemSoundID)loadSoundWithName:(NSString *)name;
-
 @end

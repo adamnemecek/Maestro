@@ -27,5 +27,4 @@ typedef enum {
 -(id)initInterval:(INTERVALS)interval withRoot:(Note *)rootNote;
 -(NSString *)getNoteNames;
 +(Interval *)getRandomInterval;
-
 @end
