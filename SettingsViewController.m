@@ -7,6 +7,7 @@
 @synthesize playmodeDetail;
 @synthesize rootOctaveDetail;
 @synthesize highOctaveDetail;
+@synthesize tempoDetail;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -27,6 +28,7 @@
     [self setPlaymodeDetail:nil];
     [self setRootOctaveDetail:nil];
     [self setHighOctaveDetail:nil];
+    [self setTempoDetail:nil];
     [super viewDidUnload];
 }
 
@@ -75,6 +77,20 @@
             break;
     }
     highOctaveDetail.text = highOctaveText;
+    
+    NSString *tempoText;
+    switch ([[Defaults sharedInstance] getTempo]) {
+        case 0:
+            tempoText = @"Slow";
+            break;
+        case 1:
+            tempoText = @"Medium";
+            break;
+        case 2:
+            tempoText = @"Fast";
+            break;
+    }
+    tempoDetail.text = tempoText;
     
     [super viewWillAppear:animated];
 }

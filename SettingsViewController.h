@@ -17,6 +17,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UILabel *playmodeDetail;
 @property (weak, nonatomic) IBOutlet UILabel *rootOctaveDetail;
 @property (weak, nonatomic) IBOutlet UILabel *highOctaveDetail;
+@property (weak, nonatomic) IBOutlet UILabel *tempoDetail;
 
 -(IBAction)done:(id)sender;
 

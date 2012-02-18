@@ -13,10 +13,11 @@
 -(void)savePlaymode:(NSInteger)playmode;
 -(void)saveRootOctave:(NSInteger)octave;
 -(void)saveHighOctave:(NSInteger)octave;
+-(void)saveTempo:(NSInteger)tempo;
 
 -(BOOL)getHereBefore;
 -(NSInteger)getPlaymode;
 -(NSInteger)getRootOctave;
 -(NSInteger)getHighOctave;
-
+-(NSInteger)getTempo;
 @end

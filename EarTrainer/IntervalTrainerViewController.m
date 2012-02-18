@@ -108,10 +108,19 @@
         if (currentInterval.interval == indexPath.row) alertTitle = @"Correct";
         else alertTitle = @"Wrong";
         alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentInterval getNoteNames], currentInterval.longName];
-        [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
+        [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
         Interval *interval = [[Interval alloc] initInterval:indexPath.row withRoot:[Note getRandomNote]];
         [[SoundEngine sharedInstance] playInterval:interval];
+    }
+}
+
+#pragma mark UIAlertView delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        currentInterval = [Interval getRandomInterval];
+        [[SoundEngine sharedInstance] playInterval:currentInterval];
     }
 }
 
@@ -136,11 +145,9 @@
     if (using) {
         [playButton setEnabled:YES];
 //        [skipButton setEnabled:YES];  // Don't enable this one. It's enabled after you press play
-        [playmodeButton setEnabled:YES];
     } else {
         [playButton setEnabled:NO];
-        [skipButton setEnabled:NO];   
-        [playmodeButton setEnabled:NO];
+        [skipButton setEnabled:NO];
     }
 }
 

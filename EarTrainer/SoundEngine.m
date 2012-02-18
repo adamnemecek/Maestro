@@ -1,5 +1,5 @@
 #import "SoundEngine.h"
-
+#import "Defaults.h"
 #import "Note.h"
 #import "Interval.h"
 
@@ -29,9 +29,30 @@ static SoundEngine *inst = nil;
 - (void)playOnNewThread:(NSArray *)properties {
     Note *rootNote = (Note *)[properties objectAtIndex:0];
     Note *nextNote = (Note *)[properties objectAtIndex:1];
-    [self playNote:rootNote];
-    [NSThread sleepForTimeInterval:0.5];
-    [self playNote:nextNote];
+    float tempo;
+    switch ([[Defaults sharedInstance] getTempo]) {
+        case 0:
+            tempo = 1.0;
+            break;
+        case 1:
+            tempo = 0.6;
+            break;
+        case 2:
+            tempo = 0.30;
+            break;
+    }
+    if ([[Defaults sharedInstance] getPlaymode] == 0) {
+        [self playNote:rootNote];
+        [NSThread sleepForTimeInterval:tempo];
+        [self playNote:nextNote];
+    } else if ([[Defaults sharedInstance] getPlaymode] == 1) {
+        [self playNote:nextNote];
+        [NSThread sleepForTimeInterval:tempo];
+        [self playNote:rootNote];
+    } else {
+        [self playNote:rootNote];
+        [self playNote:nextNote];
+    }
 }
 
 #pragma mark - Intervals

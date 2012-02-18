@@ -78,6 +78,7 @@
 		FF002B8C14DE0C1A00BF9A22 /* Interval.m in Sources */ = {isa = PBXBuildFile; fileRef = FF002B8B14DE0C1A00BF9A22 /* Interval.m */; };
 		FF1B4A3014DDB3EF00DBAB5A /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
+		FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */; };
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
 		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
 		FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */; };
@@ -170,6 +171,8 @@
 		FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalTrainerViewController.h; sourceTree = "<group>"; };
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
+		FF47C62914F0493E0054139E /* TempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TempoSettingsViewController.h; path = ../TempoSettingsViewController.h; sourceTree = "<group>"; };
+		FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TempoSettingsViewController.m; path = ../TempoSettingsViewController.m; sourceTree = "<group>"; };
 		FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
 		FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
 		FF659B3A14D62932000E7EC2 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */,
 				FF6A4A8814E8438B00CE4145 /* HighOctaveSettingsViewController.h */,
 				FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */,
+				FF47C62914F0493E0054139E /* TempoSettingsViewController.h */,
+				FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				FF7D7CE614E77C9B006E6362 /* PlaymodeSettingsViewController.m in Sources */,
 				FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */,
 				FF6A4A8A14E8438B00CE4145 /* HighOctaveSettingsViewController.m in Sources */,
+				FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

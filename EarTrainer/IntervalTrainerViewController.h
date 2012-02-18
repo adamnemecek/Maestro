@@ -21,7 +21,7 @@ typedef enum {
     PLAYTYPE_PRACTICE,
 }PLAYTYPE;
 
-@interface IntervalTrainerViewController : UITableViewController <SettingsViewControllerDelegate>
+@interface IntervalTrainerViewController : UITableViewController <SettingsViewControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButton;

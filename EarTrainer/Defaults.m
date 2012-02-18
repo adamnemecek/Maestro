@@ -23,6 +23,7 @@ static Defaults *inst = nil;
     [self savePlaymode:0];
     [self saveRootOctave:1];
     [self saveHighOctave:2];
+    [self saveTempo:1];
 }
 
 #pragma mark - Saving defaults
@@ -43,6 +44,10 @@ static Defaults *inst = nil;
     [[NSUserDefaults standardUserDefaults] setInteger:octave forKey:@"keyHighOctave"];
 }
 
+- (void)saveTempo:(NSInteger)tempo {
+    [[NSUserDefaults standardUserDefaults] setInteger:tempo forKey:@"keyTempo"];
+}
+
 #pragma mark - Retrieving defaults
 
 - (BOOL)getHereBefore {
@@ -61,4 +66,7 @@ static Defaults *inst = nil;
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyHighOctave"];    
 }
 
+- (NSInteger)getTempo {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyTempo"];
+}
 @end
