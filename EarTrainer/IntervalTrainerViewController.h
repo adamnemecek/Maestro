@@ -16,11 +16,22 @@ typedef enum {
     PLAYMODE_CHORD
 }PLAYMODE;
 
+typedef enum {
+    PLAYTYPE_TRAIN,
+    PLAYTYPE_PRACTICE,
+}PLAYTYPE;
+
 @interface IntervalTrainerViewController : UITableViewController <SettingsViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playmodeButton;
+
+- (void)setupTrainingMode;
+- (void)setupPracticeMode;
 
 - (IBAction)changePlaymode:(id)sender;
 - (IBAction)play:(id)sender;
 - (IBAction)skip:(id)sender;
+- (IBAction)changePlayType:(id)sender;
 @end
