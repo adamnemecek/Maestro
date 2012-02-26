@@ -76,12 +76,17 @@
 		C85A84AE14D4AB4D00394052 /* playmode_Descending.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AB14D4AB4D00394052 /* playmode_Descending.png */; };
 		C85A84B014D4AB7B00394052 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = C85A84AF14D4AB7A00394052 /* background.png */; };
 		FF002B8C14DE0C1A00BF9A22 /* Interval.m in Sources */ = {isa = PBXBuildFile; fileRef = FF002B8B14DE0C1A00BF9A22 /* Interval.m */; };
+		FF0FE6B214F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FE6AF14F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.m */; };
+		FF0FE6B314F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FE6B114F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.m */; };
+		FF0FE6BD14F96F470033F768 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0FE6BC14F96F470033F768 /* MainMenuViewController.m */; };
 		FF1B4A3014DDB3EF00DBAB5A /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
 		FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */; };
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
 		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
 		FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */; };
+		FF68C26E14F9B745008894CB /* ChordTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68C26D14F9B745008894CB /* ChordTrainerViewController.m */; };
+		FF68C27214F9BD35008894CB /* TrainerModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68C27114F9BD35008894CB /* TrainerModelViewController.m */; };
 		FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */; };
 		FF6A4A8A14E8438B00CE4145 /* HighOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */; };
 		FF7D7CE614E77C9B006E6362 /* PlaymodeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */; };
@@ -167,17 +172,28 @@
 		C85A84AF14D4AB7A00394052 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		FF002B8A14DE0C1A00BF9A22 /* Interval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interval.h; sourceTree = "<group>"; };
 		FF002B8B14DE0C1A00BF9A22 /* Interval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interval.m; sourceTree = "<group>"; };
+		FF0FE6AD14F95B9F0033F768 /* JTRevealSidebarV2Delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTRevealSidebarV2Delegate.h; sourceTree = "<group>"; };
+		FF0FE6AE14F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+JTRevealSidebarV2.h"; sourceTree = "<group>"; };
+		FF0FE6AF14F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
+		FF0FE6B014F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JTRevealSidebarV2.h"; sourceTree = "<group>"; };
+		FF0FE6B114F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JTRevealSidebarV2.m"; sourceTree = "<group>"; };
+		FF0FE6BB14F96F460033F768 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		FF0FE6BC14F96F470033F768 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalTrainerViewController.h; sourceTree = "<group>"; };
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
-		FF47C62914F0493E0054139E /* TempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TempoSettingsViewController.h; path = ../TempoSettingsViewController.h; sourceTree = "<group>"; };
+		FF47C62914F0493E0054139E /* TempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TempoSettingsViewController.h; path = ../TempoSettingsViewController.h; sourceTree = "<group>"; };
 		FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TempoSettingsViewController.m; path = ../TempoSettingsViewController.m; sourceTree = "<group>"; };
 		FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
 		FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
 		FF659B3A14D62932000E7EC2 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		FF659B3B14D62932000E7EC2 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FF68C26C14F9B745008894CB /* ChordTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTrainerViewController.h; sourceTree = "<group>"; };
+		FF68C26D14F9B745008894CB /* ChordTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordTrainerViewController.m; sourceTree = "<group>"; };
+		FF68C27014F9BD35008894CB /* TrainerModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainerModelViewController.h; sourceTree = "<group>"; };
+		FF68C27114F9BD35008894CB /* TrainerModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainerModelViewController.m; sourceTree = "<group>"; };
 		FF6A4A8414E8410A00CE4145 /* RootOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootOctaveSettingsViewController.h; path = ../RootOctaveSettingsViewController.h; sourceTree = "<group>"; };
 		FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootOctaveSettingsViewController.m; path = ../RootOctaveSettingsViewController.m; sourceTree = "<group>"; };
 		FF6A4A8814E8438B00CE4145 /* HighOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighOctaveSettingsViewController.h; sourceTree = "<group>"; };
@@ -298,11 +314,37 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		FF0FE6AC14F95B9F0033F768 /* JTRevealSidebarV2 */ = {
+			isa = PBXGroup;
+			children = (
+				FF0FE6AD14F95B9F0033F768 /* JTRevealSidebarV2Delegate.h */,
+				FF0FE6AE14F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.h */,
+				FF0FE6AF14F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.m */,
+				FF0FE6B014F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.h */,
+				FF0FE6B114F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.m */,
+			);
+			path = JTRevealSidebarV2;
+			sourceTree = "<group>";
+		};
+		FF0FE6B514F95BA30033F768 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FF0FE6AC14F95B9F0033F768 /* JTRevealSidebarV2 */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		FF36DBC214D4A34F0056D087 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FF0FE6BB14F96F460033F768 /* MainMenuViewController.h */,
+				FF0FE6BC14F96F470033F768 /* MainMenuViewController.m */,
+				FF68C27014F9BD35008894CB /* TrainerModelViewController.h */,
+				FF68C27114F9BD35008894CB /* TrainerModelViewController.m */,
 				FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */,
 				FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */,
+				FF68C26C14F9B745008894CB /* ChordTrainerViewController.h */,
+				FF68C26D14F9B745008894CB /* ChordTrainerViewController.m */,
 				FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */,
 				FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */,
 				FF7D7CE414E77C9B006E6362 /* PlaymodeSettingsViewController.h */,
@@ -371,6 +413,7 @@
 		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				FF0FE6B514F95BA30033F768 /* Libraries */,
 				FF36DBC414D4A36D0056D087 /* Model */,
 				FF36DBC314D4A3610056D087 /* View */,
 				FF36DBC214D4A34F0056D087 /* Controller */,
@@ -539,6 +582,11 @@
 				FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */,
 				FF6A4A8A14E8438B00CE4145 /* HighOctaveSettingsViewController.m in Sources */,
 				FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */,
+				FF0FE6B214F95B9F0033F768 /* UINavigationItem+JTRevealSidebarV2.m in Sources */,
+				FF0FE6B314F95B9F0033F768 /* UIViewController+JTRevealSidebarV2.m in Sources */,
+				FF0FE6BD14F96F470033F768 /* MainMenuViewController.m in Sources */,
+				FF68C26E14F9B745008894CB /* ChordTrainerViewController.m in Sources */,
+				FF68C27214F9BD35008894CB /* TrainerModelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

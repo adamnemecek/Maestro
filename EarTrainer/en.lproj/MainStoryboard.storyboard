@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="IntervalCell" textLabel="iBS-gz-Jfd" style="IBUITableViewCellStyleDefault" id="m7P-W8-XC1">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="iBS-gz-Jfd" style="IBUITableViewCellStyleDefault" id="m7P-W8-XC1">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -85,7 +85,7 @@
                     <navigationItem key="navigationItem" title="Ear Trainer" id="I2R-TT-gW9">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="otL-H9-jDx">
                             <connections>
-                                <segue destination="Y2b-9M-LkJ" kind="custom" customClass="PushInSegue" id="1va-I1-GFN"/>
+                                <segue destination="Y2b-9M-LkJ" kind="push" customClass="PushInSegue" id="1va-I1-GFN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="j4K-5I-RxE">
@@ -107,9 +107,9 @@
         <scene sceneID="qRB-WD-qry">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Gn-wv-Edd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="Y2b-9M-LkJ" sceneMemberID="viewController">
+                <tableViewController id="Y2b-9M-LkJ" customClass="MainMenuViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="MxR-PY-4vh">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -152,6 +152,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="jln-5h-bz5" kind="push" id="dMv-mG-pzX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -206,6 +209,80 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="418" y="-1248"/>
+        </scene>
+        <scene sceneID="rOg-9s-csi">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uoK-Uv-gPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="jln-5h-bz5" customClass="ChordTrainerViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nV6-mQ-MLt">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="A3I-UD-Epq" style="IBUITableViewCellStyleDefault" id="HsB-2S-QtK">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A3I-UD-Epq">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jln-5h-bz5" id="yLe-si-3hc"/>
+                            <outlet property="delegate" destination="jln-5h-bz5" id="ecf-he-tfV"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="WHu-i6-3Jz"/>
+                        <barButtonItem image="playmode_Ascending.png" id="5rk-WF-Jk0">
+                            <connections>
+                                <action selector="changePlaymode:" destination="jln-5h-bz5" id="cMY-fd-r5p"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="play" id="sw1-GM-hRw">
+                            <connections>
+                                <action selector="play:" destination="jln-5h-bz5" id="Sex-Tk-HBr"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="fastForward" id="RMU-m5-tYW">
+                            <connections>
+                                <action selector="skip:" destination="jln-5h-bz5" id="Oq9-Sv-cAE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="cLa-yV-9f6"/>
+                        <barButtonItem title="Practice" id="vIH-NJ-9h8">
+                            <connections>
+                                <action selector="changePlayType:" destination="jln-5h-bz5" id="LGD-HY-Vj1"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Chord Trainer" id="OeZ-dF-Uea">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="7PR-jF-Sek">
+                            <connections>
+                                <segue destination="Ks8-Q3-pAB" kind="modal" identifier="OpenSettings" id="EOL-1E-n8n"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="playButton" destination="sw1-GM-hRw" id="twl-mW-bAY"/>
+                        <outlet property="playmodeButton" destination="5rk-WF-Jk0" id="fHP-KW-upJ"/>
+                        <outlet property="skipButton" destination="RMU-m5-tYW" id="vQg-oA-4i7"/>
+                    </connections>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="-123" y="-376"/>
         </scene>
         <scene sceneID="VJR-sl-AIg">
             <objects>
@@ -617,20 +694,17 @@
         <image name="playmode_Ascending.png" width="20" height="20"/>
     </resources>
     <classes>
+        <class className="ChordTrainerViewController" superclassName="TrainerModelViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChordTrainerViewController.h"/>
+        </class>
         <class className="HighOctaveSettingsViewController" superclassName="RootOctaveSettingsViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HighOctaveSettingsViewController.h"/>
         </class>
-        <class className="IntervalTrainerViewController" superclassName="UITableViewController">
+        <class className="IntervalTrainerViewController" superclassName="TrainerModelViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IntervalTrainerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePlayType:"/>
-                <relationship kind="action" name="changePlaymode:"/>
-                <relationship kind="action" name="play:"/>
-                <relationship kind="action" name="skip:"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="playmodeButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="skipButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
+        </class>
+        <class className="MainMenuViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainMenuViewController.h"/>
         </class>
         <class className="PlaymodeSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaymodeSettingsViewController.h"/>
@@ -651,10 +725,25 @@
         <class className="TempoSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TempoSettingsViewController.h"/>
         </class>
+        <class className="TrainerModelViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainerModelViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changePlayType:"/>
+                <relationship kind="action" name="changePlaymode:"/>
+                <relationship kind="action" name="play:"/>
+                <relationship kind="action" name="skip:"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="playmodeButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="skipButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="EOL-1E-n8n"/>
+    </inferredMetricsTieBreakers>
 </document>

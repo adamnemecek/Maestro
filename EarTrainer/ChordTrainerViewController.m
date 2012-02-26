@@ -1,6 +1,6 @@
-#import "IntervalTrainerViewController.h"
+#import "ChordTrainerViewController.h"
 
-@implementation IntervalTrainerViewController
+@implementation ChordTrainerViewController
 
 #pragma mark - Initialization and deallocation
 
@@ -14,6 +14,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.selections = [NSArray arrayWithObjects:@"U",@"m2",@"M2",@"m3",@"M3",@"P4",@"P5",@"m6",@"M6",@"m7",@"M7",@"P8", nil];
+    self.selections = [NSArray arrayWithObjects:@"minor-major seventh", nil];
 }
 @end
