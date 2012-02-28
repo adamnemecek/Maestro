@@ -27,42 +27,53 @@ static SoundEngine *inst = nil;
 #pragma mark - Threading
 
 - (void)playOnNewThread:(NSArray *)properties {
-    Note *rootNote = (Note *)[properties objectAtIndex:0];
-    Note *nextNote = (Note *)[properties objectAtIndex:1];
-    float tempo;
-    switch ([[Defaults sharedInstance] getTempo]) {
-        case 0:
-            tempo = 1.0;
-            break;
-        case 1:
-            tempo = 0.6;
-            break;
-        case 2:
-            tempo = 0.30;
-            break;
-    }
-    if ([[Defaults sharedInstance] getPlaymode] == 0) {
-        [self playNote:rootNote];
-        [NSThread sleepForTimeInterval:tempo];
-        [self playNote:nextNote];
-    } else if ([[Defaults sharedInstance] getPlaymode] == 1) {
-        [self playNote:nextNote];
-        [NSThread sleepForTimeInterval:tempo];
-        [self playNote:rootNote];
-    } else {
-        [self playNote:rootNote];
-        [self playNote:nextNote];
+//    Note *rootNote = (Note *)[properties objectAtIndex:0];
+//    Note *nextNote = (Note *)[properties objectAtIndex:1];
+//    float tempo;
+//    switch ([[Defaults sharedInstance] getTempo]) {
+//        case 0:
+//            tempo = 1.0;
+//            break;
+//        case 1:
+//            tempo = 0.6;
+//            break;
+//        case 2:
+//            tempo = 0.30;
+//            break;
+//    }
+//    if ([[Defaults sharedInstance] getPlaymode] == 0) {
+//        [self playNote:rootNote];
+//        [NSThread sleepForTimeInterval:tempo];
+//        [self playNote:nextNote];
+//    } else if ([[Defaults sharedInstance] getPlaymode] == 1) {
+//        [self playNote:nextNote];
+//        [NSThread sleepForTimeInterval:tempo];
+//        [self playNote:rootNote];
+//    } else {
+//        [self playNote:rootNote];
+//        [self playNote:nextNote];
+//    }
+    for (Note *note in properties) {
+        [self playNote:note];
+        [NSThread sleepForTimeInterval:0.6];
     }
 }
 
-#pragma mark - Intervals
+#pragma mark - Play collection object
 
-- (void)playInterval:(Interval *)interval {
-    Note *rootNote = (Note *)[interval.notes objectAtIndex:0];
-    Note *nextNote = (Note *)[interval.notes objectAtIndex:1];
-    NSArray *properties = [NSArray arrayWithObjects:rootNote, nextNote, nil];
+- (void)playCollection:(NoteCollection *)collection {
+    NSArray *properties = [NSArray arrayWithArray:collection.notes];
     [NSThread detachNewThreadSelector:@selector(playOnNewThread:) toTarget:self withObject:properties];
 }
+
+//#pragma mark - Intervals
+//
+//- (void)playInterval:(Interval *)interval {
+//    Note *rootNote = (Note *)[interval.notes objectAtIndex:0];
+//    Note *nextNote = (Note *)[interval.notes objectAtIndex:1];
+//    NSArray *properties = [NSArray arrayWithObjects:rootNote, nextNote, nil];
+//    [NSThread detachNewThreadSelector:@selector(playOnNewThread:) toTarget:self withObject:properties];
+//}
 
 #pragma mark - Load and play sound
 

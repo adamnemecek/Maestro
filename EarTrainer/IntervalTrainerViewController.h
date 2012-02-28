@@ -1,5 +1,11 @@
 #import <UIKit/UIKit.h>
 #import "TrainerModelViewController.h"
 
-@interface IntervalTrainerViewController : TrainerModelViewController 
+@class MainMenuViewController;
+
+@interface IntervalTrainerViewController : TrainerModelViewController
+
+@property (nonatomic, strong) MainMenuViewController *mainMenu;
+
+- (IBAction)showMenu:(id)sender;
 @end

@@ -82,6 +82,8 @@
 		FF1B4A3014DDB3EF00DBAB5A /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
 		FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */; };
+		FF5FFCA314FAC07800B2636D /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5FFCA214FAC07800B2636D /* Chord.m */; };
+		FF5FFCA714FADA2E00B2636D /* NoteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5FFCA614FADA2E00B2636D /* NoteCollection.m */; };
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
 		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
 		FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */; };
@@ -97,6 +99,10 @@
 		FF8E8C4C14D4942F00CC8818 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8E8C4B14D4942F00CC8818 /* main.m */; };
 		FF8E8C5014D4943000CC8818 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8E8C4F14D4943000CC8818 /* AppDelegate.m */; };
 		FF8E8C5314D4943000CC8818 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF8E8C5114D4943000CC8818 /* MainStoryboard.storyboard */; };
+		FF9678F814FD3F77004E9402 /* MainMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9678F714FD3F77004E9402 /* MainMenuView.xib */; };
+		FF96790114FD4E99004E9402 /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9678FF14FD4E99004E9402 /* ButtonMenu.png */; };
+		FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */; };
+		FF96790B14FD6C54004E9402 /* TrainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF96790A14FD6C54004E9402 /* TrainerView.xib */; };
 		FFA0262C14E6E30600AA58E1 /* PushInSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA0262B14E6E30600AA58E1 /* PushInSegue.m */; };
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 /* End PBXBuildFile section */
@@ -185,6 +191,10 @@
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
 		FF47C62914F0493E0054139E /* TempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TempoSettingsViewController.h; path = ../TempoSettingsViewController.h; sourceTree = "<group>"; };
 		FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TempoSettingsViewController.m; path = ../TempoSettingsViewController.m; sourceTree = "<group>"; };
+		FF5FFCA114FAC07800B2636D /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
+		FF5FFCA214FAC07800B2636D /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
+		FF5FFCA514FADA2E00B2636D /* NoteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCollection.h; sourceTree = "<group>"; };
+		FF5FFCA614FADA2E00B2636D /* NoteCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCollection.m; sourceTree = "<group>"; };
 		FF659B3214D60B5A000E7EC2 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ../SettingsViewController.h; sourceTree = "<group>"; };
 		FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ../SettingsViewController.m; sourceTree = "<group>"; };
 		FF659B3A14D62932000E7EC2 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
@@ -211,6 +221,10 @@
 		FF8E8C4E14D4943000CC8818 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF8E8C4F14D4943000CC8818 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FF8E8C5214D4943000CC8818 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		FF9678F714FD3F77004E9402 /* MainMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenuView.xib; path = ../MainMenuView.xib; sourceTree = "<group>"; };
+		FF9678FF14FD4E99004E9402 /* ButtonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonMenu.png; sourceTree = "<group>"; };
+		FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ButtonMenu@2x.png"; sourceTree = "<group>"; };
+		FF96790A14FD6C54004E9402 /* TrainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TrainerView.xib; path = ../TrainerView.xib; sourceTree = "<group>"; };
 		FFA0262A14E6E30600AA58E1 /* PushInSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushInSegue.h; sourceTree = "<group>"; };
 		FFA0262B14E6E30600AA58E1 /* PushInSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushInSegue.m; sourceTree = "<group>"; };
 		FFBE9A1114DDADA600C755DB /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
@@ -362,6 +376,8 @@
 		FF36DBC314D4A3610056D087 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FF9678F714FD3F77004E9402 /* MainMenuView.xib */,
+				FF96790A14FD6C54004E9402 /* TrainerView.xib */,
 				FF8E8C5114D4943000CC8818 /* MainStoryboard.storyboard */,
 			);
 			name = View;
@@ -372,8 +388,12 @@
 			children = (
 				FFBE9A1114DDADA600C755DB /* Note.h */,
 				FFBE9A1214DDADA600C755DB /* Note.m */,
+				FF5FFCA514FADA2E00B2636D /* NoteCollection.h */,
+				FF5FFCA614FADA2E00B2636D /* NoteCollection.m */,
 				FF002B8A14DE0C1A00BF9A22 /* Interval.h */,
 				FF002B8B14DE0C1A00BF9A22 /* Interval.m */,
+				FF5FFCA114FAC07800B2636D /* Chord.h */,
+				FF5FFCA214FAC07800B2636D /* Chord.m */,
 				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
 				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
 				FF659B3A14D62932000E7EC2 /* SoundEngine.h */,
@@ -385,6 +405,8 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
+				FF9678FF14FD4E99004E9402 /* ButtonMenu.png */,
+				FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */,
 				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
 				FF8E8C3E14D4942F00CC8818 /* Frameworks */,
 				FF8E8C3C14D4942F00CC8818 /* Products */,
@@ -559,6 +581,10 @@
 				C82DC32214D63287008CC4C6 /* piano_93.aiff in Resources */,
 				C82DC32314D63287008CC4C6 /* piano_94.aiff in Resources */,
 				C82DC32414D63287008CC4C6 /* piano_95.aiff in Resources */,
+				FF9678F814FD3F77004E9402 /* MainMenuView.xib in Resources */,
+				FF96790114FD4E99004E9402 /* ButtonMenu.png in Resources */,
+				FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */,
+				FF96790B14FD6C54004E9402 /* TrainerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +613,8 @@
 				FF0FE6BD14F96F470033F768 /* MainMenuViewController.m in Sources */,
 				FF68C26E14F9B745008894CB /* ChordTrainerViewController.m in Sources */,
 				FF68C27214F9BD35008894CB /* TrainerModelViewController.m in Sources */,
+				FF5FFCA314FAC07800B2636D /* Chord.m in Sources */,
+				FF5FFCA714FADA2E00B2636D /* NoteCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

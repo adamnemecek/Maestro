@@ -3,13 +3,15 @@
 
 @implementation Interval
 
-@synthesize notes = _notes;
-@synthesize shortName = _shortName;
-@synthesize longName = _longName;
 @synthesize interval = _interval;
 
+-(id)initInterval:(INTERVALS)interval {
+    self = [self initInterval:interval withRoot:[Note getRandomNote]];
+    return self;
+}
+
 - (id)initInterval:(INTERVALS)interval withRoot:(Note *)rootNote {
-    self = [super init];
+    self = [super initWithIndex:interval];
     
     INTERVALS spacing[12] = {0,1,2,3,4,5,7,8,9,10,11,12};
     NSArray *shorNames = [NSArray arrayWithObjects:@"U",@"m2",@"M2",@"m3",@"M3",@"P4",@"P5",@"m6",@"M6",@"m7",@"M7",@"P8", nil];
@@ -17,16 +19,12 @@
                           @"Minor 6",@"Major 6",@"Minor 7",@"Major 7",@"Perfect 8", nil];
     
     _interval = interval;
-    _shortName = [shorNames objectAtIndex:_interval];
-    _longName = [longNames objectAtIndex:_interval];
+    self.shortName = [shorNames objectAtIndex:_interval];
+    self.longName = [longNames objectAtIndex:_interval];
     Note *nextNote = [[Note alloc] initNoteWithMidi:(rootNote.midiId + spacing[_interval])];
-    _notes = [NSArray arrayWithObjects:rootNote, nextNote, nil];
+    self.notes = [NSArray arrayWithObjects:rootNote, nextNote, nil];
     
     return self;
-}
-
-- (NSString *)getNoteNames {
-    return [[((Note *)[_notes objectAtIndex:0]).name stringByAppendingString:@" - "] stringByAppendingString:((Note *)[_notes objectAtIndex:1]).name];
 }
 
 + (Interval *)getRandomInterval {

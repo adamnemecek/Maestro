@@ -1,10 +1,6 @@
 #import "TrainerModelViewController.h"
-
 #import "SoundEngine.h"
-#import "Defaults.h"
-
-#import "Note.h"
-#import "Interval.h"
+#import "NoteCollection.h"
 
 @interface TrainerModelViewController (Private)
 -(UIImage *)getCurrentPlaymodeImage;
@@ -15,7 +11,7 @@
 @implementation TrainerModelViewController {
     PLAYMODE playmodeIndex;
     PLAYTYPE playType;
-    Interval *currentInterval;
+    NoteCollection *currentSelection;
 }
 
 @synthesize playButton, skipButton, playmodeButton;
@@ -41,7 +37,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    playmodeIndex = [[Defaults sharedInstance] getPlaymode];
+    playmodeIndex = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
     [super viewWillAppear:animated];
 }
@@ -77,7 +73,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!currentInterval && playType == PLAYTYPE_TRAIN) cell.textLabel.textColor = [UIColor lightGrayColor];
+    if (!currentSelection && playType == PLAYTYPE_TRAIN) cell.textLabel.textColor = [UIColor lightGrayColor];
     else cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = [selections objectAtIndex:indexPath.row];
     return cell;
@@ -89,15 +85,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (playType == PLAYTYPE_TRAIN) {
-        if (!currentInterval) return;
+        if (!currentSelection) return;
         NSString *alertTitle, *alertMessage;
-        if (currentInterval.interval == indexPath.row) alertTitle = @"Correct";
+        if (currentSelection.index == indexPath.row) alertTitle = @"Correct";
         else alertTitle = @"Wrong";
-        alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentInterval getNoteNames], currentInterval.longName];
+        alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-        Interval *interval = [[Interval alloc] initInterval:indexPath.row withRoot:[Note getRandomNote]];
-        [[SoundEngine sharedInstance] playInterval:interval];
+        currentSelection = [self getSelectionWithIndex:indexPath.row];
+        [[SoundEngine sharedInstance] playCollection:currentSelection];
     }
 }
 
@@ -105,9 +101,31 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        currentInterval = [Interval getRandomInterval];
-        [[SoundEngine sharedInstance] playInterval:currentInterval];
+        currentSelection = [self getRandomSelection];
+        [[SoundEngine sharedInstance] playCollection:currentSelection];
     }
+}
+
+/* These methods are to be overridden by subclass */
+#pragma mark - subclass methods
+
+#pragma mark Defaults
+
+- (PLAYMODE)getPlaymode {
+    return PLAYMODE_ASCENDING;
+}
+
+- (void)savePlaymode:(PLAYMODE)playmode {
+}
+
+#pragma mark Selection
+
+- (id)getRandomSelection {
+    return nil;
+}
+
+- (id)getSelectionWithIndex:(NSInteger)index {
+    return nil;
 }
 
 #pragma mark - Training mode
@@ -120,7 +138,7 @@
 #pragma mark - Practice mode
 
 - (void)setupPracticeMode {
-    currentInterval = nil;
+    currentSelection = nil;
     [self.tableView reloadData];
     [self setUsingTrainingButtons:NO];
 }
@@ -174,22 +192,22 @@
             playmodeIndex = PLAYMODE_ASCENDING;
             break;
     }
-    [[Defaults sharedInstance] savePlaymode:playmodeIndex];
+    [self savePlaymode:playmodeIndex];
     [(UIBarButtonItem *)sender setImage:[self getCurrentPlaymodeImage]];
 }
 
 - (IBAction)play:(id)sender {
-    if (!currentInterval) {
-        currentInterval = [Interval getRandomInterval];
+    if (!currentSelection) {
+        currentSelection = [self getRandomSelection];
         [self.tableView reloadData];
         [skipButton setEnabled:YES];
     }
-    [[SoundEngine sharedInstance] playInterval:currentInterval];
+    [[SoundEngine sharedInstance] playCollection:currentSelection];
 }
 
 - (IBAction)skip:(id)sender {
-    currentInterval = [Interval getRandomInterval];
-    [[SoundEngine sharedInstance] playInterval:currentInterval];
+    currentSelection = [self getRandomSelection];
+    [[SoundEngine sharedInstance] playCollection:currentSelection];
 }
 
 - (IBAction)changePlayType:(id)sender {

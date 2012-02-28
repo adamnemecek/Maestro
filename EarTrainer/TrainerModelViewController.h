@@ -28,6 +28,11 @@ typedef enum {
 
 @property (strong, nonatomic) NSArray *selections;
 
+- (PLAYMODE)getPlaymode;
+- (void)savePlaymode:(PLAYMODE)playmode;
+- (id)getRandomSelection;
+- (id)getSelectionWithIndex:(NSInteger)index;
+
 - (void)setupTrainingMode;
 - (void)setupPracticeMode;
 

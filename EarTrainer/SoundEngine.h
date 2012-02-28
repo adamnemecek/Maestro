@@ -3,14 +3,17 @@
 
 @class SoundEngine;
 @class Note;
-@class Interval;
+@class NoteCollection;
+//@class Interval;
 
 @interface SoundEngine : NSObject
 
 +(SoundEngine *)sharedInstance;
 +(void)destroySharedInstance;
 
--(void)playInterval:(Interval *)interval;
+-(void)playCollection:(NoteCollection *)collection;
+
+//-(void)playInterval:(Interval *)interval;
 
 -(void)playNote:(Note *)note;
 -(void)playSoundWithMidiId:(NSInteger)midiId;

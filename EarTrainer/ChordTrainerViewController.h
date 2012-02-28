@@ -2,5 +2,4 @@
 #import "TrainerModelViewController.h"
 
 @interface ChordTrainerViewController : TrainerModelViewController
-
 @end
