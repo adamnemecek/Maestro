@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "SettingsViewController.h"
+#import "ContainerViewController.h"
 
 @class SoundEngine;
 
@@ -20,7 +20,7 @@ typedef enum {
     PLAYTYPE_PRACTICE,
 }PLAYTYPE;
 
-@interface TrainerModelViewController : UITableViewController <SettingsViewControllerDelegate,UIAlertViewDelegate>
+@interface TrainerModelViewController : ContainerViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButton;
@@ -40,5 +40,4 @@ typedef enum {
 - (IBAction)play:(id)sender;
 - (IBAction)skip:(id)sender;
 - (IBAction)changePlayType:(id)sender;
-
 @end

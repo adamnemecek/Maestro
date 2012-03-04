@@ -1,11 +1,15 @@
 #import "MainMenuViewController.h"
-
+#import "IntervalTrainerViewController.h"
 #import "ChordTrainerViewController.h"
 
 @implementation MainMenuViewController {
     NSArray *section1;
     NSArray *section2;
+    
+    ChordTrainerViewController *_chordTrainerViewController;
 }
+
+@synthesize delegate;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -89,12 +93,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    UIViewController *selectedViewController;
     switch (indexPath.section) {
         case 0:
             switch (indexPath.row) {
                 case 0:
+                    selectedViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
                     break;
                 case 1:
+                    selectedViewController = [[ChordTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
                     break;
             }
             break;
@@ -107,5 +114,6 @@
             }
             break;
     }
+    [self.delegate MainMenu:self didSelectViewController:selectedViewController];
 }
 @end

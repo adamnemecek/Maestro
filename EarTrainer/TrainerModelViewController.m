@@ -57,10 +57,6 @@
     [super viewDidDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -73,6 +69,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     if (!currentSelection && playType == PLAYTYPE_TRAIN) cell.textLabel.textColor = [UIColor lightGrayColor];
     else cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.text = [selections objectAtIndex:indexPath.row];
@@ -92,8 +89,7 @@
         alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-        currentSelection = [self getSelectionWithIndex:indexPath.row];
-        [[SoundEngine sharedInstance] playCollection:currentSelection];
+        [[SoundEngine sharedInstance] playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
     }
 }
 
@@ -223,21 +219,5 @@
             [self setupTrainingMode];
             break;
     }
-}
-
-#pragma mark - Segue delegate connection
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kSegue_Identifier_Open_Settings]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        SettingsViewController *settingsViewController = [[navigationController viewControllers] objectAtIndex:0];
-        settingsViewController.delegate = self;
-    }
-}
-
-#pragma mark - Settings view controller delegate
-
-- (void)SettingsViewControllerDidFinish:(SettingsViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

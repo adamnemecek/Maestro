@@ -6,9 +6,9 @@
 
 #pragma mark - Initialization and deallocation
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-    }
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    [self.navigationItem setTitle:@"Chord Trainer"];
     return self;
 }
 

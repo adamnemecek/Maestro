@@ -105,6 +105,9 @@
 		FF96790B14FD6C54004E9402 /* TrainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF96790A14FD6C54004E9402 /* TrainerView.xib */; };
 		FFA0262C14E6E30600AA58E1 /* PushInSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = FFA0262B14E6E30600AA58E1 /* PushInSegue.m */; };
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
+		FFD0C69E1502875C00BB6C9F /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */; };
+		FFD0C69F1502875C00BB6C9F /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD0C69D1502875C00BB6C9F /* ContainerViewController.xib */; };
+		FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD0C6A11502878500BB6C9F /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,6 +232,10 @@
 		FFA0262B14E6E30600AA58E1 /* PushInSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushInSegue.m; sourceTree = "<group>"; };
 		FFBE9A1114DDADA600C755DB /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		FFBE9A1214DDADA600C755DB /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		FFD0C69D1502875C00BB6C9F /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
+		FFD0C6A11502878500BB6C9F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +412,10 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
+				FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */,
+				FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */,
+				FFD0C69D1502875C00BB6C9F /* ContainerViewController.xib */,
+				FFD0C6A11502878500BB6C9F /* MainMenu.xib */,
 				FF9678FF14FD4E99004E9402 /* ButtonMenu.png */,
 				FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */,
 				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
@@ -487,7 +498,7 @@
 		FF8E8C3214D4942F00CC8818 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = FF8E8C3514D4942F00CC8818 /* Build configuration list for PBXProject "EarTrainer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -585,6 +596,8 @@
 				FF96790114FD4E99004E9402 /* ButtonMenu.png in Resources */,
 				FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */,
 				FF96790B14FD6C54004E9402 /* TrainerView.xib in Resources */,
+				FFD0C69F1502875C00BB6C9F /* ContainerViewController.xib in Resources */,
+				FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +628,7 @@
 				FF68C27214F9BD35008894CB /* TrainerModelViewController.m in Sources */,
 				FF5FFCA314FAC07800B2636D /* Chord.m in Sources */,
 				FF5FFCA714FADA2E00B2636D /* NoteCollection.m in Sources */,
+				FFD0C69E1502875C00BB6C9F /* ContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +670,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -674,6 +689,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -690,6 +706,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EarTrainer/EarTrainer-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "EarTrainer/EarTrainer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -701,6 +718,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EarTrainer/EarTrainer-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "EarTrainer/EarTrainer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
