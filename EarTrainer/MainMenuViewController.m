@@ -5,11 +5,10 @@
 @implementation MainMenuViewController {
     NSArray *section1;
     NSArray *section2;
-    
-    ChordTrainerViewController *_chordTrainerViewController;
 }
 
 @synthesize delegate;
+@synthesize currentIndexPath = _currentIndexPath;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -77,6 +76,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    
+    if (!_currentIndexPath && indexPath.row == 0) _currentIndexPath = indexPath;
     switch (indexPath.section) {
         case 0:
             cell.textLabel.text = [section1 objectAtIndex:indexPath.row];
@@ -92,6 +93,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ([indexPath isEqual:_currentIndexPath]) {
+        [self.delegate mainMenuSelectedCurrentView:self];
+        return;
+    }
+    _currentIndexPath = indexPath;
     
     UIViewController *selectedViewController;
     switch (indexPath.section) {
@@ -114,6 +121,6 @@
             }
             break;
     }
-    [self.delegate MainMenu:self didSelectViewController:selectedViewController];
+    [self.delegate mainMenu:self didSelectViewController:selectedViewController];
 }
 @end

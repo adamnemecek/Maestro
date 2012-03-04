@@ -63,9 +63,9 @@
     UIView *viewToMove = self.navigationController.view;
     if (show) {
         if (!_mainMenu) {
-            _mainMenu = [[MainMenuViewController alloc] initWithNibName:@"MainMenuView" bundle:nil];
+            _mainMenu = [[MainMenuViewController alloc] initWithStyle:UITableViewStylePlain];
             [self.navigationController.view.superview insertSubview:_mainMenu.view atIndex:0];
-            _mainMenu.view.frame = [_mainMenu.view convertRect:[[UIScreen mainScreen] applicationFrame] toView:nil];
+//            _mainMenu.view.frame = [_mainMenu.view convertRect:[[UIScreen mainScreen] applicationFrame] toView:nil];
             _mainMenu.delegate = self;
         }
         [self.view setUserInteractionEnabled:NO];
@@ -84,9 +84,14 @@
 
 #pragma mark - Menu delegate
 
-- (void)MainMenu:(MainMenuViewController *)viewController didSelectViewController:(UIViewController *)selectedViewController {
+- (void)mainMenuSelectedCurrentView:(MainMenuViewController *)viewController {
+    [self openMenu:NO];
+}
+
+- (void)mainMenu:(MainMenuViewController *)viewController didSelectViewController:(UIViewController *)selectedViewController {
     [self openMenu:NO];
     ContainerViewController *controller = (ContainerViewController *)selectedViewController;
+    if (!controller)return;
     controller.mainMenu = viewController;
     viewController.delegate = controller;
     [self.navigationController setViewControllers:[NSArray arrayWithObject:controller] animated:NO];

@@ -1,11 +1,10 @@
 #import "AppDelegate.h"
 #import "Defaults.h"
-#import "ContainerViewController.h"
+#import "IntervalTrainerViewController.h"
 
 @implementation AppDelegate
 
 @synthesize navController = _navController;
-@synthesize containerViewController = _containerViewController;
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -13,10 +12,11 @@
     if (![[Defaults sharedInstance] getHereBefore]) [[Defaults sharedInstance] initialDefaults];
     
     
-    _containerViewController = [[ContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
-    _containerViewController.title = @"Ear Trainer";
-    _navController = [[UINavigationController alloc] initWithRootViewController:_containerViewController];
+    IntervalTrainerViewController *intervalTrainerViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
+    intervalTrainerViewController.title = @"Ear Trainer";
+    _navController = [[UINavigationController alloc] initWithRootViewController:intervalTrainerViewController];
     [_navController.navigationBar setTintColor:[UIColor blackColor]];
+    [_navController.toolbar setTintColor:[UIColor blackColor]];
     
     _window.rootViewController = _navController;
     [_window makeKeyAndVisible];

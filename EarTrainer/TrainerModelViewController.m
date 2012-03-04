@@ -14,7 +14,7 @@
     NoteCollection *currentSelection;
 }
 
-@synthesize playButton, skipButton, playmodeButton;
+@synthesize playButton, skipButton, playmodeButton, playTypeButton;
 @synthesize selections;
 
 - (void)didReceiveMemoryWarning {
@@ -25,6 +25,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    UIBarButtonItem *flex1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    playmodeButton = [[UIBarButtonItem alloc] initWithImage:[self getCurrentPlaymodeImage] style:UIBarButtonItemStyleBordered target:self action:@selector(changePlaymode:)];
+    playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play:)];
+    [playButton setStyle:UIBarButtonItemStyleBordered];
+    skipButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(skip:)];
+    [skipButton setStyle:UIBarButtonItemStyleBordered];
+    UIBarButtonItem *flex2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    flex2.width = 30.0;
+    playTypeButton = [[UIBarButtonItem alloc] initWithTitle:@"Practice" style:UIBarButtonItemStyleBordered target:self
+                                                                                   action:@selector(changePlayType:)];
+    
+    self.toolbarItems = [NSArray arrayWithObjects:flex1,playmodeButton,playButton,skipButton,flex2, playTypeButton,nil];
+//    self.toolbarItems = [NSArray arrayWithObjects:playmodeButton,playButton,skipButton,playTypeButton,nil];
+    
     playType = PLAYTYPE_TRAIN;
     [skipButton setEnabled:NO];
 }
@@ -176,7 +193,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)changePlaymode:(id)sender {
+- (void)changePlaymode:(id)sender {
     switch (playmodeIndex) {
         case PLAYMODE_ASCENDING:
             playmodeIndex = PLAYMODE_DESCENDING;
@@ -192,7 +209,7 @@
     [(UIBarButtonItem *)sender setImage:[self getCurrentPlaymodeImage]];
 }
 
-- (IBAction)play:(id)sender {
+- (void)play:(id)sender {
     if (!currentSelection) {
         currentSelection = [self getRandomSelection];
         [self.tableView reloadData];
@@ -201,21 +218,21 @@
     [[SoundEngine sharedInstance] playCollection:currentSelection];
 }
 
-- (IBAction)skip:(id)sender {
+- (void)skip:(id)sender {
     currentSelection = [self getRandomSelection];
     [[SoundEngine sharedInstance] playCollection:currentSelection];
 }
 
-- (IBAction)changePlayType:(id)sender {
+- (void)changePlayType:(id)sender {
     switch (playType) {
         case PLAYTYPE_TRAIN:
             playType = PLAYTYPE_PRACTICE;
-            [(UIBarButtonItem *)sender setTitle:@"train"];
+            [playTypeButton setTitle:@"Train"];
             [self setupPracticeMode];
             break;
         case PLAYTYPE_PRACTICE:
             playType = PLAYTYPE_TRAIN;
-            [(UIBarButtonItem *)sender setTitle:@"practice"];
+            [playTypeButton setTitle:@"Practice"];
             [self setupTrainingMode];
             break;
     }

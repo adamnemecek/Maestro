@@ -22,9 +22,10 @@ typedef enum {
 
 @interface TrainerModelViewController : ContainerViewController <UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *skipButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *playmodeButton;
+@property (strong, nonatomic) UIBarButtonItem *playButton;
+@property (strong, nonatomic) UIBarButtonItem *skipButton;
+@property (strong, nonatomic) UIBarButtonItem *playmodeButton;
+@property (strong, nonatomic) UIBarButtonItem *playTypeButton;
 
 @property (strong, nonatomic) NSArray *selections;
 
@@ -36,8 +37,8 @@ typedef enum {
 - (void)setupTrainingMode;
 - (void)setupPracticeMode;
 
-- (IBAction)changePlaymode:(id)sender;
-- (IBAction)play:(id)sender;
-- (IBAction)skip:(id)sender;
-- (IBAction)changePlayType:(id)sender;
+- (void)changePlaymode:(id)sender;
+- (void)play:(id)sender;
+- (void)skip:(id)sender;
+- (void)changePlayType:(id)sender;
 @end

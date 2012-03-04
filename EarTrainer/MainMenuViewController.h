@@ -3,11 +3,13 @@
 @class MainMenuViewController;
 
 @protocol MainMenuViewControllerDelegate <NSObject>
--(void)MainMenu:(MainMenuViewController *)viewController didSelectViewController:(UIViewController *)selectedViewController;
+-(void)mainMenu:(MainMenuViewController *)viewController didSelectViewController:(UIViewController *)selectedViewController;
+-(void)mainMenuSelectedCurrentView:(MainMenuViewController *)viewController;
 @end
 
 @interface MainMenuViewController : UITableViewController
 
-@property(nonatomic, weak) id <MainMenuViewControllerDelegate> delegate;
+@property (nonatomic, weak) id <MainMenuViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 @end
