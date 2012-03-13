@@ -6,6 +6,14 @@
     NSIndexPath *currentCellPath;
 }
 
+#pragma mark - Initialization
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    self.title = @"Tempo";
+    return self;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,9 +69,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TempoCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     cell.textLabel.text = [tempos objectAtIndex:indexPath.row];
-    if ([[Defaults sharedInstance] getTempo] == indexPath.row) {
+    if ([self getTempo] == indexPath.row) {
         currentCellPath = indexPath;
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -78,7 +87,17 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     oldCell.accessoryType = UITableViewCellAccessoryNone;
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    [[Defaults sharedInstance] saveTempo:indexPath.row];
+    [self saveTempo:indexPath.row];
     currentCellPath = indexPath;
+}
+
+#pragma mark - Methods for sublcass
+
+- (NSInteger)getTempo {
+    return [[Defaults sharedInstance] getTempo];
+}
+
+- (void)saveTempo:(NSInteger)tempo {
+    [[Defaults sharedInstance] saveTempo:tempo];
 }
 @end

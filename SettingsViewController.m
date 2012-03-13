@@ -4,13 +4,12 @@
 #import "PlaymodeSettingsViewController.h"
 #import "RootOctaveSettingsViewController.h"
 #import "HighOctaveSettingsViewController.h"
+#import "TempoSettingsViewController.h"
 
 #import "ChordPlaymodeSettingsViewController.h"
 #import "ChordRootOctaveSettingsViewController.h"
 #import "ChordHighOctaveSettingsViewController.h"
-
-@interface SettingsViewController (Private)
-@end
+#import "ChordTempoSettingsViewController.h"
 
 @implementation SettingsViewController {
     NSArray *selections;
@@ -230,6 +229,7 @@
                 }
                     break;
                 case 3:
+                    tableViewController = [[TempoSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
             }
             break;
@@ -248,6 +248,7 @@
                 }
                     break;
                 case 3:
+                    tableViewController = [[ChordTempoSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
             }
             break;

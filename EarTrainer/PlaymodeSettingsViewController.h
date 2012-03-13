@@ -4,5 +4,4 @@
 
 - (NSInteger)getPlaymode;
 - (void)savePlaymode:(NSInteger)playmode;
-
 @end

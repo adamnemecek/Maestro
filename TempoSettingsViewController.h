@@ -2,4 +2,7 @@
 
 @interface TempoSettingsViewController : UITableViewController
 
+- (NSInteger)getTempo;
+- (void)saveTempo:(NSInteger)tempo;
+
 @end
