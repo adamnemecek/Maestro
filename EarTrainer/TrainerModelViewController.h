@@ -2,6 +2,7 @@
 #import "ContainerViewController.h"
 
 @class SoundEngine;
+@class NoteCollection;
 
 #define kSegue_Identifier_Open_Settings @"OpenSettings"
 
@@ -29,7 +30,10 @@ typedef enum {
 
 @property (strong, nonatomic) NSArray *selections;
 
+- (void)playCollection:(NoteCollection *)collection;
+
 - (PLAYMODE)getPlaymode;
+- (int)getTempo;
 - (void)savePlaymode:(PLAYMODE)playmode;
 - (id)getRandomSelection;
 - (id)getSelectionWithIndex:(NSInteger)index;

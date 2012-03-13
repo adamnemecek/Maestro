@@ -6,8 +6,11 @@
 @synthesize octaves = _octaves;
 @synthesize currentCellPath = _currentCellPath;
 
+#pragma mark - Initialization
+
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
+    self.title = @"Root Octave";
     return self;
 }
 
@@ -66,7 +69,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OctaveCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
     cell.textLabel.text = [_octaves objectAtIndex:indexPath.row];
     if (indexPath.row == [self getOctaveSelection]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -94,8 +98,12 @@
     return [[Defaults sharedInstance] getRootOctave];
 }
 
+- (NSInteger)getOtherOctave {
+    return [[Defaults sharedInstance] getHighOctave];
+}
+
 - (BOOL)checkOctave:(NSInteger)octaveIndex {
-    if (octaveIndex <= [[Defaults sharedInstance] getHighOctave]) return YES;
+    if (octaveIndex <= [self getOtherOctave]) return YES;
     else {
         [[[UIAlertView alloc] initWithTitle:@"Can't select this octave" message:@"This octave is higher than your current high octave" delegate:nil
                           cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];

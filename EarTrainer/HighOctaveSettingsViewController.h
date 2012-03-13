@@ -3,4 +3,7 @@
 
 @interface HighOctaveSettingsViewController : RootOctaveSettingsViewController
 
+-(NSInteger)getOctave;
+-(void)saveOctave:(NSInteger)octave;
+
 @end

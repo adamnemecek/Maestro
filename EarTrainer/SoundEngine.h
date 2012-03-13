@@ -1,19 +1,17 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@class SoundEngine;
 @class Note;
 @class NoteCollection;
-//@class Interval;
 
 @interface SoundEngine : NSObject
 
 +(SoundEngine *)sharedInstance;
 +(void)destroySharedInstance;
 
--(void)playCollection:(NoteCollection *)collection;
+- (void)setAlive:(BOOL)alive;
 
-//-(void)playInterval:(Interval *)interval;
+-(void)playCollection:(NoteCollection *)collection withProperties:(NSArray *)properties;
 
 -(void)playNote:(Note *)note;
 -(void)playSoundWithMidiId:(NSInteger)midiId;

@@ -29,6 +29,10 @@
     return [[Defaults sharedInstance] getPlaymode];
 }
 
+- (int)getTempo {
+    return [[Defaults sharedInstance] getTempo];
+}
+
 - (void)savePlaymode:(PLAYMODE)playmode {
     [[Defaults sharedInstance] savePlaymode:playmode];
 }

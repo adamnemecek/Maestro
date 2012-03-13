@@ -15,5 +15,6 @@ typedef enum {
 -(id)initNoteWithMidi:(NSInteger)midiId;
 +(NSInteger)midiFromOctave:(OCTAVE)octave;
 +(Note *)getRandomNote;
++(Note *)getRandomChordNote;
 
 @end

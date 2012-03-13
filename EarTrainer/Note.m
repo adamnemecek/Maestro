@@ -42,6 +42,12 @@
 + (Note *)getRandomNote {
     NSInteger lowNote =  [Note midiFromOctave:[[Defaults sharedInstance] getRootOctave]];
     NSInteger highNote = [Note midiFromOctave:[[Defaults sharedInstance] getHighOctave]];
-    return [[Note alloc] initNoteWithMidi:((arc4random()%((highNote - lowNote) + 1)) + lowNote)];}
+    return [[Note alloc] initNoteWithMidi:((arc4random()%((highNote - lowNote) + 1)) + lowNote)];
+}
 
++ (Note *)getRandomChordNote {
+    NSInteger lowNote =  [Note midiFromOctave:[[Defaults sharedInstance] getChordRootOctave]];
+    NSInteger highNote = [Note midiFromOctave:[[Defaults sharedInstance] getChordHighOctave]];
+    return [[Note alloc] initNoteWithMidi:((arc4random()%((highNote - lowNote) + 1)) + lowNote)];
+}
 @end

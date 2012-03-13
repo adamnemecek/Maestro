@@ -26,8 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Show toolbar
     [self.navigationController setToolbarHidden:NO animated:YES];
     
+    // Setup toolbar items
     UIBarButtonItem *flex1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     playmodeButton = [[UIBarButtonItem alloc] initWithImage:[self getCurrentPlaymodeImage] style:UIBarButtonItemStyleBordered target:self action:@selector(changePlaymode:)];
     playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play:)];
@@ -40,7 +42,6 @@
                                                                                    action:@selector(changePlayType:)];
     
     self.toolbarItems = [NSArray arrayWithObjects:flex1,playmodeButton,playButton,skipButton,flex2, playTypeButton,nil];
-//    self.toolbarItems = [NSArray arrayWithObjects:playmodeButton,playButton,skipButton,playTypeButton,nil];
     
     playType = PLAYTYPE_TRAIN;
     [skipButton setEnabled:NO];
@@ -51,12 +52,13 @@
     [self setPlaymodeButton:nil];
     [self setPlayButton:nil];
     [self setSkipButton:nil];
+    [self setPlayTypeButton:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     playmodeIndex = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
-    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -106,7 +108,11 @@
         alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-        [[SoundEngine sharedInstance] playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
+        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
+                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
+        [self.navigationItem setPrompt:promptMessage];
+        
+        [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
     }
 }
 
@@ -115,8 +121,17 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         currentSelection = [self getRandomSelection];
-        [[SoundEngine sharedInstance] playCollection:currentSelection];
+        [self playCollection:currentSelection];
     }
+}
+
+#pragma mark - Play notes
+
+- (void)playCollection:(NoteCollection *)collection {
+    [[SoundEngine sharedInstance] playCollection:collection withProperties:[NSArray arrayWithObjects:
+                                                                            [NSNumber numberWithInt:[self getPlaymode]],
+                                                                            [NSNumber numberWithInt:[self getTempo]],
+                                                                            nil]];
 }
 
 /* These methods are to be overridden by subclass */
@@ -126,6 +141,10 @@
 
 - (PLAYMODE)getPlaymode {
     return PLAYMODE_ASCENDING;
+}
+
+- (int)getTempo {
+    return 1;
 }
 
 - (void)savePlaymode:(PLAYMODE)playmode {
@@ -145,6 +164,7 @@
 
 - (void)setupTrainingMode {
     [self.tableView reloadData];
+    if (self.navigationItem.prompt) [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
 
@@ -153,6 +173,7 @@
 - (void)setupPracticeMode {
     currentSelection = nil;
     [self.tableView reloadData];
+    self.navigationItem.prompt = @"";
     [self setUsingTrainingButtons:NO];
 }
 
@@ -215,12 +236,12 @@
         [self.tableView reloadData];
         [skipButton setEnabled:YES];
     }
-    [[SoundEngine sharedInstance] playCollection:currentSelection];
+    [self playCollection:currentSelection];
 }
 
 - (void)skip:(id)sender {
     currentSelection = [self getRandomSelection];
-    [[SoundEngine sharedInstance] playCollection:currentSelection];
+    [self playCollection:currentSelection];
 }
 
 - (void)changePlayType:(id)sender {

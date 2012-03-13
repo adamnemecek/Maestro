@@ -10,14 +10,26 @@
 -(void)initialDefaults;
 
 -(void)saveHereBefore:(BOOL)hereBefore;
+
 -(void)savePlaymode:(NSInteger)playmode;
 -(void)saveRootOctave:(NSInteger)octave;
 -(void)saveHighOctave:(NSInteger)octave;
 -(void)saveTempo:(NSInteger)tempo;
 
+-(void)saveChordPlaymode:(NSInteger)playmode;
+-(void)saveChordRootOctave:(NSInteger)octave;
+-(void)saveChordHighOctave:(NSInteger)octave;
+-(void)saveChordTempo:(NSInteger)tempo;
+
 -(BOOL)getHereBefore;
+
 -(NSInteger)getPlaymode;
 -(NSInteger)getRootOctave;
 -(NSInteger)getHighOctave;
 -(NSInteger)getTempo;
+
+-(NSInteger)getChordPlaymode;
+-(NSInteger)getChordRootOctave;
+-(NSInteger)getChordHighOctave;
+-(NSInteger)getChordTempo;
 @end

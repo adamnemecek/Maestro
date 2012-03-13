@@ -4,7 +4,7 @@
 
 @implementation ChordTrainerViewController
 
-#pragma mark - Initialization and deallocation
+#pragma mark - Initialization
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -22,11 +22,15 @@
 #pragma mark - Defaults
 
 - (PLAYMODE)getPlaymode {
-    return PLAYMODE_CHORD;
+    return [[Defaults sharedInstance] getChordPlaymode];
+}
+
+- (int)getTempo {
+    return [[Defaults sharedInstance] getChordTempo];
 }
 
 - (void)savePlaymode:(PLAYMODE)playmode {
-    
+    [[Defaults sharedInstance] saveChordPlaymode:playmode];
 }
 
 - (id)getRandomSelection {

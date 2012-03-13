@@ -3,6 +3,14 @@
 
 @implementation HighOctaveSettingsViewController
 
+#pragma mark - Initialization
+
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    self.title = @"High Octave";
+    return self;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -45,6 +53,18 @@
 
 #pragma mark - Overide defaults methods
 
+- (NSInteger)getOctave {
+    return [[Defaults sharedInstance] getHighOctave];
+}
+
+- (NSInteger)getOtherOctave {
+    return [[Defaults sharedInstance] getRootOctave];
+}
+
+- (void)saveOctave:(NSInteger)octave {
+    [[Defaults sharedInstance] saveHighOctave:octave];
+}
+
 - (NSInteger)indexToOctave:(NSInteger)index {
     NSInteger octave;
     switch (index) {
@@ -63,7 +83,7 @@
 
 - (NSInteger)getOctaveSelection {
     NSInteger octaveIndex;
-    switch ([[Defaults sharedInstance] getHighOctave]) {
+    switch ([self getOctave]) {
         case 1:
             octaveIndex = 0;
             break;
@@ -78,7 +98,7 @@
 }
 
 - (BOOL)checkOctave:(NSInteger)octaveIndex {
-    if ([self indexToOctave:octaveIndex] >= [[Defaults sharedInstance] getRootOctave]) return YES;
+    if ([self indexToOctave:octaveIndex] >= [self getOtherOctave]) return YES;
     else {
         [[[UIAlertView alloc] initWithTitle:@"Can't select this octave" message:@"This octave is lower than your current root octave" delegate:nil
                           cancelButtonTitle:@"Okay" otherButtonTitles:nil] show];
@@ -88,7 +108,7 @@
 
 - (void)saveOctaveSelection:(NSInteger)selection {
     NSInteger octave = [self indexToOctave:selection];
-    [[Defaults sharedInstance] saveHighOctave:octave];
+    [self saveOctave:octave];
 }
 
 @end

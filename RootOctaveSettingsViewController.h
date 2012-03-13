@@ -6,6 +6,7 @@
 @property (nonatomic, strong) NSIndexPath *currentCellPath;
 
 -(NSInteger)getOctaveSelection;
+-(NSInteger)getOtherOctave;
 -(BOOL)checkOctave:(NSInteger)octaveIndex;
 -(void)saveOctaveSelection:(NSInteger)selection;
 

@@ -6,11 +6,11 @@
     NSIndexPath *currentCellPath;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+#pragma mark - Initialization
+
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
-    if (self) {
-    }
+    self.title = @"Playmode";
     return self;
 }
 
@@ -66,9 +66,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlaymodeCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     cell.textLabel.text = [playmodes objectAtIndex:indexPath.row];
-    if (indexPath.row == [[Defaults sharedInstance] getPlaymode]) {
+    if (indexPath.row == [self getPlaymode]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         currentCellPath = indexPath;
     }
@@ -81,10 +82,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:currentCellPath];
     oldCell.accessoryType = UITableViewCellAccessoryNone;
-    [[Defaults sharedInstance] savePlaymode:indexPath.row];
+    [self savePlaymode:indexPath.row];
     UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
     newCell.accessoryType = UITableViewCellAccessoryCheckmark;
     currentCellPath = indexPath;
 }
 
+#pragma mark - overiding methods
+
+- (NSInteger)getPlaymode {
+    return [[Defaults sharedInstance] getPlaymode];
+}
+
+- (void)savePlaymode:(NSInteger)playmode {
+    [[Defaults sharedInstance] savePlaymode:playmode];
+}
 @end

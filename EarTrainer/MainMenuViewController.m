@@ -1,6 +1,7 @@
 #import "MainMenuViewController.h"
 #import "IntervalTrainerViewController.h"
 #import "ChordTrainerViewController.h"
+#import "TipsViewController.h"
 
 @implementation MainMenuViewController {
     NSArray *section1;
@@ -98,7 +99,6 @@
         [self.delegate mainMenuSelectedCurrentView:self];
         return;
     }
-    _currentIndexPath = indexPath;
     
     UIViewController *selectedViewController;
     switch (indexPath.section) {
@@ -115,12 +115,16 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
+                    selectedViewController = [[TipsViewController alloc] initWithStyle:UITableViewStylePlain];
                     break;
                 case 1:
+                    [self.delegate mainMenuSelectedCurrentView:self];
+                    return;
                     break;
             }
             break;
     }
+    _currentIndexPath = indexPath;
     [self.delegate mainMenu:self didSelectViewController:selectedViewController];
 }
 @end

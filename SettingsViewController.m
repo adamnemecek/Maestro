@@ -1,16 +1,24 @@
 #import "SettingsViewController.h"
 #import "Defaults.h"
 
+#import "PlaymodeSettingsViewController.h"
+#import "RootOctaveSettingsViewController.h"
+#import "HighOctaveSettingsViewController.h"
+
+#import "ChordPlaymodeSettingsViewController.h"
+#import "ChordRootOctaveSettingsViewController.h"
+#import "ChordHighOctaveSettingsViewController.h"
+
+@interface SettingsViewController (Private)
+@end
+
 @implementation SettingsViewController {
     NSArray *selections;
-    NSArray *selectionDetails;
+    NSArray *section1Details;
+    NSArray *section2Details;
 }
 
 @synthesize delegate;
-@synthesize playmodeDetail;
-@synthesize rootOctaveDetail;
-@synthesize highOctaveDetail;
-@synthesize tempoDetail;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -31,15 +39,14 @@
 }
 
 - (void)viewDidUnload {
-    [self setPlaymodeDetail:nil];
-    [self setRootOctaveDetail:nil];
-    [self setHighOctaveDetail:nil];
-    [self setTempoDetail:nil];
     [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     NSString *playmodeText, *rootOctaveText, *highOctaveText, *tempoText;
+    NSString *chordPlaymodeText, *chordRootOctaveText, *chordHighOctaveText, *chordTempoText;
+    
+    // Interval
     switch ([[Defaults sharedInstance] getPlaymode]) {
         case 0:
             playmodeText = @"Ascending";
@@ -91,7 +98,62 @@
             break;
     }
     
-    selectionDetails = [NSArray arrayWithObjects:playmodeText,rootOctaveText,highOctaveText,tempoText, nil];
+    // Chord
+    switch ([[Defaults sharedInstance] getChordPlaymode]) {
+        case 0:
+            chordPlaymodeText = @"Ascending";
+            break;
+        case 1:
+            chordPlaymodeText = @"Descending";
+            break;
+        case 2:
+            chordPlaymodeText = @"Chord";
+            break;
+    }
+    
+    switch ([[Defaults sharedInstance] getChordRootOctave]) {
+        case 0:
+            chordRootOctaveText = @"C2";
+            break;
+        case 1:
+            chordRootOctaveText = @"C3";
+            break;
+        case 2:
+            chordRootOctaveText = @"C4";
+            break;
+    }
+    
+    switch ([[Defaults sharedInstance] getChordHighOctave]) {
+        case 0:
+            chordHighOctaveText = @"C2";
+            break;
+        case 1:
+            chordHighOctaveText = @"C3";
+            break;
+        case 2:
+            chordHighOctaveText = @"C4";
+            break;
+        case 3:
+            chordHighOctaveText = @"C5";
+            break;
+    }
+    
+    switch ([[Defaults sharedInstance] getChordTempo]) {
+        case 0:
+            chordTempoText = @"Slow";
+            break;
+        case 1:
+            chordTempoText = @"Medium";
+            break;
+        case 2:
+            chordTempoText = @"Fast";
+            break;
+    }
+    
+    section1Details = [NSArray arrayWithObjects:playmodeText,rootOctaveText,highOctaveText,tempoText, nil];
+    section2Details = [NSArray arrayWithObjects:chordPlaymodeText,chordRootOctaveText,chordHighOctaveText,chordTempoText, nil];
+    
+    [self.tableView reloadData];
     
     [super viewWillAppear:animated];
 }
@@ -139,7 +201,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
     cell.textLabel.text = [selections objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [selectionDetails objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.section == 0) cell.detailTextLabel.text = [section1Details objectAtIndex:indexPath.row];
+    else if (indexPath.section == 1) cell.detailTextLabel.text = [section2Details objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -147,5 +211,47 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UITableViewController *tableViewController;
+    
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case 0: {
+                    tableViewController = [[PlaymodeSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                }
+                    break;
+                case 1: {
+                    tableViewController = [[RootOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                }
+                    break;
+                case 2: {
+                    tableViewController = [[HighOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                }
+                    break;
+                case 3:
+                    break;
+            }
+            break;
+        case 1:
+            switch (indexPath.row) {
+                case 0: {
+                    tableViewController = [[ChordPlaymodeSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                }
+                    break;
+                case 1: {
+                    tableViewController = [[ChordRootOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                }
+                    break;
+                case 2: {
+                    tableViewController = [[ChordHighOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                }
+                    break;
+                case 3:
+                    break;
+            }
+            break;
+    }
+    [self.navigationController pushViewController:tableViewController animated:YES];
 }
 @end

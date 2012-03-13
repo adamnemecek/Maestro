@@ -1,8 +1,8 @@
-#import "Interval.h"
+#import "NoteCollection.h"
 
-@interface Chord : Interval
+@interface Chord : NoteCollection
 
-@property (nonatomic, strong) NSArray *intervals;
+//@property (nonatomic, strong) NSArray *intervals;
 @property (nonatomic) CHORDS chord;
 
 -(id)initChord:(CHORDS)chord;

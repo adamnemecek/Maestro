@@ -1,8 +1,9 @@
 #import "Chord.h"
+#import "Note.h"
 
 @implementation Chord
 
-@synthesize intervals = _intervals;
+//@synthesize intervals = _intervals;
 @synthesize chord = _chord;
 
 - (id)initChord:(CHORDS)chord {
@@ -14,12 +15,18 @@
     _chord = chord;
     self.shortName = [shortNames objectAtIndex:_chord];
     self.longName = [longNames objectAtIndex:_chord];
-    Interval *rootInterval = [[Interval alloc] initInterval:spacing[_chord][0]];
-    Interval *nextInterval = [[Interval alloc] initInterval:spacing[_chord][1] withRoot:(Note *)[rootInterval.notes objectAtIndex:1]];
-    _intervals = [NSArray arrayWithObjects:rootInterval, nextInterval, nil];
-    self.notes = [NSArray arrayWithObjects:[[[_intervals objectAtIndex:0] notes] objectAtIndex:0],
-                                           [[[_intervals objectAtIndex:0] notes] objectAtIndex:1],
-                                           [[[_intervals objectAtIndex:1] notes] objectAtIndex:1], nil];
+    
+    Note *rootNote   = [Note getRandomChordNote];
+    Note *secondNote = [[Note alloc] initNoteWithMidi:(rootNote.midiId + spacing[chord][0])];
+    Note *thirdNote  = [[Note alloc] initNoteWithMidi:(secondNote.midiId + spacing[chord][1])];
+self.notes = [NSArray arrayWithObjects:rootNote, secondNote, thirdNote, nil];
+    
+//    Interval *rootInterval = [[Interval alloc] initInterval:spacing[_chord][0]];
+//    Interval *nextInterval = [[Interval alloc] initInterval:spacing[_chord][1] withRoot:(Note *)[rootInterval.notes objectAtIndex:1]];
+//    _intervals = [NSArray arrayWithObjects:rootInterval, nextInterval, nil];
+//    self.notes = [NSArray arrayWithObjects:[[[_intervals objectAtIndex:0] notes] objectAtIndex:0],
+//                                           [[[_intervals objectAtIndex:0] notes] objectAtIndex:1],
+//                                           [[[_intervals objectAtIndex:1] notes] objectAtIndex:1], nil];
     return self;
 }
 

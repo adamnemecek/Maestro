@@ -52,7 +52,6 @@
     SettingsViewController *settingsViewController = [[SettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
     settingsViewController.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
-    [navController.navigationBar setTintColor:[UIColor blackColor]];
     [self presentModalViewController:navController animated:YES];
 }
 
