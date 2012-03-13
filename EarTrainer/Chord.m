@@ -33,4 +33,16 @@ self.notes = [NSArray arrayWithObjects:rootNote, secondNote, thirdNote, nil];
 + (Chord *)getRandomChord {
     return [[Chord alloc] initChord:(arc4random()%4)];
 }
+
++ (Chord *)getRandomChordFromChoices:(NSArray *)choices {
+    return [[Chord alloc] initChord:[[choices objectAtIndex:(arc4random()%[choices count])] integerValue]];
+}
+
++ (NSArray *)allChords {
+    return [NSArray arrayWithObjects:@"minor", @"major", @"augmented", @"diminished", nil];
+}
+
++ (NSArray *)allChordsAbbreviated {
+    return [NSArray arrayWithObjects:@"min",@"maj",@"aug",@"dim", nil];
+}
 @end

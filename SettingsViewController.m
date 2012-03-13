@@ -1,11 +1,13 @@
 #import "SettingsViewController.h"
 #import "Defaults.h"
 
+#import "DifficultySettingsViewController.h"
 #import "PlaymodeSettingsViewController.h"
 #import "RootOctaveSettingsViewController.h"
 #import "HighOctaveSettingsViewController.h"
 #import "TempoSettingsViewController.h"
 
+#import "ChordDifficultySettingsViewController.h"
 #import "ChordPlaymodeSettingsViewController.h"
 #import "ChordRootOctaveSettingsViewController.h"
 #import "ChordHighOctaveSettingsViewController.h"
@@ -33,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    selections = [NSArray arrayWithObjects:@"Playmode",@"Root Octave",@"High Octave",@"Tempo", nil];
+    selections = [NSArray arrayWithObjects:@"Difficulty",@"Playmode",@"Root Octave",@"High Octave",@"Tempo", nil];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)]];
 }
 
@@ -42,10 +44,22 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSString *playmodeText, *rootOctaveText, *highOctaveText, *tempoText;
-    NSString *chordPlaymodeText, *chordRootOctaveText, *chordHighOctaveText, *chordTempoText;
+    NSString *difficultyText, *playmodeText, *rootOctaveText, *highOctaveText, *tempoText;
+    NSString *chordDifficultyText, *chordPlaymodeText, *chordRootOctaveText, *chordHighOctaveText, *chordTempoText;
     
     // Interval
+    switch ([[Defaults sharedInstance] getChallengeLevel]) {
+        case 0:
+            difficultyText = @"Beginner";
+            break;
+        case 1:
+            difficultyText = @"intermediate";
+            break;
+        case 2:
+            difficultyText = @"Pro";
+            break;
+    }
+    
     switch ([[Defaults sharedInstance] getPlaymode]) {
         case 0:
             playmodeText = @"Ascending";
@@ -98,6 +112,18 @@
     }
     
     // Chord
+    switch ([[Defaults sharedInstance] getChordChallengeLevel]) {
+        case 0:
+            chordDifficultyText = @"Beginner";
+            break;
+        case 1:
+            chordDifficultyText = @"intermediate";
+            break;
+        case 2:
+            chordDifficultyText = @"Pro";
+            break;
+    }
+    
     switch ([[Defaults sharedInstance] getChordPlaymode]) {
         case 0:
             chordPlaymodeText = @"Ascending";
@@ -149,8 +175,8 @@
             break;
     }
     
-    section1Details = [NSArray arrayWithObjects:playmodeText,rootOctaveText,highOctaveText,tempoText, nil];
-    section2Details = [NSArray arrayWithObjects:chordPlaymodeText,chordRootOctaveText,chordHighOctaveText,chordTempoText, nil];
+    section1Details = [NSArray arrayWithObjects:difficultyText, playmodeText,rootOctaveText,highOctaveText,tempoText, nil];
+    section2Details = [NSArray arrayWithObjects:chordDifficultyText, chordPlaymodeText,chordRootOctaveText,chordHighOctaveText,chordTempoText, nil];
     
     [self.tableView reloadData];
     
@@ -216,38 +242,38 @@
     switch (indexPath.section) {
         case 0:
             switch (indexPath.row) {
-                case 0: {
+                case 0:
+                    tableViewController = [[DifficultySettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                    break;
+                case 1:
                     tableViewController = [[PlaymodeSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                }
                     break;
-                case 1: {
+                case 2:
                     tableViewController = [[RootOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                }
-                    break;
-                case 2: {
-                    tableViewController = [[HighOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                }
                     break;
                 case 3:
+                    tableViewController = [[HighOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                    break;
+                case 4:
                     tableViewController = [[TempoSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
             }
             break;
         case 1:
             switch (indexPath.row) {
-                case 0: {
+                case 0:
+                    tableViewController = [[ChordDifficultySettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                    break;
+                case 1:
                     tableViewController = [[ChordPlaymodeSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                }
                     break;
-                case 1: {
+                case 2:
                     tableViewController = [[ChordRootOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                }
-                    break;
-                case 2: {
-                    tableViewController = [[ChordHighOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
-                }
                     break;
                 case 3:
+                    tableViewController = [[ChordHighOctaveSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                    break;
+                case 4:
                     tableViewController = [[ChordTempoSettingsViewController alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
             }

@@ -30,4 +30,18 @@
 + (Interval *)getRandomInterval {
     return [[Interval alloc] initInterval:(arc4random()%12) withRoot:[Note getRandomNote]];
 }
+
++ (Interval *)getRandomIntervalFromChoices:(NSArray *)choices {
+    return [[Interval alloc] initInterval:[[choices objectAtIndex:(arc4random()%[choices count])] integerValue]
+                                 withRoot:[Note getRandomNote]];
+}
+
++ (NSArray *)allIntervals {
+    return [NSArray arrayWithObjects:@"Unison",@"Minor 2",@"Major 2",@"Minor 3",@"Major 3",@"Perfect 4",@"Perfect 5",
+            @"Minor 6",@"Major 6",@"Minor 7",@"Major 7",@"Perfect 8", nil];
+}
+
++ (NSArray *)allIntervalsAbbreviated {
+    return [NSArray arrayWithObjects:@"U",@"m2",@"M2",@"m3",@"M3",@"P4",@"P5",@"m6",@"M6",@"m7",@"M7",@"P8", nil];
+}
 @end

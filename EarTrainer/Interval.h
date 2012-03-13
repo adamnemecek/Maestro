@@ -9,4 +9,7 @@
 -(id)initInterval:(INTERVALS)interval;
 -(id)initInterval:(INTERVALS)interval withRoot:(Note *)rootNote;
 +(Interval *)getRandomInterval;
++(Interval *)getRandomIntervalFromChoices:(NSArray *)choices;
++(NSArray *)allIntervals;
++(NSArray *)allIntervalsAbbreviated;
 @end

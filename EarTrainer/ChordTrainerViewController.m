@@ -16,10 +16,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.selections = [NSArray arrayWithObjects:@"minor", @"major", @"augmented", @"diminished", nil];
 }
 
-#pragma mark - Defaults
+#pragma mark - Overide super
+
+- (NSArray *)getAllSelections {
+    return [Chord allChords];
+}
+
+- (NSArray *)getAllSelectionsAbbreviated {
+    return [Chord allChordsAbbreviated];
+}
+
+- (void)setSelectionsAndChoices {
+    switch ([[Defaults sharedInstance] getChordChallengeLevel]) {
+        case 0:
+            self.selections = [Chord allChordsAbbreviated];
+            self.subtitles = [Chord allChords];
+            self.choiceIndices = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithInteger:0],
+                                  [NSNumber numberWithInteger:1],
+                                  [NSNumber numberWithInteger:2],
+                                  [NSNumber numberWithInteger:3], nil];
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+    }
+}
 
 - (PLAYMODE)getPlaymode {
     return [[Defaults sharedInstance] getChordPlaymode];
@@ -34,7 +59,9 @@
 }
 
 - (id)getRandomSelection {
-    return [Chord getRandomChord];
+//    return [Chord getRandomChord];
+    if (!self.choiceIndices) return [Chord getRandomChord];
+    else return [Chord getRandomChordFromChoices:self.choiceIndices];
 }
 
 - (id)getSelectionWithIndex:(NSInteger)index {

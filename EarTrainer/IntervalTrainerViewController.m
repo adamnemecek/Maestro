@@ -4,7 +4,7 @@
 
 @implementation IntervalTrainerViewController
 
-#pragma mark - Initialization and deallocation
+#pragma mark - Initialization
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -20,10 +20,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.selections = [NSArray arrayWithObjects:@"U",@"m2",@"M2",@"m3",@"M3",@"P4",@"P5",@"m6",@"M6",@"m7",@"M7",@"P8", nil];
 }
 
 #pragma mark - Overide super
+
+- (NSArray *)getAllSelections {
+    return [Interval allIntervals];
+}
+
+- (NSArray *)getAllSelectionsAbbreviated {
+    return [Interval allIntervalsAbbreviated];
+}
+
+- (void)setSelectionsAndChoices {
+    switch ([[Defaults sharedInstance] getChallengeLevel]) {
+        case 0:
+            self.selections = [NSArray arrayWithObjects:@"U",@"M3",@"P4",@"P5",@"P8", nil];
+                        self.subtitles = [NSArray arrayWithObjects:@"Unison",@"Major Third",@"Perfect Fourth",@"Perfect Fifth",@"Perfect Eighth", nil];
+            self.choiceIndices = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithInteger:0],
+                                  [NSNumber numberWithInteger:4],
+                                  [NSNumber numberWithInteger:5],
+                                  [NSNumber numberWithInteger:6], 
+                                  [NSNumber numberWithInteger:11], nil];
+            break;
+        case 1:
+            self.selections = [NSArray arrayWithObjects:@"U",@"M2",@"M3",@"P4",@"P5",@"M6",@"M7",@"P8", nil];
+            self.subtitles = [NSArray arrayWithObjects:@"Unison",@"Major Second",@"Major Third",@"Perfect Fourth",@"Perfect Fifth",@"Major Sixth",@"Major Seventh",@"Perfect Eighth", nil];
+            self.choiceIndices = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithInteger:0],
+                                  [NSNumber numberWithInteger:2],
+                                  [NSNumber numberWithInteger:4],
+                                  [NSNumber numberWithInteger:5],
+                                  [NSNumber numberWithInteger:6],
+                                  [NSNumber numberWithInteger:8],
+                                  [NSNumber numberWithInteger:10],
+                                  [NSNumber numberWithInteger:11], nil];
+            break;
+        case 2:
+            self.selections = [Interval allIntervalsAbbreviated];
+            self.subtitles = [Interval allIntervals];
+            self.choiceIndices = nil;
+            break;
+    }
+}
 
 - (PLAYMODE)getPlaymode {
     return [[Defaults sharedInstance] getPlaymode];
@@ -38,7 +78,9 @@
 }
 
 - (id)getRandomSelection {
-    return [Interval getRandomInterval];
+//    return [Interval getRandomInterval];
+    if (!self.choiceIndices) return [Interval getRandomInterval];
+    else return [Interval getRandomIntervalFromChoices:self.choiceIndices];
 }
 
 - (id)getSelectionWithIndex:(NSInteger)index {

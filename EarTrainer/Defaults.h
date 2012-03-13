@@ -11,11 +11,13 @@
 
 -(void)saveHereBefore:(BOOL)hereBefore;
 
+-(void)saveChallengeLevel:(NSInteger)level;
 -(void)savePlaymode:(NSInteger)playmode;
 -(void)saveRootOctave:(NSInteger)octave;
 -(void)saveHighOctave:(NSInteger)octave;
 -(void)saveTempo:(NSInteger)tempo;
 
+-(void)saveChordChallengeLevel:(NSInteger)level;
 -(void)saveChordPlaymode:(NSInteger)playmode;
 -(void)saveChordRootOctave:(NSInteger)octave;
 -(void)saveChordHighOctave:(NSInteger)octave;
@@ -23,11 +25,13 @@
 
 -(BOOL)getHereBefore;
 
+-(NSInteger)getChallengeLevel;
 -(NSInteger)getPlaymode;
 -(NSInteger)getRootOctave;
 -(NSInteger)getHighOctave;
 -(NSInteger)getTempo;
 
+-(NSInteger)getChordChallengeLevel;
 -(NSInteger)getChordPlaymode;
 -(NSInteger)getChordRootOctave;
 -(NSInteger)getChordHighOctave;

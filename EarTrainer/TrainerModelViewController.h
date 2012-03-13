@@ -29,9 +29,14 @@ typedef enum {
 @property (strong, nonatomic) UIBarButtonItem *playTypeButton;
 
 @property (strong, nonatomic) NSArray *selections;
+@property (strong, nonatomic) NSArray *subtitles;
+@property (strong, nonatomic) NSArray *choiceIndices;
 
 - (void)playCollection:(NoteCollection *)collection;
 
+- (NSArray *)getAllSelections;
+- (NSArray *)getAllSelectionsAbbreviated;
+- (void)setSelectionsAndChoices;
 - (PLAYMODE)getPlaymode;
 - (int)getTempo;
 - (void)savePlaymode:(PLAYMODE)playmode;

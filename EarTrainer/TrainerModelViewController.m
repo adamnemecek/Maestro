@@ -16,6 +16,8 @@
 
 @synthesize playButton, skipButton, playmodeButton, playTypeButton;
 @synthesize selections;
+@synthesize subtitles;
+@synthesize choiceIndices;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,6 +61,8 @@
     [super viewWillAppear:animated];
     playmodeIndex = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
+    [self setSelectionsAndChoices];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,15 +87,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [selections count];
+    NSInteger rows;
+    if (playType == PLAYTYPE_TRAIN) rows = [selections count];
+    else rows = [[self getAllSelections] count];
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     if (!currentSelection && playType == PLAYTYPE_TRAIN) cell.textLabel.textColor = [UIColor lightGrayColor];
-    else cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.text = [selections objectAtIndex:indexPath.row];
+    else {
+        cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
+    }
+    if (playType == PLAYTYPE_TRAIN) {
+        cell.textLabel.text = [selections objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [subtitles objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 
@@ -103,7 +117,8 @@
     if (playType == PLAYTYPE_TRAIN) {
         if (!currentSelection) return;
         NSString *alertTitle, *alertMessage;
-        if (currentSelection.index == indexPath.row) alertTitle = @"Correct";
+        NSInteger choiceIndex = (!choiceIndices) ? indexPath.row : [[choiceIndices objectAtIndex:indexPath.row] integerValue];
+        if (currentSelection.index == choiceIndex) alertTitle = @"Correct";
         else alertTitle = @"Wrong";
         alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
@@ -136,6 +151,19 @@
 
 /* These methods are to be overridden by subclass */
 #pragma mark - subclass methods
+
+#pragma mark choices and selections
+
+- (NSArray *)getAllSelections {
+    return [NSArray arrayWithObject:@"Mystery Note"];
+}
+
+- (NSArray *)getAllSelectionsAbbreviated {
+    return [NSArray arrayWithObject:@"MN"];
+}
+
+- (void)setSelectionsAndChoices {
+}
 
 #pragma mark Defaults
 

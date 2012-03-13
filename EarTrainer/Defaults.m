@@ -21,11 +21,13 @@ static Defaults *inst = nil;
 - (void)initialDefaults {
     [self saveHereBefore:YES];
     
+    [self saveChallengeLevel:0];
     [self savePlaymode:0];
     [self saveRootOctave:1];
     [self saveHighOctave:2];
     [self saveTempo:1];
     
+    [self saveChallengeLevel:0];
     [self saveChordPlaymode:2];
     [self saveChordRootOctave:1];
     [self saveChordHighOctave:2];
@@ -39,6 +41,10 @@ static Defaults *inst = nil;
 }
 
 #pragma mark Interval
+
+- (void)saveChallengeLevel:(NSInteger)level {
+    [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"keyIntervalChallengeLevel"];
+}
 
 - (void)savePlaymode:(NSInteger)playmode {
     [[NSUserDefaults standardUserDefaults] setInteger:playmode forKey:@"keyIntervalPlaymode"];
@@ -58,8 +64,12 @@ static Defaults *inst = nil;
 
 #pragma mark Chord
 
-- (void)saveChordPlaymode:(NSInteger)tempo {
-    [[NSUserDefaults standardUserDefaults] setInteger:tempo forKey:@"keyChordPlaymode"];
+- (void)saveChordChallengeLevel:(NSInteger)level {
+    [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"keyChordChallengeLevel"];
+}
+
+- (void)saveChordPlaymode:(NSInteger)playmode {
+    [[NSUserDefaults standardUserDefaults] setInteger:playmode forKey:@"keyChordPlaymode"];
 }
 
 - (void)saveChordRootOctave:(NSInteger)octave {
@@ -82,6 +92,10 @@ static Defaults *inst = nil;
 
 #pragma mark Interval
 
+- (NSInteger)getChallengeLevel {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyIntervalChallengeLevel"];
+}
+
 - (NSInteger)getPlaymode {
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyIntervalPlaymode"];
 }
@@ -99,6 +113,10 @@ static Defaults *inst = nil;
 }
 
 #pragma mark Chord
+
+- (NSInteger)getChordChallengeLevel {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyChordChallengeLevel"];
+}
 
 - (NSInteger)getChordPlaymode {
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyChordPlaymode"];

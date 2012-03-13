@@ -7,4 +7,7 @@
 
 -(id)initChord:(CHORDS)chord;
 +(Chord *)getRandomChord;
++(Chord *)getRandomChordFromChoices:(NSArray *)choices;
++(NSArray *)allChords;
++(NSArray *)allChordsAbbreviated;
 @end
