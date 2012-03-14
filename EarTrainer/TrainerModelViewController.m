@@ -7,6 +7,7 @@
 -(void)setPlayType:(PLAYTYPE)type;
 -(void)setUsingTrainingButtons:(BOOL)using;
 -(void)setPlayTypeTransitionDone;
+-(void)handlePinch:(UIPinchGestureRecognizer *)pinchGesture;
 @end
 
 @implementation TrainerModelViewController {
@@ -29,6 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Setup pinch gesture recognizer
+    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    [self.tableView addGestureRecognizer:pinchGesture];
     
     // Show toolbar
     [self.navigationController setToolbarHidden:NO animated:YES];
@@ -328,7 +333,18 @@
 #pragma mark - PlayType
 
 - (void)setPlayType:(PLAYTYPE)type {
+    if (playTypeIsTransitioning) return;
     playType = type;
+    switch (playType) {
+        case PLAYTYPE_TRAIN:
+            [playTypeButton setTitle:@"Practice"];
+            [self setupTrainingMode];
+            break;
+        case PLAYTYPE_PRACTICE:
+            [playTypeButton setTitle:@"Train"];
+            [self setupPracticeMode];
+            break;
+    }
 }
 
 #pragma mark - Actions
@@ -364,18 +380,25 @@
 }
 
 - (void)changePlayType:(id)sender {
-    if (playTypeIsTransitioning) return;
     switch (playType) {
         case PLAYTYPE_TRAIN:
-            playType = PLAYTYPE_PRACTICE;
-            [playTypeButton setTitle:@"Train"];
-            [self setupPracticeMode];
+            [self setPlayType:PLAYTYPE_PRACTICE];
             break;
         case PLAYTYPE_PRACTICE:
-            playType = PLAYTYPE_TRAIN;
-            [playTypeButton setTitle:@"Practice"];
-            [self setupTrainingMode];
+            [self setPlayType:PLAYTYPE_TRAIN];
             break;
+    }
+}
+
+#pragma mark - Pinch gesture
+
+- (void)handlePinch:(UIPinchGestureRecognizer *)pinchGesture {
+//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);
+    
+    if (pinchGesture.scale > 0.6 && pinchGesture.velocity > 1.5) {
+        if (playType != PLAYTYPE_PRACTICE) [self setPlayType:PLAYTYPE_PRACTICE];
+    } else if (pinchGesture.scale < 0.4 && pinchGesture.velocity < - 1.5) {
+        if (playType != PLAYTYPE_TRAIN) [self setPlayType:PLAYTYPE_TRAIN];
     }
 }
 @end
