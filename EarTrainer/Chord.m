@@ -39,10 +39,10 @@ self.notes = [NSArray arrayWithObjects:rootNote, secondNote, thirdNote, nil];
 }
 
 + (NSArray *)allChords {
-    return [NSArray arrayWithObjects:@"minor", @"major", @"augmented", @"diminished", nil];
+    return [NSArray arrayWithObjects:@"Minor", @"Major", @"Augmented", @"Diminished", nil];
 }
 
 + (NSArray *)allChordsAbbreviated {
-    return [NSArray arrayWithObjects:@"min",@"maj",@"aug",@"dim", nil];
+    return [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim", nil];
 }
 @end

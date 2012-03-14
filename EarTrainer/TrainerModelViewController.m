@@ -6,12 +6,14 @@
 -(UIImage *)getCurrentPlaymodeImage;
 -(void)setPlayType:(PLAYTYPE)type;
 -(void)setUsingTrainingButtons:(BOOL)using;
+-(void)setPlayTypeTransitionDone;
 @end
 
 @implementation TrainerModelViewController {
     PLAYMODE playmodeIndex;
     PLAYTYPE playType;
     NoteCollection *currentSelection;
+    BOOL playTypeIsTransitioning;
 }
 
 @synthesize playButton, skipButton, playmodeButton, playTypeButton;
@@ -45,6 +47,7 @@
     
     self.toolbarItems = [NSArray arrayWithObjects:flex1,playmodeButton,playButton,skipButton,flex2, playTypeButton,nil];
     
+    playTypeIsTransitioning = NO;
     playType = PLAYTYPE_TRAIN;
     [skipButton setEnabled:NO];
 }
@@ -87,7 +90,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger rows;
+    NSInteger rows = [selections count];
     if (playType == PLAYTYPE_TRAIN) rows = [selections count];
     else rows = [[self getAllSelections] count];
     return rows;
@@ -188,56 +191,50 @@
     return nil;
 }
 
+#pragma mark - Playtype transition
+
+- (void)setPlayTypeTransitionDone {
+    playTypeIsTransitioning = NO;
+}
+
+#pragma mark - Refresh rows
+
+- (void)refreshRows:(NSArray *)rowsToRefresh {
+    [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - Training mode
 
 - (void)setupTrainingMode {
     
-    NSMutableArray *rowsToDelete = [NSMutableArray array];
-    for (int i = 0; i < ([choiceIndices count] - 1); i++) {
-//        NSLog(@"i: %i",i);
-        int currentIndex;
-        int nextIndex;
+    playTypeIsTransitioning = YES;
+    if (choiceIndices) {
+        NSMutableArray *rowsToRefresh = [NSMutableArray array];
+        for (int i = 0; i < [selections count]; i++) {
+            [rowsToRefresh addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
         
-//        NSLog(@"%i", [[self getAllSelections] count]);
-        
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[choiceIndices objectAtIndex:i] integerValue] inSection:0]];
-        UITableViewCell *nextCell;
-        
-//        NSLog(@"next cell index: %i",[[choiceIndices objectAtIndex:(i + 1)] integerValue]);
-        
-        if (i != ([choiceIndices count] - 1))
-            nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[choiceIndices objectAtIndex:(i + 1)] integerValue] inSection:0]];
-        for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {            
-//            NSLog(@"cell text: %@",cell.textLabel.text);
-//            NSLog(@"next cell text: %@",nextCell.textLabel.text);
-//            NSLog(@"selection: %@",[[self getAllSelectionsAbbreviated] objectAtIndex:j]);
-            if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
-                currentIndex = j;
-            }
-            if ([nextCell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
-                nextIndex = j;
+        NSMutableArray *rowsToDelete = [NSMutableArray array];
+        for (int i = 0; i < [choiceIndices count]; i++) {
+            int currentIndex, nextIndex;
+            currentIndex = [[choiceIndices objectAtIndex:i] intValue];
+            if (i != ([choiceIndices count] - 1)) nextIndex = [[choiceIndices objectAtIndex:(i + 1)] intValue];
+            if (nextIndex == 0) break;
+            for (int j = 1; j < (nextIndex - currentIndex); j++) {
+                [rowsToDelete addObject:[NSIndexPath indexPathForRow:(currentIndex + j) inSection:0]];
             }
         }
-        if (!nextCell) nextIndex = ([[self getAllSelectionsAbbreviated] count] - 1);
-//        NSLog(@"current index: %i",currentIndex);
-//        NSLog(@"next index: %i",nextIndex);
-        if (nextIndex - currentIndex != 1) {
-            for (int k = 1; k < (nextIndex - currentIndex); k++) {
-//                NSLog(@"index path: %@",[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]);
-                [rowsToDelete addObject:[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]];
-            }
+        [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self performSelector:@selector(refreshRows:) withObject:rowsToRefresh afterDelay:0.31]; 
+        [self performSelector:@selector(setPlayTypeTransitionDone) withObject:nil afterDelay:0.32];
+    } else {
+        NSMutableArray *rowsToRefresh = [NSMutableArray array];
+        for (int i = 0; i < [[self getAllSelections] count]; i++) {
+            [rowsToRefresh addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
+        [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationFade];
+        playTypeIsTransitioning = NO;
     }
-    
-//    NSLog(@"%@",rowsToDelete);
-    
-    
-//    for (int i = 0; i < ([[self getAllSelections] count] - [selections count]); i++) {
-//        [rowsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-//    }
-    [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationAutomatic];
-//    [self.tableView reloadData];
-    
     [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
@@ -245,64 +242,54 @@
 #pragma mark - Practice mode
 
 - (void)setupPracticeMode {
-    //IDEA: Animate any extra cells in
     
-//    [self.tableView beginUpdates];
-//    [self.tableView endUpdates];
-    
-    // TODO: make simpler using choiceIndices instead of selections?
-    
-    /***
-     * For each cell we find its index in context of all selections
-     * We then find the next cell's index in context of all selections
-     * Then we subtract the next cell's index from the first's and if there is a difference greater than one we know to add cells there
-     * So we loop through the difference between cell indeces and create an indexPath for each one which row is the
-     * first cell's index + current iteration
-     ***/
-    NSMutableArray *newRows = [NSMutableArray array];
-    for (int i = 0; i < [selections count]; i++) {
-        int currentIndex;
-        int nextIndex;
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        UITableViewCell *nextCell;
-        if (i != ([selections count] - 1))
-            nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + 1) inSection:0]];
-        for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {            
-//            NSLog(@"cell text: %@",cell.textLabel.text);
-//            NSLog(@"next cell text: %@",nextCell.textLabel.text);
-//            NSLog(@"selection: %@",[[self getAllSelectionsAbbreviated] objectAtIndex:j]);
-            if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
-                currentIndex = j;
+    playTypeIsTransitioning = YES;
+    if (choiceIndices) {
+        NSMutableArray *rowsToRefresh = [NSMutableArray array];
+        for (int i = 0; i < [selections count]; i++) {
+            [rowsToRefresh addObject:[NSIndexPath indexPathForRow:[[choiceIndices objectAtIndex:i] integerValue] inSection:0]];
+        }
+        
+        /***
+         * For each cell we find its index in context of all selections
+         * We then find the next cell's index in context of all selections
+         * Then we subtract the next cell's index from the first's and if there is a difference greater than one we know to add cells there
+         * So we loop through the difference between cell indeces and create an indexPath for each one which row is the
+         * first cell's index + current iteration
+         ***/
+        NSMutableArray *rowsToInsert = [NSMutableArray array];
+        for (int i = 0; i < [selections count]; i++) {
+            int currentIndex, nextIndex;
+            UITableViewCell *cell, *nextCell;
+            cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            if (i != ([selections count] - 1)) nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + 1) inSection:0]];
+            if (!nextCell) break;
+            for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {
+                if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
+                    currentIndex = j;
+                }
+                if ([nextCell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
+                    nextIndex = j;
+                    break;
+                }
             }
-            if ([nextCell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
-                nextIndex = j;
+            if (nextIndex - currentIndex != 1) {
+                for (int k = 1; k < (nextIndex - currentIndex); k++) {
+                    [rowsToInsert addObject:[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]];
+                }
             }
         }
-//        NSLog(@"current index: %i",currentIndex);
-//        NSLog(@"next index: %i",nextIndex);
-        if (nextIndex - currentIndex != 1) {
-            for (int k = 1; k < (nextIndex - currentIndex); k++) {
-//                NSLog(@"index path: %@",[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]);
-                [newRows addObject:[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]];
-            }
+        [self.tableView insertRowsAtIndexPaths:rowsToInsert withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self performSelector:@selector(refreshRows:) withObject:rowsToRefresh afterDelay:0.31];
+        [self performSelector:@selector(setPlayTypeTransitionDone) withObject:nil afterDelay:0.32];
+    } else {
+        NSMutableArray *rowsToRefresh = [NSMutableArray array];
+        for (int i = 0; i < [[self getAllSelections] count]; i++) {
+            [rowsToRefresh addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
+        [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationFade];
+        playTypeIsTransitioning = NO;
     }
-    
-//    NSLog(@"%@",newRows);
-    
-    [self.tableView insertRowsAtIndexPaths:newRows withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-//    [self.tableView reloadRowsAtIndexPaths:newRows withRowAnimation:UITableViewRowAnimationNone];
-    
-//    for (int i = 0; i < ([[self getAllSelections] count] - [selections count]); i++) {
-//        [newRows addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-//    }    
-    
-//    for (int i = 1; i <= 3; i++) {
-//        [newRows addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-//    }
-
-    
     
     currentSelection = nil;
 //    self.navigationItem.prompt = @"";
@@ -377,6 +364,7 @@
 }
 
 - (void)changePlayType:(id)sender {
+    if (playTypeIsTransitioning) return;
     switch (playType) {
         case PLAYTYPE_TRAIN:
             playType = PLAYTYPE_PRACTICE;
