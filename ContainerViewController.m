@@ -62,9 +62,12 @@
     UIView *viewToMove = self.navigationController.view;
     if (show) {
         if (!_mainMenu) {
-            _mainMenu = [[MainMenuViewController alloc] initWithStyle:UITableViewStylePlain];
-            [self.navigationController.view.superview insertSubview:_mainMenu.view atIndex:0];
+//            _mainMenu = [[MainMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+            _mainMenu = [[MainMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
 //            _mainMenu.view.frame = [_mainMenu.view convertRect:[[UIScreen mainScreen] applicationFrame] toView:nil];
+            CGRect menuFrame = _mainMenu.tableView.frame;
+            [_mainMenu.tableView setFrame:CGRectMake(menuFrame.origin.x, menuFrame.origin.y, menuFrame.size.width * offsetScalar, menuFrame.size.height)];
+            [self.navigationController.view.superview insertSubview:_mainMenu.view atIndex:0];
             _mainMenu.delegate = self;
         }
         [self.view setUserInteractionEnabled:NO];

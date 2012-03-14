@@ -3,6 +3,8 @@
 #import "ChordTrainerViewController.h"
 #import "TipsViewController.h"
 
+#import "MainMenuCell.h"
+
 @implementation MainMenuViewController {
     NSArray *section1;
     NSArray *section2;
@@ -76,7 +78,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+//    MainMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+//    if (!cell) cell = [[MainMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     
     if (!_currentIndexPath && indexPath.row == 0) _currentIndexPath = indexPath;
     switch (indexPath.section) {

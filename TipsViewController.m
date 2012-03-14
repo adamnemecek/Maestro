@@ -1,9 +1,5 @@
 #import "TipsViewController.h"
 
-@interface TipsViewController ()
-
-@end
-
 @implementation TipsViewController
 
 
@@ -20,8 +16,9 @@
     
     [self.navigationItem setRightBarButtonItem:nil];
     [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.tableView setBackgroundColor:[UIColor underPageBackgroundColor]];
     UIView *testView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
-    [testView setBackgroundColor:[UIColor underPageBackgroundColor]];
+    [testView setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
     [self.tableView setTableHeaderView:testView];
 }
 
@@ -44,6 +41,10 @@
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     cell.textLabel.text = @"Tip";
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor whiteColor]];
 }
 
 #pragma mark - Table view delegate

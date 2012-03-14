@@ -191,17 +191,121 @@
 #pragma mark - Training mode
 
 - (void)setupTrainingMode {
-    [self.tableView reloadData];
-    if (self.navigationItem.prompt) [self.navigationItem setPrompt:nil];
+    
+    NSMutableArray *rowsToDelete = [NSMutableArray array];
+    for (int i = 0; i < ([choiceIndices count] - 1); i++) {
+//        NSLog(@"i: %i",i);
+        int currentIndex;
+        int nextIndex;
+        
+//        NSLog(@"%i", [[self getAllSelections] count]);
+        
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[choiceIndices objectAtIndex:i] integerValue] inSection:0]];
+        UITableViewCell *nextCell;
+        
+//        NSLog(@"next cell index: %i",[[choiceIndices objectAtIndex:(i + 1)] integerValue]);
+        
+        if (i != ([choiceIndices count] - 1))
+            nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[choiceIndices objectAtIndex:(i + 1)] integerValue] inSection:0]];
+        for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {            
+//            NSLog(@"cell text: %@",cell.textLabel.text);
+//            NSLog(@"next cell text: %@",nextCell.textLabel.text);
+//            NSLog(@"selection: %@",[[self getAllSelectionsAbbreviated] objectAtIndex:j]);
+            if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
+                currentIndex = j;
+            }
+            if ([nextCell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
+                nextIndex = j;
+            }
+        }
+        if (!nextCell) nextIndex = ([[self getAllSelectionsAbbreviated] count] - 1);
+//        NSLog(@"current index: %i",currentIndex);
+//        NSLog(@"next index: %i",nextIndex);
+        if (nextIndex - currentIndex != 1) {
+            for (int k = 1; k < (nextIndex - currentIndex); k++) {
+//                NSLog(@"index path: %@",[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]);
+                [rowsToDelete addObject:[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]];
+            }
+        }
+    }
+    
+//    NSLog(@"%@",rowsToDelete);
+    
+    
+//    for (int i = 0; i < ([[self getAllSelections] count] - [selections count]); i++) {
+//        [rowsToDelete addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+//    }
+    [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView reloadData];
+    
+    [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
 
 #pragma mark - Practice mode
 
 - (void)setupPracticeMode {
+    //IDEA: Animate any extra cells in
+    
+//    [self.tableView beginUpdates];
+//    [self.tableView endUpdates];
+    
+    // TODO: make simpler using choiceIndices instead of selections?
+    
+    /***
+     * For each cell we find its index in context of all selections
+     * We then find the next cell's index in context of all selections
+     * Then we subtract the next cell's index from the first's and if there is a difference greater than one we know to add cells there
+     * So we loop through the difference between cell indeces and create an indexPath for each one which row is the
+     * first cell's index + current iteration
+     ***/
+    NSMutableArray *newRows = [NSMutableArray array];
+    for (int i = 0; i < [selections count]; i++) {
+        int currentIndex;
+        int nextIndex;
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        UITableViewCell *nextCell;
+        if (i != ([selections count] - 1))
+            nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + 1) inSection:0]];
+        for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {            
+//            NSLog(@"cell text: %@",cell.textLabel.text);
+//            NSLog(@"next cell text: %@",nextCell.textLabel.text);
+//            NSLog(@"selection: %@",[[self getAllSelectionsAbbreviated] objectAtIndex:j]);
+            if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
+                currentIndex = j;
+            }
+            if ([nextCell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
+                nextIndex = j;
+            }
+        }
+//        NSLog(@"current index: %i",currentIndex);
+//        NSLog(@"next index: %i",nextIndex);
+        if (nextIndex - currentIndex != 1) {
+            for (int k = 1; k < (nextIndex - currentIndex); k++) {
+//                NSLog(@"index path: %@",[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]);
+                [newRows addObject:[NSIndexPath indexPathForRow:(currentIndex + k) inSection:0]];
+            }
+        }
+    }
+    
+//    NSLog(@"%@",newRows);
+    
+    [self.tableView insertRowsAtIndexPaths:newRows withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+//    [self.tableView reloadRowsAtIndexPaths:newRows withRowAnimation:UITableViewRowAnimationNone];
+    
+//    for (int i = 0; i < ([[self getAllSelections] count] - [selections count]); i++) {
+//        [newRows addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+//    }    
+    
+//    for (int i = 1; i <= 3; i++) {
+//        [newRows addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+//    }
+
+    
+    
     currentSelection = nil;
-    [self.tableView reloadData];
-    self.navigationItem.prompt = @"";
+//    self.navigationItem.prompt = @"";
     [self setUsingTrainingButtons:NO];
 }
 
