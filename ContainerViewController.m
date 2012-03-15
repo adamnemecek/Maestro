@@ -29,7 +29,6 @@
                                                                                target:self action:@selector(showSettings:)]];
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"] style:UIBarButtonItemStyleBordered
                                                                              target:self action:@selector(showMenu:)]];
-    
     _menuShowing = NO;
 }
 

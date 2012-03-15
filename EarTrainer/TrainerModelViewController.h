@@ -21,7 +21,7 @@ typedef enum {
     PLAYTYPE_PRACTICE,
 }PLAYTYPE;
 
-@interface TrainerModelViewController : ContainerViewController <UIAlertViewDelegate>
+@interface TrainerModelViewController : ContainerViewController<UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIBarButtonItem *playButton;
 @property (strong, nonatomic) UIBarButtonItem *skipButton;

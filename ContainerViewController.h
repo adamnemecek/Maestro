@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
-#import "PullRefreshTableViewController.h"
+#import "PullHeaderTableViewController.h"
 #import "MainMenuViewController.h"
 #import "SettingsViewController.h"
 
-@interface ContainerViewController : PullRefreshTableViewController <MainMenuViewControllerDelegate, SettingsViewControllerDelegate>
+@interface ContainerViewController : PullHeaderTableViewController <MainMenuViewControllerDelegate, SettingsViewControllerDelegate>
 
 @property (strong, nonatomic) MainMenuViewController *mainMenu;
 

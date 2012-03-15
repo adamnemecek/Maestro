@@ -22,10 +22,6 @@
 @synthesize subtitles;
 @synthesize choiceIndices;
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
@@ -139,7 +135,7 @@
     }
 }
 
-#pragma mark UIAlertView delegate
+#pragma mark - UIAlertView delegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
@@ -211,7 +207,6 @@
 #pragma mark - Training mode
 
 - (void)setupTrainingMode {
-    
     playTypeIsTransitioning = YES;
     if (choiceIndices) {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
@@ -247,7 +242,6 @@
 #pragma mark - Practice mode
 
 - (void)setupPracticeMode {
-    
     playTypeIsTransitioning = YES;
     if (choiceIndices) {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
@@ -297,7 +291,6 @@
     }
     
     currentSelection = nil;
-//    self.navigationItem.prompt = @"";
     [self setUsingTrainingButtons:NO];
 }
 
@@ -334,6 +327,7 @@
 
 - (void)setPlayType:(PLAYTYPE)type {
     if (playTypeIsTransitioning) return;
+    if (playType == type) return;
     playType = type;
     switch (playType) {
         case PLAYTYPE_TRAIN:
@@ -393,12 +387,8 @@
 #pragma mark - Pinch gesture
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinchGesture {
-//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);
-    
-    if (pinchGesture.scale > 0.6 && pinchGesture.velocity > 1.5) {
-        if (playType != PLAYTYPE_PRACTICE) [self setPlayType:PLAYTYPE_PRACTICE];
-    } else if (pinchGesture.scale < 0.4 && pinchGesture.velocity < - 1.5) {
-        if (playType != PLAYTYPE_TRAIN) [self setPlayType:PLAYTYPE_TRAIN];
-    }
+//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
+    if (pinchGesture.scale > 0.6 && pinchGesture.velocity > 1.5) [self setPlayType:PLAYTYPE_PRACTICE];
+    else if (pinchGesture.scale < 0.4 && pinchGesture.velocity < - 1.5) [self setPlayType:PLAYTYPE_TRAIN];
 }
 @end

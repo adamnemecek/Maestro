@@ -111,7 +111,7 @@
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 		FFD0C69E1502875C00BB6C9F /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */; };
 		FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD0C6A11502878500BB6C9F /* MainMenu.xib */; };
-		FFFD06C515115D8C000275C8 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFD06C415115C23000275C8 /* PullRefreshTableViewController.m */; };
+		FFFD06C515115D8C000275C8 /* PullHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -248,8 +248,8 @@
 		FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContainerViewController.h; path = ../ContainerViewController.h; sourceTree = "<group>"; };
 		FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContainerViewController.m; path = ../ContainerViewController.m; sourceTree = "<group>"; };
 		FFD0C6A11502878500BB6C9F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../MainMenu.xib; sourceTree = "<group>"; };
-		FFFD06C315115C23000275C8 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
-		FFFD06C415115C23000275C8 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		FFFD06C315115C23000275C8 /* PullHeaderTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullHeaderTableViewController.h; sourceTree = "<group>"; };
+		FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullHeaderTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +356,8 @@
 			children = (
 				FF0FE6BB14F96F460033F768 /* MainMenuViewController.h */,
 				FF0FE6BC14F96F470033F768 /* MainMenuViewController.m */,
+				FFFD06C315115C23000275C8 /* PullHeaderTableViewController.h */,
+				FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */,
 				FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */,
 				FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */,
 				FF68C27014F9BD35008894CB /* TrainerModelViewController.h */,
@@ -434,7 +436,6 @@
 		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
 			isa = PBXGroup;
 			children = (
-				FFFD06C115115C15000275C8 /* Libraries */,
 				FF36DBC414D4A36D0056D087 /* Model */,
 				FF36DBC314D4A3610056D087 /* View */,
 				FF36DBC214D4A34F0056D087 /* Controller */,
@@ -485,15 +486,6 @@
 				FF2A6B5D150EF9A3003BC92E /* ChordTempoSettingsViewController.m */,
 			);
 			name = Settings;
-			sourceTree = "<group>";
-		};
-		FFFD06C115115C15000275C8 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				FFFD06C315115C23000275C8 /* PullRefreshTableViewController.h */,
-				FFFD06C415115C23000275C8 /* PullRefreshTableViewController.m */,
-			);
-			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,7 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFFD06C515115D8C000275C8 /* PullRefreshTableViewController.m in Sources */,
+				FFFD06C515115D8C000275C8 /* PullHeaderTableViewController.m in Sources */,
 				FF8E8C4C14D4942F00CC8818 /* main.m in Sources */,
 				FF8E8C5014D4943000CC8818 /* AppDelegate.m in Sources */,
 				FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */,

@@ -77,10 +77,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-//    MainMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-//    if (!cell) cell = [[MainMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    MainMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+//    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    if (!cell) cell = [[MainMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     
     if (!_currentIndexPath && indexPath.row == 0) _currentIndexPath = indexPath;
     switch (indexPath.section) {
