@@ -7,7 +7,7 @@
 -(void)setPlayType:(PLAYTYPE)type;
 -(void)setUsingTrainingButtons:(BOOL)using;
 -(void)setPlayTypeTransitionDone;
--(void)handlePinch:(UIPinchGestureRecognizer *)pinchGesture;
+-(void)handlePinch:(UIPinchGestureRecognizer *)gesture;
 @end
 
 @implementation TrainerModelViewController {
@@ -15,6 +15,7 @@
     PLAYTYPE playType;
     NoteCollection *currentSelection;
     BOOL playTypeIsTransitioning;
+    UIPinchGestureRecognizer *pinchGesture;
 }
 
 @synthesize playButton, skipButton, playmodeButton, playTypeButton;
@@ -28,7 +29,7 @@
     [super viewDidLoad];
     
     // Setup pinch gesture recognizer
-    UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.tableView addGestureRecognizer:pinchGesture];
     
     // Show toolbar
@@ -110,6 +111,13 @@
         cell.textLabel.text = [selections objectAtIndex:indexPath.row];
         cell.detailTextLabel.text = [subtitles objectAtIndex:indexPath.row];
     }
+    if (self.isShowing) {
+        [cell setUserInteractionEnabled:NO];
+        cell.textLabel.textColor = [UIColor grayColor];
+    } else {
+        [cell setUserInteractionEnabled:YES];
+    }
+    
     return cell;
 }
 
@@ -384,11 +392,30 @@
     }
 }
 
+#pragma mark - Overide methods
+
+- (void)enableCommonFunctionality {
+    [self.tableView reloadData];
+    [self.tableView addGestureRecognizer:pinchGesture];
+    [playmodeButton setEnabled:YES];
+    [playButton setEnabled:YES];
+    if (currentSelection) [skipButton setEnabled:YES];
+    [playTypeButton setEnabled:YES];
+}
+- (void)disableCommonFunctionality {
+    [self.tableView reloadData];
+    [self.tableView removeGestureRecognizer:pinchGesture];
+    [playmodeButton setEnabled:NO];
+    [playButton setEnabled:NO];
+    [skipButton setEnabled:NO];
+    [playTypeButton setEnabled:NO];
+}
+
 #pragma mark - Pinch gesture
 
-- (void)handlePinch:(UIPinchGestureRecognizer *)pinchGesture {
+- (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
 //    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
-    if (pinchGesture.scale > 0.6 && pinchGesture.velocity > 1.5) [self setPlayType:PLAYTYPE_PRACTICE];
-    else if (pinchGesture.scale < 0.4 && pinchGesture.velocity < - 1.5) [self setPlayType:PLAYTYPE_TRAIN];
+    if (gesture.scale > 0.6 && gesture.velocity > 1.5) [self setPlayType:PLAYTYPE_PRACTICE];
+    else if (gesture.scale < 0.4 && gesture.velocity < - 1.5) [self setPlayType:PLAYTYPE_TRAIN];
 }
 @end

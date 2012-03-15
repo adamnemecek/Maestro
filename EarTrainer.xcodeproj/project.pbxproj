@@ -93,6 +93,8 @@
 		FF68C27214F9BD35008894CB /* TrainerModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68C27114F9BD35008894CB /* TrainerModelViewController.m */; };
 		FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */; };
 		FF6A4A8A14E8438B00CE4145 /* HighOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */; };
+		FF6A76D11512407C006D9230 /* MainMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6A76D01512407C006D9230 /* MainMenuCell.xib */; };
+		FF6A76D71512562A006D9230 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF6A76D61512562A006D9230 /* QuartzCore.framework */; };
 		FF7D7CE614E77C9B006E6362 /* PlaymodeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */; };
 		FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C3F14D4942F00CC8818 /* UIKit.framework */; };
 		FF8E8C4214D4942F00CC8818 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8E8C4114D4942F00CC8818 /* Foundation.framework */; };
@@ -218,6 +220,8 @@
 		FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootOctaveSettingsViewController.m; path = ../RootOctaveSettingsViewController.m; sourceTree = "<group>"; };
 		FF6A4A8814E8438B00CE4145 /* HighOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighOctaveSettingsViewController.h; sourceTree = "<group>"; };
 		FF6A4A8914E8438B00CE4145 /* HighOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighOctaveSettingsViewController.m; sourceTree = "<group>"; };
+		FF6A76D01512407C006D9230 /* MainMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCell.xib; sourceTree = "<group>"; };
+		FF6A76D61512562A006D9230 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FF7D7CE414E77C9B006E6362 /* PlaymodeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaymodeSettingsViewController.h; sourceTree = "<group>"; };
 		FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaymodeSettingsViewController.m; sourceTree = "<group>"; };
 		FF8E8C3B14D4942F00CC8818 /* EarTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF6A76D71512562A006D9230 /* QuartzCore.framework in Frameworks */,
 				FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */,
 				FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */,
 				FF8E8C4214D4942F00CC8818 /* Foundation.framework in Frameworks */,
@@ -356,6 +361,7 @@
 			children = (
 				FF0FE6BB14F96F460033F768 /* MainMenuViewController.h */,
 				FF0FE6BC14F96F470033F768 /* MainMenuViewController.m */,
+				FF6A76D01512407C006D9230 /* MainMenuCell.xib */,
 				FFFD06C315115C23000275C8 /* PullHeaderTableViewController.h */,
 				FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */,
 				FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */,
@@ -408,6 +414,7 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
+				FF6A76D61512562A006D9230 /* QuartzCore.framework */,
 				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
 				FF8E8C3E14D4942F00CC8818 /* Frameworks */,
 				FF8E8C3C14D4942F00CC8818 /* Products */,
@@ -611,6 +618,7 @@
 				FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */,
 				FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */,
 				FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */,
+				FF6A76D11512407C006D9230 /* MainMenuCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

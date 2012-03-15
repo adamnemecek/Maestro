@@ -1,4 +1,5 @@
 #import "MainMenuViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "IntervalTrainerViewController.h"
 #import "ChordTrainerViewController.h"
 #import "TipsViewController.h"
@@ -23,6 +24,8 @@
     [super viewDidLoad];
     section1 = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", nil];
     section2 = [NSArray arrayWithObjects:@"Tips", @"About", nil];
+    
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)viewDidUnload {
@@ -60,7 +63,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    int rows;
+    switch (section) {
+        case 0:
+            rows = [section1 count];
+            break;
+        case 1:
+            rows = [section2 count];
+            break;
+    }
+    return rows;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -77,21 +89,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    MainMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-//    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    if (!cell) cell = [[MainMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    
+    MainMenuCell *cell = (MainMenuCell *)[tableView dequeueReusableCellWithIdentifier:[MainMenuCell reuseIdentifier]];
+    if (!cell) cell = [[[NSBundle mainBundle] loadNibNamed:[MainMenuCell nibName] owner:self options:nil] objectAtIndex:0];
     if (!_currentIndexPath && indexPath.row == 0) _currentIndexPath = indexPath;
     switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = [section1 objectAtIndex:indexPath.row];
+            cell.viewTitle.text = [section1 objectAtIndex:indexPath.row];
             break;
         case 1:
-            cell.textLabel.text = [section2 objectAtIndex:indexPath.row];
+            cell.viewTitle.text = [section2 objectAtIndex:indexPath.row];
             break;
     }
     return cell;
+}
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    MainMenuCell *cell = (MainMenuCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.frame.size.height + MENU_CELL_MARGIN;
+//    return (MENU_CELL_HEIGHT + MENU_CELL_MARGIN);
+//}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [cell setBackgroundColor:[UIColor whiteColor]];
 }
 
 #pragma mark - Table view delegate

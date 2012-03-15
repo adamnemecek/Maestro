@@ -12,15 +12,17 @@
     NSString *textRelease;
     NSString *textShowing;
     BOOL isDragging;
-    BOOL isShowing;
 }
 @synthesize statsLabel;
+@synthesize makeHeader;
+@synthesize isShowing;
 
 #pragma mark - Initialization
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self setupStrings];
+    makeHeader = YES;   // Set to no in init to cancel the header
     return self;
 }
 
@@ -40,6 +42,7 @@
 }
 
 - (void)addPullToRefreshHeader {
+    if (!makeHeader) return;
     statsHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - HEADER_HEIGHT, 320, HEADER_HEIGHT)];
     statsHeaderView.backgroundColor = [UIColor underPageBackgroundColor];
 
@@ -55,27 +58,29 @@
 #pragma mark - Dragging
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (isShowing) return;
+    if (isShowing || !makeHeader) return;
     isDragging = YES;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!makeHeader) return;
     if (isDragging && scrollView.contentOffset.y < 0) {
         [UIView beginAnimations:nil context:NULL];
-        if (scrollView.contentOffset.y < -HEADER_HEIGHT) statsLabel.text = textRelease;  // User is scrolling above the header
-        else statsLabel.text = textPull;                                                 // User is scrolling somewhere within the header
+        if (scrollView.contentOffset.y < -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) statsLabel.text = textRelease;  // User is scrolling above the header
+        else statsLabel.text = textPull;                                                       // User is scrolling somewhere within the header
         [UIView commitAnimations];
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!makeHeader) return;
     isDragging = NO;
     if (!isShowing) {
-        if (scrollView.contentOffset.y <= -HEADER_HEIGHT) [self showStats];
+        if (scrollView.contentOffset.y <= -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) [self showStats];
     } else {
-        if (scrollView.contentOffset.y >= -HEADER_HEIGHT * 0.6) {
+        if (scrollView.contentOffset.y >= -HEADER_HEIGHT * HEADER_HIDE_MARGIN_SCALAR) {
             [self hideStats];
-        } else if (scrollView.contentOffset.y <= -HEADER_HEIGHT * 0.6 && scrollView.contentOffset.y >= -HEADER_HEIGHT) {
+        } else if (scrollView.contentOffset.y <= -HEADER_HEIGHT * HEADER_HIDE_MARGIN_SCALAR && scrollView.contentOffset.y >= -HEADER_HEIGHT) {
             [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, -HEADER_HEIGHT) animated:YES];
         }
     }
@@ -85,6 +90,7 @@
 
 - (void)showStats {
     isShowing = YES;
+    [self disableCommonFunctionality];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     self.tableView.contentInset = UIEdgeInsetsMake(HEADER_HEIGHT, 0, 0, 0);
@@ -94,6 +100,7 @@
 
 - (void)hideStats {
     isShowing = NO;
+    [self enableCommonFunctionality];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:0.3];
@@ -104,5 +111,15 @@
 
 - (void)hideStatsComplete:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
     statsLabel.text = textPull;
+}
+
+#pragma mark sublcass methods
+
+- (void)enableCommonFunctionality {
+    
+}
+
+- (void)disableCommonFunctionality {
+    
 }
 @end

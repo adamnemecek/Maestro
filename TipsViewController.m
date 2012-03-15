@@ -8,6 +8,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self.navigationItem setTitle:@"Tips"];
+    self.makeHeader = NO;   // Don't create a pull header for this view
     return self;
 }
 
@@ -33,7 +34,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
