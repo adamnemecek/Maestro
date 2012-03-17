@@ -410,6 +410,8 @@
 #pragma mark - Overide pull header methods
 
 - (void)refreshHeader {
+    //Build stats view
+    
     UIView *percentView = [[UIView alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width  * 0.3,
                                                                    self.headerView.frame.size.height * 0.30,
                                                                    self.headerView.frame.size.width  * 0.4,
@@ -457,7 +459,7 @@
 #pragma mark - Pinch gesture
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
-    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
+//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
     if (gesture.scale > 1.4 && gesture.velocity > 1.3) [self setPlayType:PLAYTYPE_PRACTICE];
     else if (gesture.scale < 0.6 && gesture.velocity < - 1.3) [self setPlayType:PLAYTYPE_TRAIN];
 }

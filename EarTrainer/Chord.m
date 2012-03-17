@@ -19,14 +19,7 @@
     Note *rootNote   = [Note getRandomChordNote];
     Note *secondNote = [[Note alloc] initNoteWithMidi:(rootNote.midiId + spacing[chord][0])];
     Note *thirdNote  = [[Note alloc] initNoteWithMidi:(secondNote.midiId + spacing[chord][1])];
-self.notes = [NSArray arrayWithObjects:rootNote, secondNote, thirdNote, nil];
-    
-//    Interval *rootInterval = [[Interval alloc] initInterval:spacing[_chord][0]];
-//    Interval *nextInterval = [[Interval alloc] initInterval:spacing[_chord][1] withRoot:(Note *)[rootInterval.notes objectAtIndex:1]];
-//    _intervals = [NSArray arrayWithObjects:rootInterval, nextInterval, nil];
-//    self.notes = [NSArray arrayWithObjects:[[[_intervals objectAtIndex:0] notes] objectAtIndex:0],
-//                                           [[[_intervals objectAtIndex:0] notes] objectAtIndex:1],
-//                                           [[[_intervals objectAtIndex:1] notes] objectAtIndex:1], nil];
+    self.notes = [NSArray arrayWithObjects:rootNote, secondNote, thirdNote, nil];
     return self;
 }
 
@@ -38,11 +31,11 @@ self.notes = [NSArray arrayWithObjects:rootNote, secondNote, thirdNote, nil];
     return [[Chord alloc] initChord:[[choices objectAtIndex:(arc4random()%[choices count])] integerValue]];
 }
 
-+ (NSArray *)allChords {
++ (NSArray *)longNames {
     return [NSArray arrayWithObjects:@"Minor", @"Major", @"Augmented", @"Diminished", nil];
 }
 
-+ (NSArray *)allChordsAbbreviated {
++ (NSArray *)shortNames {
     return [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim", nil];
 }
 @end

@@ -1,4 +1,3 @@
-#import <QuartzCore/QuartzCore.h>
 #import "PullHeaderTableViewController.h"
 
 @interface PullHeaderTableViewController (Private)
@@ -72,7 +71,7 @@
     if (isDragging && scrollView.contentOffset.y < 0) {
         [UIView beginAnimations:nil context:NULL];
         if (scrollView.contentOffset.y < -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) headerLabel.text = textRelease;  // User is scrolling above the header
-        else headerLabel.text = textPull;                                                       // User is scrolling somewhere within the header
+        else headerLabel.text = textPull;                                                                             // User is scrolling somewhere within the header
         [UIView commitAnimations];
     }
 }

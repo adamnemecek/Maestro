@@ -195,8 +195,8 @@
 		FF188EF5150EC7530033E020 /* ChordPlaymodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordPlaymodeSettingsViewController.m; sourceTree = "<group>"; };
 		FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
-		FF23C99E1514FCAF0048BE98 /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
-		FF23C99F1514FCAF0048BE98 /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
+		FF23C99E1514FCAF0048BE98 /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stats.h; path = ../Stats.h; sourceTree = "<group>"; };
+		FF23C99F1514FCAF0048BE98 /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stats.m; path = ../Stats.m; sourceTree = "<group>"; };
 		FF2A6B55150EC96C003BC92E /* ChordRootOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordRootOctaveSettingsViewController.h; sourceTree = SOURCE_ROOT; };
 		FF2A6B56150EC96C003BC92E /* ChordRootOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordRootOctaveSettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		FF2A6B59150ECAEE003BC92E /* ChordHighOctaveSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordHighOctaveSettingsViewController.h; sourceTree = "<group>"; };
@@ -416,6 +416,8 @@
 				FF5FFCA214FAC07800B2636D /* Chord.m */,
 				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
 				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
+				FF23C99E1514FCAF0048BE98 /* Stats.h */,
+				FF23C99F1514FCAF0048BE98 /* Stats.m */,
 				FF659B3A14D62932000E7EC2 /* SoundEngine.h */,
 				FF659B3B14D62932000E7EC2 /* SoundEngine.m */,
 			);
@@ -425,9 +427,6 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
-				FF23C99E1514FCAF0048BE98 /* Stats.h */,
-				FF23C99F1514FCAF0048BE98 /* Stats.m */,
-				FF6A76D61512562A006D9230 /* QuartzCore.framework */,
 				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
 				FF8E8C3E14D4942F00CC8818 /* Frameworks */,
 				FF8E8C3C14D4942F00CC8818 /* Products */,
@@ -445,6 +444,7 @@
 		FF8E8C3E14D4942F00CC8818 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF6A76D61512562A006D9230 /* QuartzCore.framework */,
 				FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */,
 				FF8E8C3F14D4942F00CC8818 /* UIKit.framework */,
 				FF8E8C4114D4942F00CC8818 /* Foundation.framework */,

@@ -21,18 +21,18 @@
 #pragma mark - Overide super
 
 - (NSArray *)getAllSelections {
-    return [Chord allChords];
+    return [Chord longNames];
 }
 
 - (NSArray *)getAllSelectionsAbbreviated {
-    return [Chord allChordsAbbreviated];
+    return [Chord shortNames];
 }
 
 - (void)setSelectionsAndChoices {
     switch ([[Defaults sharedInstance] getChordChallengeLevel]) {
         case 0:
-            self.selections = [Chord allChordsAbbreviated];
-            self.subtitles = [Chord allChords];
+            self.selections = [Chord shortNames];
+            self.subtitles = [Chord longNames];
             self.choiceIndices = [NSArray arrayWithObjects:
                                   [NSNumber numberWithInteger:0],
                                   [NSNumber numberWithInteger:1],

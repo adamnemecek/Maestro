@@ -1,12 +1,9 @@
 #import "MainMenuCell.h"
-#import <QuartzCore/QuartzCore.h>
 
 @implementation MainMenuCell
 @synthesize viewTitle;
 
 - (void)awakeFromNib {
-//    self.layer.masksToBounds = YES;
-//    self.layer.cornerRadius = 5.0f;
 }
 
 + (NSString *)nibName {

@@ -27,4 +27,12 @@
     }
     return notes;
 }
+
++ (NSArray *)longNames {
+    return [NSArray array];
+}
+
++ (NSArray *)shortNames {
+    return [NSArray array];
+}
 @end

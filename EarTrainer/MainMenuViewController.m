@@ -24,8 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     items    = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", @"Tips", @"About", nil];
-    section1 = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", nil];
-    section2 = [NSArray arrayWithObjects:@"Tips", @"About", nil];
+//    section1 = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", nil];
+//    section2 = [NSArray arrayWithObjects:@"Tips", @"About", nil];
     
 //    self.view.layer.cornerRadius = 4.0;
     
@@ -37,9 +37,9 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated

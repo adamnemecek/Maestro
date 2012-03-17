@@ -7,6 +7,7 @@ typedef enum {
     m3,
     M3,
     P4,
+    TT,
     P5,
     m6,
     M6,
@@ -31,4 +32,6 @@ typedef enum {
 
 -(id)initWithIndex:(NSInteger)index;
 -(NSString *)getNoteNames;
++(NSArray *)longNames;
++(NSArray *)shortNames;
 @end
