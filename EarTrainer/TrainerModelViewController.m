@@ -457,8 +457,8 @@
 #pragma mark - Pinch gesture
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
-//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
-    if (gesture.scale > 0.6 && gesture.velocity > 1.5) [self setPlayType:PLAYTYPE_PRACTICE];
-    else if (gesture.scale < 0.4 && gesture.velocity < - 1.5) [self setPlayType:PLAYTYPE_TRAIN];
+    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
+    if (gesture.scale > 1.4 && gesture.velocity > 1.3) [self setPlayType:PLAYTYPE_PRACTICE];
+    else if (gesture.scale < 0.6 && gesture.velocity < - 1.3) [self setPlayType:PLAYTYPE_TRAIN];
 }
 @end

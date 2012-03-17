@@ -12,7 +12,7 @@
     BOOL isDragging;
 }
 @synthesize headerView;
-@synthesize statsLabel;
+@synthesize headerLabel;
 @synthesize makeHeader;
 @synthesize isShowing;
 
@@ -45,12 +45,12 @@
     headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - HEADER_HEIGHT, 320, HEADER_HEIGHT)];
     headerView.backgroundColor = [UIColor whiteColor];
 
-    statsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, HEADER_HEIGHT)];
-    statsLabel.backgroundColor = [UIColor clearColor];
-    statsLabel.font = [UIFont boldSystemFontOfSize:12.0];
-    statsLabel.textAlignment = UITextAlignmentCenter;
+    headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, HEADER_HEIGHT)];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.font = [UIFont boldSystemFontOfSize:12.0];
+    headerLabel.textAlignment = UITextAlignmentCenter;
     
-    [headerView addSubview:statsLabel];
+    [headerView addSubview:headerLabel];
     [self.tableView addSubview:headerView];
 }
 
@@ -71,8 +71,8 @@
     if (!makeHeader) return;
     if (isDragging && scrollView.contentOffset.y < 0) {
         [UIView beginAnimations:nil context:NULL];
-        if (scrollView.contentOffset.y < -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) statsLabel.text = textRelease;  // User is scrolling above the header
-        else statsLabel.text = textPull;                                                       // User is scrolling somewhere within the header
+        if (scrollView.contentOffset.y < -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) headerLabel.text = textRelease;  // User is scrolling above the header
+        else headerLabel.text = textPull;                                                       // User is scrolling somewhere within the header
         [UIView commitAnimations];
     }
 }
@@ -99,7 +99,7 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     self.tableView.contentInset = UIEdgeInsetsMake(HEADER_HEIGHT, 0, 0, 0);
-    statsLabel.text = textShowing;
+    headerLabel.text = textShowing;
     [UIView commitAnimations];
 }
 
@@ -115,7 +115,7 @@
 }
 
 - (void)hideStatsComplete:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-    statsLabel.text = textPull;
+    headerLabel.text = textPull;
 }
 
 #pragma mark sublcass methods
