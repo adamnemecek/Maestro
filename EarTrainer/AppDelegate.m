@@ -14,9 +14,10 @@
     
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
     [[UIToolbar appearance] setTintColor:[UIColor brownColor]];
-//    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, nil]];
-//    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, nil]
-//                                                forState:UIControlStateNormal];
+    
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_textured"] forBarMetrics:UIBarMetricsDefault];
+//    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_textured"]
+//                            forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_texture_wood"] forBarMetrics:UIBarMetricsDefault];
 //    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"tool_texture_wood"]

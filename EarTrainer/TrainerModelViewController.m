@@ -1,4 +1,5 @@
 #import "TrainerModelViewController.h"
+#import "Stats.h"
 #import "SoundEngine.h"
 #import "NoteCollection.h"
 
@@ -16,6 +17,7 @@
     NoteCollection *currentSelection;
     BOOL playTypeIsTransitioning;
     UIPinchGestureRecognizer *pinchGesture;
+    Stats *sessionStats;
 }
 
 @synthesize playButton, skipButton, playmodeButton, playTypeButton;
@@ -32,8 +34,14 @@
     pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.tableView addGestureRecognizer:pinchGesture];
     
+    // Setup stats object
+    sessionStats = [Stats new];
+    
+    // Setup header strings
+    [self setupStringForPull:@"Pull to see stats..." release:@"Release see stats..." andShowing:@"stats..."];
+    
     // Show toolbar
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    [self.navigationController setToolbarHidden:NO animated:NO];
     
     // Setup toolbar items
     UIBarButtonItem *flex1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -125,19 +133,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    BOOL right;
     if (playType == PLAYTYPE_TRAIN) {
         if (!currentSelection) return;
         NSString *alertTitle, *alertMessage;
         NSInteger choiceIndex = (!choiceIndices) ? indexPath.row : [[choiceIndices objectAtIndex:indexPath.row] integerValue];
-        if (currentSelection.index == choiceIndex) alertTitle = @"Correct";
-        else alertTitle = @"Wrong";
+        if (currentSelection.index == choiceIndex) {
+            alertTitle = @"Correct";
+            right = YES;
+        }
+        else {
+            alertTitle = @"Wrong";
+            right = NO;
+        }
+        [sessionStats addToStats:right];
         alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
-                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
-        [self.navigationItem setPrompt:promptMessage];
+//        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
+//                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
+//        [self.navigationItem setPrompt:promptMessage];
         
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
     }
@@ -243,7 +258,7 @@
         [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationFade];
         playTypeIsTransitioning = NO;
     }
-    [self.navigationItem setPrompt:nil];
+//    [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
 
@@ -392,7 +407,35 @@
     }
 }
 
-#pragma mark - Overide methods
+#pragma mark - Overide pull header methods
+
+- (void)refreshHeader {
+    UIView *percentView = [[UIView alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width  * 0.3,
+                                                                   self.headerView.frame.size.height * 0.30,
+                                                                   self.headerView.frame.size.width  * 0.4,
+                                                                   self.headerView.frame.size.height * 0.40)];
+    [percentView setBackgroundColor:[UIColor greenColor]];
+    
+    UIView *percentWrong = [[UIView alloc] initWithFrame:CGRectMake(percentView.frame.origin.x + (percentView.frame.size.width * (1.0 - [sessionStats getPercentWrong])),
+                                                                    self.headerView.frame.size.height * 0.30,
+                                                                    percentView.frame.size.width * [sessionStats getPercentWrong],
+                                                                    self.headerView.frame.size.height * 0.40)];
+    [percentWrong setBackgroundColor:[UIColor redColor]];
+                           
+    UILabel *right = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
+    UILabel *wrong = [[UILabel alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width * 0.7, 0,
+                                                               self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
+    right.text = [NSString stringWithFormat:@"%i", sessionStats.right];
+    wrong.text = [NSString stringWithFormat:@"%i", sessionStats.wrong];
+    right.textAlignment = UITextAlignmentCenter;
+    wrong.textAlignment = UITextAlignmentCenter;
+    [right setTextColor:[UIColor greenColor]];
+    [wrong setTextColor:[UIColor redColor]];
+    [self.headerView addSubview:right];
+    [self.headerView addSubview:wrong];
+    [self.headerView addSubview:percentWrong];
+    [self.headerView insertSubview:percentView belowSubview:percentWrong];
+}
 
 - (void)enableCommonFunctionality {
     [self.tableView reloadData];

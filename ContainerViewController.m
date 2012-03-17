@@ -7,6 +7,8 @@
 
 @implementation ContainerViewController {
     BOOL _menuShowing;
+    UIImageView *shadowView;
+    PushOverlayView *pushBackView;
 }
 
 @synthesize mainMenu = _mainMenu;
@@ -24,6 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Round the top left and right corners of navigation bar
+    CALayer *capa = [self.navigationController navigationBar].layer;
+    CGRect bounds = capa.bounds;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:CGSizeMake(5.0, 5.0)];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = bounds;
+    maskLayer.path = maskPath.CGPath;
+    
+    [capa addSublayer:maskLayer];
+    capa.mask = maskLayer;
     
     // Setup nav buttons
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered
@@ -60,26 +74,50 @@
 - (void)openMenu:(BOOL)show {
     float offsetScalar = 0.83;
     UIView *viewToMove = self.navigationController.view;
+    if (!pushBackView) {
+        pushBackView = [[PushOverlayView alloc] initWithFrame:viewToMove.frame];
+        [pushBackView setDelegate:self];
+    }
+    [viewToMove addSubview:pushBackView];
+    if (!shadowView) {
+        shadowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shadow_sidebar.png"]];
+        shadowView.frame = CGRectMake(viewToMove.frame.origin.x - 8, shadowView.frame.origin.y, shadowView.frame.size.width, shadowView.frame.size.height);
+        [self.navigationController.view.superview insertSubview:shadowView belowSubview:viewToMove];
+    }
     if (show) {
         if (!_mainMenu) {
             _mainMenu = [[MainMenuViewController alloc] initWithStyle:UITableViewStylePlain];
-            [_mainMenu.tableView setBackgroundColor:[UIColor underPageBackgroundColor]];
+            CGRect menuFrame = _mainMenu.tableView.frame;
+            [_mainMenu.tableView setFrame:CGRectMake(menuFrame.origin.x, menuFrame.origin.y, menuFrame.size.width * offsetScalar, menuFrame.size.height)];
 //            _mainMenu.view.frame = [_mainMenu.view convertRect:[[UIScreen mainScreen] applicationFrame] toView:nil];
             [self.navigationController.view.superview insertSubview:_mainMenu.view atIndex:0];
             _mainMenu.delegate = self;
         }
+        [_mainMenu.tableView setHidden:NO];
         [self.view setUserInteractionEnabled:NO];
         [UIView animateWithDuration:0.325f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             viewToMove.frame = CGRectOffset(viewToMove.frame, viewToMove.frame.size.width * offsetScalar, 0);
-        } completion:NULL];
-        _menuShowing = YES;
+            shadowView.frame = CGRectOffset(shadowView.frame, viewToMove.frame.size.width * offsetScalar, 0);
+        } completion:^(BOOL finished) {
+            _menuShowing = YES;
+        }];
     } else {
         [self.view setUserInteractionEnabled:YES];
+        [pushBackView removeFromSuperview];
         [UIView animateWithDuration:0.325f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             viewToMove.frame = CGRectOffset(viewToMove.frame, viewToMove.frame.size.width * -offsetScalar, 0);
-        } completion:NULL];
-        _menuShowing = NO;
+            shadowView.frame = CGRectOffset(shadowView.frame, viewToMove.frame.size.width * -offsetScalar, 0);
+        } completion:^(BOOL finished) {
+            _menuShowing = NO;
+            [_mainMenu.tableView setHidden:YES];
+        }];
     }
+}
+
+#pragma mark - Push view delegate
+
+- (void)tapEnded:(PushOverlayView *)view {
+    [self openMenu:NO];
 }
 
 #pragma mark - Menu delegate

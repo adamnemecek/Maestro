@@ -2,17 +2,16 @@
 #import "PullHeaderTableViewController.h"
 
 @interface PullHeaderTableViewController (Private)
--(void)setupStrings;
 -(void)addPullToRefreshHeader;
 @end
 
 @implementation PullHeaderTableViewController {
-    UIView *statsHeaderView;
     NSString *textPull;
     NSString *textRelease;
     NSString *textShowing;
     BOOL isDragging;
 }
+@synthesize headerView;
 @synthesize statsLabel;
 @synthesize makeHeader;
 @synthesize isShowing;
@@ -21,7 +20,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
-    [self setupStrings];
+    [self setupStringForPull:@"Pull down to see awesome..." release:@"Release to see awesome..." andShowing:@"Awesome..."];
     makeHeader = YES;   // Set to no in init to cancel the header
     return self;
 }
@@ -35,30 +34,36 @@
 
 #pragma mark - Set up
 
-- (void)setupStrings{
-    textPull = [[NSString alloc] initWithString:@"Pull down to see stats..."];
-    textRelease = [[NSString alloc] initWithString:@"Release to see stats..."];
-    textShowing = [[NSString alloc] initWithString:@"Stats..."];
+- (void)setupStringForPull:(NSString *)pullString release:(NSString *)releaseString andShowing:(NSString *)showingString {
+    textPull = pullString;
+    textRelease = releaseString;
+    textShowing = showingString;
 }
 
 - (void)addPullToRefreshHeader {
     if (!makeHeader) return;
-    statsHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - HEADER_HEIGHT, 320, HEADER_HEIGHT)];
-    statsHeaderView.backgroundColor = [UIColor underPageBackgroundColor];
+    headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - HEADER_HEIGHT, 320, HEADER_HEIGHT)];
+    headerView.backgroundColor = [UIColor whiteColor];
 
     statsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, HEADER_HEIGHT)];
     statsLabel.backgroundColor = [UIColor clearColor];
     statsLabel.font = [UIFont boldSystemFontOfSize:12.0];
     statsLabel.textAlignment = UITextAlignmentCenter;
     
-    [statsHeaderView addSubview:statsLabel];
-    [self.tableView addSubview:statsHeaderView];
+    [headerView addSubview:statsLabel];
+    [self.tableView addSubview:headerView];
+}
+
+#pragma mark update header
+
+- (void)refreshHeader {    
 }
 
 #pragma mark - Dragging
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (isShowing || !makeHeader) return;
+    [self refreshHeader];
     isDragging = YES;
 }
 
@@ -76,10 +81,10 @@
     if (!makeHeader) return;
     isDragging = NO;
     if (!isShowing) {
-        if (scrollView.contentOffset.y <= -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) [self showStats];
+        if (scrollView.contentOffset.y <= -HEADER_HEIGHT * HEADER_SHOW_MARGIN_SCALAR) [self showHeader];
     } else {
         if (scrollView.contentOffset.y >= -HEADER_HEIGHT * HEADER_HIDE_MARGIN_SCALAR) {
-            [self hideStats];
+            [self hideHeader];
         } else if (scrollView.contentOffset.y <= -HEADER_HEIGHT * HEADER_HIDE_MARGIN_SCALAR && scrollView.contentOffset.y >= -HEADER_HEIGHT) {
             [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, -HEADER_HEIGHT) animated:YES];
         }
@@ -88,7 +93,7 @@
 
 #pragma mark - Stats
 
-- (void)showStats {
+- (void)showHeader {
     isShowing = YES;
     [self disableCommonFunctionality];
     [UIView beginAnimations:nil context:NULL];
@@ -98,7 +103,7 @@
     [UIView commitAnimations];
 }
 
-- (void)hideStats {
+- (void)hideHeader {
     isShowing = NO;
     [self enableCommonFunctionality];
     [UIView beginAnimations:nil context:NULL];

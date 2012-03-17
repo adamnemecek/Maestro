@@ -15,12 +15,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    [header setBackgroundColor:[UIColor lightGrayColor]];
+    UILabel *label = [[UILabel alloc] initWithFrame:header.frame];
+    label.text = @"Here are some awesome tips";
+    label.textAlignment = UITextAlignmentCenter;
+    [label setTextColor:[UIColor whiteColor]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [header addSubview:label];
+    
+    [self.tableView setTableHeaderView:header];
+    [self.tableView setBackgroundColor:[UIColor lightGrayColor]];
+    
     [self.navigationItem setRightBarButtonItem:nil];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    [self.tableView setBackgroundColor:[UIColor underPageBackgroundColor]];
-    UIView *testView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
-    [testView setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
-    [self.tableView setTableHeaderView:testView];
+    [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 - (void)viewDidUnload {
