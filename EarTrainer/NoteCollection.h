@@ -20,7 +20,15 @@ typedef enum {
     min,
     maj,
     aug,
-    dim
+    dim,
+    min7,
+    maj7,
+    mM7,
+    dom7,
+    hDim7,
+    dim7,
+    augM7,
+    aug7
 }CHORDS;
 
 @interface NoteCollection : NSObject

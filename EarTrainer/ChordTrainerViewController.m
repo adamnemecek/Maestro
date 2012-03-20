@@ -1,5 +1,6 @@
 #import "ChordTrainerViewController.h"
 #import "Defaults.h"
+#import "NoteCollection.h"
 #import "Chord.h"
 
 @implementation ChordTrainerViewController
@@ -31,17 +32,20 @@
 - (void)setSelectionsAndChoices {
     switch ([[Defaults sharedInstance] getChordChallengeLevel]) {
         case 0:
-            self.selections = [Chord shortNames];
-            self.subtitles = [Chord longNames];
+            self.selections = [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim", nil];
+            self.subtitles  = [NSArray arrayWithObjects:@"Minor",@"Major",@"Augmented",@"Diminished", nil];
             self.choiceIndices = [NSArray arrayWithObjects:
-                                  [NSNumber numberWithInteger:0],
-                                  [NSNumber numberWithInteger:1],
-                                  [NSNumber numberWithInteger:2],
-                                  [NSNumber numberWithInteger:3], nil];
+                                  [NSNumber numberWithInteger:min],
+                                  [NSNumber numberWithInteger:maj],
+                                  [NSNumber numberWithInteger:aug],
+                                  [NSNumber numberWithInteger:dim], nil];
             break;
         case 1:
             break;
         case 2:
+            self.selections = [Chord shortNames];
+            self.subtitles = [Chord longNames];
+            self.choiceIndices = nil;
             break;
     }
 }
@@ -59,7 +63,6 @@
 }
 
 - (id)getRandomSelection {
-//    return [Chord getRandomChord];
     if (!self.choiceIndices) return [Chord getRandomChord];
     else return [Chord getRandomChordFromChoices:self.choiceIndices];
 }

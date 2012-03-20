@@ -37,7 +37,7 @@
     switch ([[Defaults sharedInstance] getChallengeLevel]) {
         case 0:
             self.selections = [NSArray arrayWithObjects:@"U",@"M3",@"P4",@"P5",@"P8", nil];
-                        self.subtitles = [NSArray arrayWithObjects:@"Unison",@"Major Third",@"Perfect Fourth",@"Perfect Fifth",@"Perfect Eighth", nil];
+            self.subtitles = [NSArray arrayWithObjects:@"Unison",@"Major Third",@"Perfect Fourth",@"Perfect Fifth",@"Perfect Eighth", nil];
             self.choiceIndices = [NSArray arrayWithObjects:
                                   [NSNumber numberWithInteger:U],
                                   [NSNumber numberWithInteger:M3],

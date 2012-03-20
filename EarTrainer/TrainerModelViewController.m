@@ -150,9 +150,9 @@
         alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-//        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
-//                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
-//        [self.navigationItem setPrompt:promptMessage];
+        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
+                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
+        [self.navigationItem setPrompt:promptMessage];
         
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
     }
@@ -239,10 +239,23 @@
         
         NSMutableArray *rowsToDelete = [NSMutableArray array];
         for (int i = 0; i < [choiceIndices count]; i++) {
+//            NSLog(@"i: %i",i);
             int currentIndex, nextIndex;
+            int spaceForNextIndex = 0;
+            if (i != ([choiceIndices count] - 1)) spaceForNextIndex = 1;
             currentIndex = [[choiceIndices objectAtIndex:i] intValue];
-            if (i != ([choiceIndices count] - 1)) nextIndex = [[choiceIndices objectAtIndex:(i + 1)] intValue];
-            if (nextIndex == 0) break;
+            nextIndex = [[choiceIndices objectAtIndex:(i + spaceForNextIndex)] intValue];
+            
+//            NSLog(@"index current:%i next: %i",currentIndex,nextIndex);
+            
+            if (currentIndex == nextIndex) {
+//                NSLog(@"choices to loop: %i", (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]));
+                for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]); j++) {
+                    [rowsToDelete addObject:[NSIndexPath indexPathForRow:([[self getAllSelections] count] - j) inSection:0]];
+                }
+                break;
+            }
+            
             for (int j = 1; j < (nextIndex - currentIndex); j++) {
                 [rowsToDelete addObject:[NSIndexPath indexPathForRow:(currentIndex + j) inSection:0]];
             }
@@ -258,7 +271,7 @@
         [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationFade];
         playTypeIsTransitioning = NO;
     }
-//    [self.navigationItem setPrompt:nil];
+    [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
 
@@ -278,13 +291,27 @@
          * Then we subtract the next cell's index from the first's and if there is a difference greater than one we know to add cells there
          * So we loop through the difference between cell indeces and create an indexPath for each one which row is the
          * first cell's index + current iteration
+         * If we hit the last cell then both cells become the same cell
+         * In that case we find how many choices are left after the last cell and add them
          ***/
         NSMutableArray *rowsToInsert = [NSMutableArray array];
         for (int i = 0; i < [selections count]; i++) {
+//            NSLog(@"i: %i",i);
             int currentIndex, nextIndex;
+            int nextCellIndex = 0;
             UITableViewCell *cell, *nextCell;
             cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            if (i != ([selections count] - 1)) nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + 1) inSection:0]];
+            if (i != ([selections count] - 1)) nextCellIndex = 1;
+            nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + nextCellIndex) inSection:0]];
+            
+            if (cell == nextCell) {
+//                NSLog(@"choices to loop: %i", (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]));
+                for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]); j++) {
+                    [rowsToInsert addObject:[NSIndexPath indexPathForRow:([[choiceIndices objectAtIndex:i] intValue] + j) inSection:0]];
+                }
+                break;
+            }
+            
             if (!nextCell) break;
             for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {
                 if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
