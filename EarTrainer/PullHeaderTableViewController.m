@@ -1,4 +1,5 @@
 #import "PullHeaderTableViewController.h"
+#import "UIColor+DesignColors.h"
 
 @interface PullHeaderTableViewController (Private)
 -(void)addPullToRefreshHeader;
@@ -42,7 +43,7 @@
 - (void)addPullToRefreshHeader {
     if (!makeHeader) return;
     headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - HEADER_HEIGHT, 320, HEADER_HEIGHT)];
-    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.backgroundColor = [UIColor offWhiteColor];
 
     headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, HEADER_HEIGHT)];
     headerLabel.backgroundColor = [UIColor clearColor];
@@ -55,7 +56,9 @@
 
 #pragma mark update header
 
-- (void)refreshHeader {    
+- (void)refreshHeader {
+    for (UIView *view in headerView.subviews)
+        [view removeFromSuperview];
 }
 
 #pragma mark - Dragging

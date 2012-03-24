@@ -19,7 +19,6 @@
     UIPinchGestureRecognizer *pinchGesture;
     Stats *sessionStats;
 }
-
 @synthesize playButton, skipButton, playmodeButton, playTypeButton;
 @synthesize selections;
 @synthesize subtitles;
@@ -147,12 +146,12 @@
             right = NO;
         }
         [sessionStats addToStats:right];
-        alertMessage = [NSString stringWithFormat:@"%@ \n %@", [currentSelection getNoteNames], currentSelection.longName];
+        alertMessage = [NSString stringWithFormat:@"%@", currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
-                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
-        [self.navigationItem setPrompt:promptMessage];
+//        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
+//                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
+//        [self.navigationItem setPrompt:promptMessage];
         
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
     }
@@ -271,7 +270,7 @@
         [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationFade];
         playTypeIsTransitioning = NO;
     }
-    [self.navigationItem setPrompt:nil];
+//    [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
 
@@ -437,8 +436,9 @@
 #pragma mark - Overide pull header methods
 
 - (void)refreshHeader {
-    //Build stats view
+    [super refreshHeader];
     
+    //Build stats view
     UIView *percentView = [[UIView alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width  * 0.3,
                                                                    self.headerView.frame.size.height * 0.30,
                                                                    self.headerView.frame.size.width  * 0.4,
@@ -458,6 +458,8 @@
     wrong.text = [NSString stringWithFormat:@"%i", sessionStats.wrong];
     right.textAlignment = UITextAlignmentCenter;
     wrong.textAlignment = UITextAlignmentCenter;
+    right.backgroundColor = [UIColor clearColor];
+    wrong.backgroundColor = [UIColor clearColor];
     [right setTextColor:[UIColor greenColor]];
     [wrong setTextColor:[UIColor redColor]];
     [self.headerView addSubview:right];

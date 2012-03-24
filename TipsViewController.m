@@ -1,4 +1,5 @@
 #import "TipsViewController.h"
+#import "UIColor+DesignColors.h"
 
 @implementation TipsViewController
 
@@ -53,7 +54,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor whiteColor]];
+    [cell setBackgroundColor:[UIColor offWhiteColor]];
 }
 
 #pragma mark - Table view delegate

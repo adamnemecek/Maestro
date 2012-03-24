@@ -1,5 +1,8 @@
 #import "ContainerViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIColor+DesignColors.h"
+
+// TODO: Only let one selection pass for each menu presentation
 
 @interface ContainerViewController (Private)
 -(void)openMenu:(BOOL)show;
@@ -28,16 +31,18 @@
     [super viewDidLoad];
     
     // Round the top left and right corners of navigation bar
-//    CALayer *capa = [self.navigationController navigationBar].layer;
-//    CGRect bounds = capa.bounds;
-//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:CGSizeMake(5.0, 5.0)];
-//    
-//    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-//    maskLayer.frame = bounds;
-//    maskLayer.path = maskPath.CGPath;
-//    
-//    [capa addSublayer:maskLayer];
-//    capa.mask = maskLayer;
+    CALayer *capa = [self.navigationController navigationBar].layer;
+    CGRect bounds = capa.bounds;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:CGSizeMake(5.0, 5.0)];
+    
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = bounds;
+    maskLayer.path = maskPath.CGPath;
+    
+    [capa addSublayer:maskLayer];
+    capa.mask = maskLayer;
+    
+    [self.tableView setBackgroundColor:[UIColor offWhiteColor]];
     
     // Setup nav buttons
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered

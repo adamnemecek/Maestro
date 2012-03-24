@@ -5,6 +5,8 @@
 
 @implementation IntervalTrainerViewController
 
+@synthesize tutorialOverlayViewController = _tutorialOverlayViewController;
+
 #pragma mark - Initialization
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -21,6 +23,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.view setUserInteractionEnabled:NO];
+    
+    _tutorialOverlayViewController = [TutorialOverlayViewController new];
+    [_tutorialOverlayViewController setDelegate:self];
+    [self.navigationController.view.superview addSubview:_tutorialOverlayViewController.view];
+}
+
+#pragma mark - Tutorial overlay delegate
+
+- (void)tutorialViewControllerDidFinishFading:(TutorialOverlayViewController *)controller {
+    [self.view setUserInteractionEnabled:YES];
 }
 
 #pragma mark - Overide super

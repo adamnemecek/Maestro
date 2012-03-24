@@ -2,6 +2,8 @@
 #import "Note.h"
 #import "NoteCollection.h"
 
+// TODO: Generate own sounds probably with audio queue services
+
 @interface SoundEngine (Private)
 -(SystemSoundID)loadSoundWithName:(NSString *)name;
 -(void)playOnNewThread:(NSDictionary *)properties;

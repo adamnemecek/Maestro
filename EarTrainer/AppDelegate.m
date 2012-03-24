@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "UIColor+DesignColors.h"
 #import "Defaults.h"
 #import "SoundEngine.h"
 #import "IntervalTrainerViewController.h"
@@ -10,6 +11,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     if (![[Defaults sharedInstance] getHereBefore]) [[Defaults sharedInstance] initialDefaults];
     
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
@@ -17,10 +20,6 @@
     
 //    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_textured"] forBarMetrics:UIBarMetricsDefault];
 //    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_textured"]
-//                            forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-    
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_texture_wood"] forBarMetrics:UIBarMetricsDefault];
-//    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"tool_texture_wood"]
 //                            forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
 //    
 //    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -33,10 +32,10 @@
 //                                                          [UIFont fontWithName:@"Arial-Bold" size:0.0],
 //                                                          UITextAttributeFont,
 //                                                          nil]];
-    
+//
 //    [[UIBarButtonItem appearance] setBackgroundImage:button30 forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 //    [[UIBarButtonItem appearance] setBackgroundImage:button24 forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-    
+//
 //    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
 //                                                          [UIColor colorWithRed:225.0/255.0 green:225.0/255.0 blue:225.0/255.0 alpha:1.0],
 //                                                          UITextAttributeTextColor,
@@ -50,6 +49,7 @@
     
     IntervalTrainerViewController *intervalTrainerViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
     intervalTrainerViewController.title = @"Ear Trainer";
+    
     _navController = [[UINavigationController alloc] initWithRootViewController:intervalTrainerViewController];
     
     _window.rootViewController = _navController;
