@@ -49,11 +49,10 @@
 + (NSArray *)longNames {
     return [NSArray arrayWithObjects:@"Minor",@"Major",@"Augmented",@"Diminished",
             @"Minor Seventh",@"Major Seventh",@"Minor-Major Seventh",@"Dominant Seventh",
-            @"Half-Diminished Seventh", @"Diminished Seventh",
-            @"Augmented-Major Seventh",@"Augmented Seventh", nil];
+            @"Half-Diminished Seventh",@"Diminished Seventh",@"Augmented-Major Seventh",@"Augmented Seventh", nil];
 }
 
 + (NSArray *)shortNames {
-    return [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim",@"m7",@"M7",@"mM7",@"7",@"1/2Dim7",@"Dim7",@"+M7",@"+7", nil];
+    return [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim",@"Min7",@"Maj7",@"MinMaj7",@"Dom7",@"1/2Dim7",@"Dim7",@"AugMaj7",@"Aug7", nil];
 }
 @end

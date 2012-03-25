@@ -13,7 +13,7 @@
 
 - (id)init {
     self = [super init];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tutorial_overlay_mockup.png"]];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tutorial_overlay.png"]];
     UIView *mainView = [[UIView alloc] initWithFrame:imageView.frame];
     [mainView addSubview:imageView];
     self.view = mainView;

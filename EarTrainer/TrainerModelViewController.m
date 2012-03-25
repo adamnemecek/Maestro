@@ -112,7 +112,8 @@
     else {
         cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
         cell.textLabel.textColor = [UIColor blackColor];
-        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
+//        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [[self getSelectionWithIndex:indexPath.row] getNoteNames];
     }
     if (playType == PLAYTYPE_TRAIN) {
         cell.textLabel.text = [selections objectAtIndex:indexPath.row];
@@ -295,7 +296,6 @@
          ***/
         NSMutableArray *rowsToInsert = [NSMutableArray array];
         for (int i = 0; i < [selections count]; i++) {
-//            NSLog(@"i: %i",i);
             int currentIndex, nextIndex;
             int nextCellIndex = 0;
             UITableViewCell *cell, *nextCell;
@@ -304,14 +304,12 @@
             nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + nextCellIndex) inSection:0]];
             
             if (cell == nextCell) {
-//                NSLog(@"choices to loop: %i", (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]));
                 for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]); j++) {
                     [rowsToInsert addObject:[NSIndexPath indexPathForRow:([[choiceIndices objectAtIndex:i] intValue] + j) inSection:0]];
                 }
                 break;
             }
             
-            if (!nextCell) break;
             for (int j = 0; j < [[self getAllSelectionsAbbreviated] count]; j++) {
                 if ([cell.textLabel.text isEqualToString:[[self getAllSelectionsAbbreviated] objectAtIndex:j]]) {
                     currentIndex = j;

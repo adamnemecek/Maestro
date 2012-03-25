@@ -15,43 +15,13 @@
     
     if (![[Defaults sharedInstance] getHereBefore]) [[Defaults sharedInstance] initialDefaults];
     
+    [[Defaults sharedInstance] saveShownOverlay:NO];
+    
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
     [[UIToolbar appearance] setTintColor:[UIColor brownColor]];
     
-//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_textured"] forBarMetrics:UIBarMetricsDefault];
-//    [[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"nav_textured"]
-//                            forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-//    
-//    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                                          [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
-//                                                          UITextAttributeTextColor,
-//                                                          [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
-//                                                          UITextAttributeTextShadowColor,
-//                                                          [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
-//                                                          UITextAttributeTextShadowOffset,
-//                                                          [UIFont fontWithName:@"Arial-Bold" size:0.0],
-//                                                          UITextAttributeFont,
-//                                                          nil]];
-//
-//    [[UIBarButtonItem appearance] setBackgroundImage:button30 forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//    [[UIBarButtonItem appearance] setBackgroundImage:button24 forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-//
-//    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                                          [UIColor colorWithRed:225.0/255.0 green:225.0/255.0 blue:225.0/255.0 alpha:1.0],
-//                                                          UITextAttributeTextColor,
-//                                                          [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],
-//                                                          UITextAttributeTextShadowColor,[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-//                                                          UITextAttributeTextShadowOffset,
-//                                                          [UIFont fontWithName:@"Arial"/*@"Noteworthy"*//*@"AmericanTypewriter"*/ size:0.0],
-//                                                          UITextAttributeFont,
-//                                                          nil] forState:UIControlStateNormal];
-    
-    
     IntervalTrainerViewController *intervalTrainerViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
-    intervalTrainerViewController.title = @"Ear Trainer";
-    
     _navController = [[UINavigationController alloc] initWithRootViewController:intervalTrainerViewController];
-    
     _window.rootViewController = _navController;
     [_window makeKeyAndVisible];
     

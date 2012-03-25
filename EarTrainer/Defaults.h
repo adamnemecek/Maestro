@@ -10,6 +10,7 @@
 -(void)initialDefaults;
 
 -(void)saveHereBefore:(BOOL)hereBefore;
+-(void)saveShownOverlay:(BOOL)overlay;
 
 -(void)saveChallengeLevel:(NSInteger)level;
 -(void)savePlaymode:(NSInteger)playmode;
@@ -24,6 +25,7 @@
 -(void)saveChordTempo:(NSInteger)tempo;
 
 -(BOOL)getHereBefore;
+-(BOOL)getShownOverlay;
 
 -(NSInteger)getChallengeLevel;
 -(NSInteger)getPlaymode;

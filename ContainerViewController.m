@@ -86,7 +86,7 @@
     [viewToMove addSubview:pushBackView];
     if (!shadowView) {
         shadowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shadow_sidebar.png"]];
-        shadowView.frame = CGRectMake(viewToMove.frame.origin.x - 8, shadowView.frame.origin.y, shadowView.frame.size.width, shadowView.frame.size.height);
+        shadowView.frame = CGRectMake(viewToMove.frame.origin.x - shadowView.frame.size.width, shadowView.frame.origin.y, shadowView.frame.size.width, shadowView.frame.size.height);
         [self.navigationController.view.superview insertSubview:shadowView belowSubview:viewToMove];
     }
     if (show) {

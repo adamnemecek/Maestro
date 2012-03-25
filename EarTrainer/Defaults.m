@@ -40,6 +40,10 @@ static Defaults *inst = nil;
     [[NSUserDefaults standardUserDefaults] setBool:hereBefore forKey:@"keyHereBefore"];
 }
 
+- (void)saveShownOverlay:(BOOL)overlay {
+    [[NSUserDefaults standardUserDefaults] setBool:overlay forKey:@"keyShownOverlay"];
+}
+
 #pragma mark Interval
 
 - (void)saveChallengeLevel:(NSInteger)level {
@@ -88,6 +92,10 @@ static Defaults *inst = nil;
 
 - (BOOL)getHereBefore {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"keyHereBefore"];
+}
+
+- (BOOL)getShownOverlay {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"keyShownOverlay"];
 }
 
 #pragma mark Interval

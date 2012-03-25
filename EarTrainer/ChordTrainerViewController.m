@@ -41,6 +41,18 @@
                                   [NSNumber numberWithInteger:dim], nil];
             break;
         case 1:
+            self.selections = [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim",@"Min7",@"Maj7",@"MinMaj7",@"Dom7", nil];
+            self.subtitles  = [NSArray arrayWithObjects:@"Minor",@"Major",@"Augmented",@"Diminished",
+                                                        @"Minor Seventh",@"Major Seventh",@"Minor-Major Seventh",@"Dominant Seventh", nil];
+            self.choiceIndices = [NSArray arrayWithObjects:
+                                  [NSNumber numberWithInteger:min],
+                                  [NSNumber numberWithInteger:maj],
+                                  [NSNumber numberWithInteger:aug],
+                                  [NSNumber numberWithInteger:dim],
+                                  [NSNumber numberWithInteger:min7],
+                                  [NSNumber numberWithInteger:maj7],
+                                  [NSNumber numberWithInteger:mM7],
+                                  [NSNumber numberWithInteger:dom7], nil];
             break;
         case 2:
             self.selections = [Chord shortNames];

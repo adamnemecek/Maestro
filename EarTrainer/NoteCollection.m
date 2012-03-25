@@ -32,7 +32,7 @@
     return [NSArray array];
 }
 
-+ (NSArray *)shortNames {
++ (NSMutableArray *)shortNames {
     return [NSArray array];
 }
 @end

@@ -8,7 +8,6 @@
 }
 
 - (void)saveDifficulty:(NSInteger)difficulty {
-    if (difficulty == 1) return;
     [[Defaults sharedInstance] saveChordChallengeLevel:difficulty];
 }
 @end

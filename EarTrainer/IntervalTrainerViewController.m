@@ -24,11 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view setUserInteractionEnabled:NO];
-    
-    _tutorialOverlayViewController = [TutorialOverlayViewController new];
-    [_tutorialOverlayViewController setDelegate:self];
-    [self.navigationController.view.superview addSubview:_tutorialOverlayViewController.view];
+    if (![[Defaults sharedInstance] getShownOverlay]) {
+        [self.view setUserInteractionEnabled:NO];
+        _tutorialOverlayViewController = [TutorialOverlayViewController new];
+        [_tutorialOverlayViewController setDelegate:self];
+        [self.navigationController.view.superview addSubview:_tutorialOverlayViewController.view];
+        [[Defaults sharedInstance] saveShownOverlay:YES];
+    }
 }
 
 #pragma mark - Tutorial overlay delegate
@@ -61,7 +63,8 @@
             break;
         case 1:
             self.selections = [NSArray arrayWithObjects:@"U",@"M2",@"M3",@"P4",@"P5",@"M6",@"M7",@"P8", nil];
-            self.subtitles = [NSArray arrayWithObjects:@"Unison",@"Major Second",@"Major Third",@"Perfect Fourth",@"Perfect Fifth",@"Major Sixth",@"Major Seventh",@"Perfect Eighth", nil];
+            self.subtitles = [NSArray arrayWithObjects:@"Unison",@"Major Second",@"Major Third",@"Perfect Fourth",@"Perfect Fifth",@"Major Sixth",
+                                                       @"Major Seventh",@"Perfect Eighth", nil];
             self.choiceIndices = [NSArray arrayWithObjects:
                                   [NSNumber numberWithInteger:U],
                                   [NSNumber numberWithInteger:M2],

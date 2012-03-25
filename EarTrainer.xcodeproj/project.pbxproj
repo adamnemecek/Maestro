@@ -84,11 +84,10 @@
 		FF2A6B5E150EF9A4003BC92E /* ChordTempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2A6B5D150EF9A3003BC92E /* ChordTempoSettingsViewController.m */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
 		FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */; };
-		FF4940351512B470008F3B45 /* shadow_sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4940341512B470008F3B45 /* shadow_sidebar.png */; };
 		FF4940381512B91A008F3B45 /* PushOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4940371512B91A008F3B45 /* PushOverlayView.m */; };
 		FF5D4F16151D8FD1003EFE00 /* TutorialOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D4F14151D8FD1003EFE00 /* TutorialOverlayViewController.m */; };
-		FF5D4F21151D9DBF003EFE00 /* tutorial_overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5D4F20151D9DBF003EFE00 /* tutorial_overlay@2x.png */; };
-		FF5D4F23151DA62A003EFE00 /* tutorial_overlay_mockup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5D4F22151DA62A003EFE00 /* tutorial_overlay_mockup@2x.png */; };
+		FF5D4F35151E8D3B003EFE00 /* shadow_sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */; };
+		FF5D4F3B151E94D7003EFE00 /* tutorial_overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5D4F3A151E94D6003EFE00 /* tutorial_overlay@2x.png */; };
 		FF5FFCA314FAC07800B2636D /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5FFCA214FAC07800B2636D /* Chord.m */; };
 		FF5FFCA714FADA2E00B2636D /* NoteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5FFCA614FADA2E00B2636D /* NoteCollection.m */; };
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
@@ -112,7 +111,6 @@
 		FF937B3E150FF23600C572DC /* MainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FF937B3D150FF23600C572DC /* MainMenuCell.m */; };
 		FF96790114FD4E99004E9402 /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9678FF14FD4E99004E9402 /* ButtonMenu.png */; };
 		FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */; };
-		FF9E66BD1512B33100B1E4B7 /* shadow_sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9E66BC1512B33100B1E4B7 /* shadow_sidebar@2x.png */; };
 		FF9EE5E3150BFB8100C49DEE /* TipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9EE5E2150BFB8100C49DEE /* TipsViewController.m */; };
 		FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C51151D32A60095016C /* UIColor+DesignColors.m */; };
 		FFB55A481502F3F800614D6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB55A461502F3F700614D6D /* AboutViewController.m */; };
@@ -211,13 +209,12 @@
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
 		FF47C62914F0493E0054139E /* TempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TempoSettingsViewController.h; path = ../TempoSettingsViewController.h; sourceTree = "<group>"; };
 		FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TempoSettingsViewController.m; path = ../TempoSettingsViewController.m; sourceTree = "<group>"; };
-		FF4940341512B470008F3B45 /* shadow_sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shadow_sidebar.png; path = ../shadow_sidebar.png; sourceTree = "<group>"; };
 		FF4940361512B91A008F3B45 /* PushOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushOverlayView.h; path = ../PushOverlayView.h; sourceTree = "<group>"; };
 		FF4940371512B91A008F3B45 /* PushOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushOverlayView.m; path = ../PushOverlayView.m; sourceTree = "<group>"; };
 		FF5D4F13151D8FD1003EFE00 /* TutorialOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialOverlayViewController.h; sourceTree = "<group>"; };
 		FF5D4F14151D8FD1003EFE00 /* TutorialOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialOverlayViewController.m; sourceTree = "<group>"; };
-		FF5D4F20151D9DBF003EFE00 /* tutorial_overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial_overlay@2x.png"; sourceTree = "<group>"; };
-		FF5D4F22151DA62A003EFE00 /* tutorial_overlay_mockup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial_overlay_mockup@2x.png"; sourceTree = "<group>"; };
+		FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow_sidebar@2x.png"; sourceTree = "<group>"; };
+		FF5D4F3A151E94D6003EFE00 /* tutorial_overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial_overlay@2x.png"; sourceTree = "<group>"; };
 		FF5FFCA114FAC07800B2636D /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
 		FF5FFCA214FAC07800B2636D /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
 		FF5FFCA514FADA2E00B2636D /* NoteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCollection.h; sourceTree = "<group>"; };
@@ -257,7 +254,6 @@
 		FF937B3D150FF23600C572DC /* MainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainMenuCell.m; path = ../MainMenuCell.m; sourceTree = "<group>"; };
 		FF9678FF14FD4E99004E9402 /* ButtonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonMenu.png; path = ../ButtonMenu.png; sourceTree = "<group>"; };
 		FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonMenu@2x.png"; path = "../ButtonMenu@2x.png"; sourceTree = "<group>"; };
-		FF9E66BC1512B33100B1E4B7 /* shadow_sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "shadow_sidebar@2x.png"; path = "../shadow_sidebar@2x.png"; sourceTree = "<group>"; };
 		FF9EE5E1150BFB8100C49DEE /* TipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TipsViewController.h; path = ../TipsViewController.h; sourceTree = "<group>"; };
 		FF9EE5E2150BFB8100C49DEE /* TipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TipsViewController.m; path = ../TipsViewController.m; sourceTree = "<group>"; };
 		FFB50C50151D32A60095016C /* UIColor+DesignColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+DesignColors.h"; path = "../UIColor+DesignColors.h"; sourceTree = "<group>"; };
@@ -364,10 +360,10 @@
 				C85A84A214D4AA1000394052 /* Icon@2x.png */,
 				C85A84A414D4AA1E00394052 /* Icon-Small.png */,
 				C85A84A514D4AA1E00394052 /* Icon-Small@2x.png */,
-				FF4940341512B470008F3B45 /* shadow_sidebar.png */,
-				FF9E66BC1512B33100B1E4B7 /* shadow_sidebar@2x.png */,
 				FF9678FF14FD4E99004E9402 /* ButtonMenu.png */,
 				FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */,
+				FF5D4F3A151E94D6003EFE00 /* tutorial_overlay@2x.png */,
+				FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */,
 				C85A84A914D4AB4D00394052 /* playmode_Ascending.png */,
 				C85A84AB14D4AB4D00394052 /* playmode_Descending.png */,
 				C85A84AA14D4AB4D00394052 /* playmode_Chord.png */,
@@ -378,6 +374,8 @@
 		FF36DBC214D4A34F0056D087 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FF5D4F13151D8FD1003EFE00 /* TutorialOverlayViewController.h */,
+				FF5D4F14151D8FD1003EFE00 /* TutorialOverlayViewController.m */,
 				FF0FE6BB14F96F460033F768 /* MainMenuViewController.h */,
 				FF0FE6BC14F96F470033F768 /* MainMenuViewController.m */,
 				FFFD06C315115C23000275C8 /* PullHeaderTableViewController.h */,
@@ -475,10 +473,6 @@
 		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
 			isa = PBXGroup;
 			children = (
-				FF5D4F22151DA62A003EFE00 /* tutorial_overlay_mockup@2x.png */,
-				FF5D4F20151D9DBF003EFE00 /* tutorial_overlay@2x.png */,
-				FF5D4F13151D8FD1003EFE00 /* TutorialOverlayViewController.h */,
-				FF5D4F14151D8FD1003EFE00 /* TutorialOverlayViewController.m */,
 				FF5D4F0F151D8F10003EFE00 /* Helpers */,
 				FF36DBC414D4A36D0056D087 /* Model */,
 				FF36DBC314D4A3610056D087 /* View */,
@@ -655,10 +649,8 @@
 				FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */,
 				FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */,
 				FF6A76D11512407C006D9230 /* MainMenuCell.xib in Resources */,
-				FF9E66BD1512B33100B1E4B7 /* shadow_sidebar@2x.png in Resources */,
-				FF4940351512B470008F3B45 /* shadow_sidebar.png in Resources */,
-				FF5D4F21151D9DBF003EFE00 /* tutorial_overlay@2x.png in Resources */,
-				FF5D4F23151DA62A003EFE00 /* tutorial_overlay_mockup@2x.png in Resources */,
+				FF5D4F35151E8D3B003EFE00 /* shadow_sidebar@2x.png in Resources */,
+				FF5D4F3B151E94D7003EFE00 /* tutorial_overlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
