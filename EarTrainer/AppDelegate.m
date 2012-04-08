@@ -9,18 +9,24 @@
 @synthesize navController = _navController;
 @synthesize window = _window;
 
-#pragma mark - tip delegate
+#pragma mark - Tip delegate
 
 - (void)TipPresentationFinished:(Tip *)tip {
     [_navController.view setUserInteractionEnabled:YES];
-    tip = nil;
+    [tip removeFromSuperview];
 }
 
 - (void)loadTip {
-    [_navController.view setUserInteractionEnabled:NO];
-    Tip *tip = [Tip randomTip];
-    [tip setDelegate:self];
-    [_window addSubview:tip];
+    Tip *currentTip = (Tip *)[_window viewWithTag:1];
+    if (currentTip == nil) {
+        [_navController.view setUserInteractionEnabled:NO];
+        Tip *tip = [Tip randomTip];
+        [tip setTag:1];
+        [tip setDelegate:self];
+        [_window addSubview:tip];
+    } else {
+        [currentTip resetTipInfo];
+    }
 }
 
 #pragma mark - Application cycle

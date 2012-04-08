@@ -4,8 +4,17 @@
 <dict>
 	<key>Tips</key>
 	<array>
-		<string>This is a tip. A tip will show up when you start the app unless you turn it off in settings.</string>
+		<string>This is a tip. A tip will show up when you start the app unless you turn it off in the settings menu.</string>
 		<string>A quick way to switch between training and listening modes is by pinching. Pinch out for listening mode and in for training.</string>
+		<string>Think you mastered all the intervals? Try switching up the playmodes for a new challenge.</string>
+		<string>If you think the intervals are playing too slow or too fast you can change the tempo in the settings menu.</string>
+		<string>Changing the root and high octaves in settings will set a range of octaves that intervals can be played in.</string>
+		<string>Want to stay in one octave while training? You can set the low and high octaves to both be C3 or C4. This will keep you in one octave.</string>
+		<string>If you are new to intervals we recommend you start on beginner difficulty. As you train you can work your way up to pro.</string>
+		<string>Want to know how well you are doing? Scroll up to view stats for your current session.</string>
+		<string>If you are having a hard time guessing the intervals try listening mode. Tap any interval in this mode to hear how it sounds.</string>
+		<string>Has this app improved your ability to recognize intervals or chords? If so why not give us a good rating or share it with your friends.</string>
+		<string>Try listening mode to get a good idea of how each interval sounds and how an interval sounds compared to other intervals.</string>
 	</array>
 </dict>
 </plist>

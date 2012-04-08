@@ -1,7 +1,6 @@
 #import "Tip.h"
 
 @interface Tip (Private)
-- (void)buildTextViewWithInfo:(NSString *)info;
 - (void)animateOut;
 @end
 
@@ -36,19 +35,24 @@
 
 - (id)initWithTipInfo:(NSString *)tipInfo {
     self = [self init];
-    [self buildTextViewWithInfo:tipInfo];
-    return self;
-}
-
-- (void)buildTextViewWithInfo:(NSString *)info {
     infoView = [[UITextView alloc] initWithFrame:CGRectMake(0, 33, tipView.frame.size.width, tipView.frame.size.height - 33)];
     infoView.backgroundColor = [UIColor clearColor];
     [infoView setUserInteractionEnabled:NO];
-    infoView.text = info;
+    infoView.text = tipInfo;
     infoView.textColor = [UIColor whiteColor];
     infoView.textAlignment = UITextAlignmentCenter;
     infoView.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     [tipView addSubview:infoView];
+    return self;
+}
+
+#pragma mark - Reset tip info
+
+- (void)resetTipInfo {
+    NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
+    NSArray *tips = [tipDict objectForKey:@"Tips"];
+    NSString *info = [tips objectAtIndex:(arc4random()% tips.count)];
+    infoView.text = info;
 }
 
 #pragma mark - Touch events

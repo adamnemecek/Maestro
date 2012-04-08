@@ -15,4 +15,5 @@
 
 +(Tip *)randomTip;
 -(id)initWithTipInfo:(NSString *)tipInfo;
+-(void)resetTipInfo;
 @end
