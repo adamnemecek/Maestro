@@ -11,6 +11,7 @@
 
 -(void)saveHereBefore:(BOOL)hereBefore;
 -(void)saveShownOverlay:(BOOL)overlay;
+-(void)saveShowTips:(BOOL)show;
 
 -(void)saveChallengeLevel:(NSInteger)level;
 -(void)savePlaymode:(NSInteger)playmode;
@@ -26,6 +27,7 @@
 
 -(BOOL)getHereBefore;
 -(BOOL)getShownOverlay;
+-(BOOL)getShowTips;
 
 -(NSInteger)getChallengeLevel;
 -(NSInteger)getPlaymode;

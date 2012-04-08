@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readonly) UITextView *infoView;
 
 +(Tip *)randomTip;
++(Tip *)tipAtIndex:(NSInteger)index;
 -(id)initWithTipInfo:(NSString *)tipInfo;
 -(void)resetTipInfo;
 @end

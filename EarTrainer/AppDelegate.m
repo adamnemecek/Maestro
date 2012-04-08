@@ -4,7 +4,9 @@
 #import "SoundEngine.h"
 #import "IntervalTrainerViewController.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    BOOL showFirstTimeTip;
+}
 
 @synthesize navController = _navController;
 @synthesize window = _window;
@@ -17,22 +19,27 @@
 }
 
 - (void)loadTip {
+    if (![[Defaults sharedInstance] getShowTips]) return;
     Tip *currentTip = (Tip *)[_window viewWithTag:1];
     if (currentTip == nil) {
         [_navController.view setUserInteractionEnabled:NO];
-        Tip *tip = [Tip randomTip];
+        Tip *tip = (showFirstTimeTip) ? [Tip tipAtIndex:0]  : [Tip randomTip];
         [tip setTag:1];
         [tip setDelegate:self];
         [_window addSubview:tip];
     } else {
         [currentTip resetTipInfo];
     }
+    if (showFirstTimeTip) showFirstTimeTip = NO;
 }
 
 #pragma mark - Application cycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if (![[Defaults sharedInstance] getHereBefore]) [[Defaults sharedInstance] initialDefaults];
+    if (![[Defaults sharedInstance] getHereBefore]) {
+        showFirstTimeTip = YES;
+        [[Defaults sharedInstance] initialDefaults];
+    }
     
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
     [[UIToolbar appearance] setTintColor:[UIColor brownColor]];

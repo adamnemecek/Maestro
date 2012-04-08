@@ -120,6 +120,8 @@
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 		FFD0C69E1502875C00BB6C9F /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */; };
 		FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD0C6A11502878500BB6C9F /* MainMenu.xib */; };
+		FFFB35A115313F6A00E81B86 /* ShowTipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFB35A015313F6A00E81B86 /* ShowTipsCell.m */; };
+		FFFB35A415313F9D00E81B86 /* ShowTipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFB35A315313F9D00E81B86 /* ShowTipsCell.xib */; };
 		FFFD06C515115D8C000275C8 /* PullHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -270,6 +272,9 @@
 		FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContainerViewController.h; path = ../ContainerViewController.h; sourceTree = "<group>"; };
 		FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContainerViewController.m; path = ../ContainerViewController.m; sourceTree = "<group>"; };
 		FFD0C6A11502878500BB6C9F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../MainMenu.xib; sourceTree = "<group>"; };
+		FFFB359F15313F6A00E81B86 /* ShowTipsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTipsCell.h; sourceTree = "<group>"; };
+		FFFB35A015313F6A00E81B86 /* ShowTipsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTipsCell.m; sourceTree = "<group>"; };
+		FFFB35A315313F9D00E81B86 /* ShowTipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowTipsCell.xib; sourceTree = "<group>"; };
 		FFFD06C315115C23000275C8 /* PullHeaderTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullHeaderTableViewController.h; sourceTree = "<group>"; };
 		FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullHeaderTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -406,6 +411,9 @@
 				FF168EE315310D5500483E86 /* Tip.m */,
 				FF4940361512B91A008F3B45 /* PushOverlayView.h */,
 				FF4940371512B91A008F3B45 /* PushOverlayView.m */,
+				FFFB359F15313F6A00E81B86 /* ShowTipsCell.h */,
+				FFFB35A015313F6A00E81B86 /* ShowTipsCell.m */,
+				FFFB35A315313F9D00E81B86 /* ShowTipsCell.xib */,
 				FF937B3C150FF23600C572DC /* MainMenuCell.h */,
 				FF937B3D150FF23600C572DC /* MainMenuCell.m */,
 				FF6A76D01512407C006D9230 /* MainMenuCell.xib */,
@@ -659,6 +667,7 @@
 				FF5D4F3B151E94D7003EFE00 /* tutorial_overlay@2x.png in Resources */,
 				FF168EE61531150B00483E86 /* tip@2x.png in Resources */,
 				FF168EE815311FB500483E86 /* Tips.plist in Resources */,
+				FFFB35A415313F9D00E81B86 /* ShowTipsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +710,7 @@
 				FF23C9A01514FCAF0048BE98 /* Stats.m in Sources */,
 				FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */,
 				FF168EE415310D5500483E86 /* Tip.m in Sources */,
+				FFFB35A115313F6A00E81B86 /* ShowTipsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,7 @@ static Defaults *inst = nil;
 
 - (void)initialDefaults {
     [self saveHereBefore:YES];
+    [self saveShowTips:YES];
     
     [self saveChallengeLevel:0];
     [self savePlaymode:0];
@@ -42,6 +43,10 @@ static Defaults *inst = nil;
 
 - (void)saveShownOverlay:(BOOL)overlay {
     [[NSUserDefaults standardUserDefaults] setBool:overlay forKey:@"keyShownOverlay"];
+}
+
+- (void)saveShowTips:(BOOL)show {
+    [[NSUserDefaults standardUserDefaults] setBool:show forKey:@"keyShowTips"];
 }
 
 #pragma mark Interval
@@ -96,6 +101,10 @@ static Defaults *inst = nil;
 
 - (BOOL)getShownOverlay {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"keyShownOverlay"];
+}
+
+- (BOOL)getShowTips {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"keyShowTips"];
 }
 
 #pragma mark Interval

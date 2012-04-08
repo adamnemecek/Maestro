@@ -1,6 +1,8 @@
 #import "SettingsViewController.h"
 #import "Defaults.h"
 
+#import "ShowTipsCell.h"
+
 #import "DifficultySettingsViewController.h"
 #import "PlaymodeSettingsViewController.h"
 #import "RootOctaveSettingsViewController.h"
@@ -14,9 +16,11 @@
 #import "ChordTempoSettingsViewController.h"
 
 @implementation SettingsViewController {
-    NSArray *selections;
+    NSArray *trainingSection;
+    NSArray *tipsSection;
     NSArray *section1Details;
     NSArray *section2Details;
+    BOOL isShowTipsOn;
 }
 
 @synthesize delegate;
@@ -35,7 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    selections = [NSArray arrayWithObjects:@"Difficulty",@"Playmode",@"Root Octave",@"High Octave",@"Tempo", nil];
+    trainingSection = [NSArray arrayWithObjects:@"Difficulty",@"Playmode",@"Root Octave",@"High Octave",@"Tempo", nil];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)]];
 }
 
@@ -175,6 +179,7 @@
             break;
     }
     
+    isShowTipsOn = [[Defaults sharedInstance] getShowTips];
     section1Details = [NSArray arrayWithObjects:difficultyText, playmodeText,rootOctaveText,highOctaveText,tempoText, nil];
     section2Details = [NSArray arrayWithObjects:chordDifficultyText, chordPlaymodeText,chordRootOctaveText,chordHighOctaveText,chordTempoText, nil];
     
@@ -211,24 +216,44 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) return @"Interval Training";
-    else return @"Chord Training";
+    else if (section == 1) return @"Chord Training";
+    else return @"Tips";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    int rows;
+    if (section != 2) rows = 5;
+    else rows = 1;
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
-    cell.textLabel.text = [selections objectAtIndex:indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    if (indexPath.section == 0) cell.detailTextLabel.text = [section1Details objectAtIndex:indexPath.row];
-    else if (indexPath.section == 1) cell.detailTextLabel.text = [section2Details objectAtIndex:indexPath.row];
+    UITableViewCell *cell;
+    
+    if (indexPath.section != 2) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:[ShowTipsCell reuseIdentifier]];
+        if (!cell) cell = [[[NSBundle mainBundle] loadNibNamed:[ShowTipsCell nibName] owner:self options:nil] objectAtIndex:0];
+    }
+    
+    if (indexPath.section == 0) {
+        cell.textLabel.text = [trainingSection objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [section1Details objectAtIndex:indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (indexPath.section == 1) {
+        cell.textLabel.text = [trainingSection objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [section2Details objectAtIndex:indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        ((ShowTipsCell *)cell).showTipsSwitch.on = isShowTipsOn;
+    }
     return cell;
 }
 
@@ -279,6 +304,8 @@
             }
             break;
     }
-    [self.navigationController pushViewController:tableViewController animated:YES];
+    
+    if (tableViewController)
+        [self.navigationController pushViewController:tableViewController animated:YES];
 }
 @end

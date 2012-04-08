@@ -22,6 +22,13 @@
     return [[Tip alloc] initWithTipInfo:info];
 }
 
++(Tip *)tipAtIndex:(NSInteger)index {
+    NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
+    NSArray *tips = [tipDict objectForKey:@"Tips"];
+    NSString *info = [tips objectAtIndex:index];
+    return [[Tip alloc] initWithTipInfo:info];
+}
+
 #pragma mark - Initialization
 
 - (id)init {
