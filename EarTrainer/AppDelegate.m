@@ -9,21 +9,38 @@
 @synthesize navController = _navController;
 @synthesize window = _window;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    
-    
+#pragma mark - tip delegate
+
+- (void)TipPresentationFinished:(Tip *)tip {
+    [_navController.view setUserInteractionEnabled:YES];
+    tip = nil;
+}
+
+- (void)loadTip {
+    [_navController.view setUserInteractionEnabled:NO];
+    Tip *tip = [Tip randomTip];
+    [tip setDelegate:self];
+    [_window addSubview:tip];
+}
+
+#pragma mark - Application cycle
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if (![[Defaults sharedInstance] getHereBefore]) [[Defaults sharedInstance] initialDefaults];
-    
-    [[Defaults sharedInstance] saveShownOverlay:NO];
     
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
     [[UIToolbar appearance] setTintColor:[UIColor brownColor]];
     
-    IntervalTrainerViewController *intervalTrainerViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
-    _navController = [[UINavigationController alloc] initWithRootViewController:intervalTrainerViewController];
+    IntervalTrainerViewController *intTrainerViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
+    _navController = [[UINavigationController alloc] initWithRootViewController:intTrainerViewController];
+    
     _window.rootViewController = _navController;
     [_window makeKeyAndVisible];
+    
+//    [_navController.view setUserInteractionEnabled:NO];
+//    Tip *tip = [Tip randomTip];
+//    [tip setDelegate:self];
+//    [_window addSubview:tip];
     
     return YES;
 }
@@ -56,6 +73,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [[SoundEngine sharedInstance] setAlive:YES];
+    [self loadTip];
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */

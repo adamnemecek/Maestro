@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Tips</key>
+	<array>
+		<string>This is a tip. A tip will show up when you start the app unless you turn it off in settings.</string>
+		<string>A quick way to switch between training and listening modes is by pinching. Pinch out for listening mode and in for training.</string>
+	</array>
+</dict>
+</plist>
