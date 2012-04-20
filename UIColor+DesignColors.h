@@ -3,4 +3,6 @@
 @interface UIColor (DesignColors)
 
 +(UIColor *)offWhiteColor;
++(UIColor *)statsWrongColor;
++(UIColor *)statsRightColor;
 @end

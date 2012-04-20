@@ -441,25 +441,27 @@
                                                                    self.headerView.frame.size.height * 0.30,
                                                                    self.headerView.frame.size.width  * 0.4,
                                                                    self.headerView.frame.size.height * 0.40)];
-    [percentView setBackgroundColor:[UIColor greenColor]];
+    [percentView setBackgroundColor:[UIColor statsRightColor]];
     
     UIView *percentWrong = [[UIView alloc] initWithFrame:CGRectMake(percentView.frame.origin.x + (percentView.frame.size.width * (1.0 - [sessionStats getPercentWrong])),
                                                                     self.headerView.frame.size.height * 0.30,
                                                                     percentView.frame.size.width * [sessionStats getPercentWrong],
                                                                     self.headerView.frame.size.height * 0.40)];
-    [percentWrong setBackgroundColor:[UIColor redColor]];
+    [percentWrong setBackgroundColor:[UIColor statsWrongColor]];
                            
     UILabel *right = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
     UILabel *wrong = [[UILabel alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width * 0.7, 0,
                                                                self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
+    right.font = [UIFont fontWithName:@"Baskerville-Bold" size:22.0];
+    wrong.font = [UIFont fontWithName:@"Baskerville-Bold" size:22.0];
     right.text = [NSString stringWithFormat:@"%i", sessionStats.right];
     wrong.text = [NSString stringWithFormat:@"%i", sessionStats.wrong];
     right.textAlignment = UITextAlignmentCenter;
     wrong.textAlignment = UITextAlignmentCenter;
     right.backgroundColor = [UIColor clearColor];
     wrong.backgroundColor = [UIColor clearColor];
-    [right setTextColor:[UIColor greenColor]];
-    [wrong setTextColor:[UIColor redColor]];
+    [right setTextColor:[UIColor statsRightColor]];
+    [wrong setTextColor:[UIColor statsWrongColor]];
     [self.headerView addSubview:right];
     [self.headerView addSubview:wrong];
     [self.headerView addSubview:percentWrong];
