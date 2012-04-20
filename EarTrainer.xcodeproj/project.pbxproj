@@ -89,7 +89,6 @@
 		FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */; };
 		FF4940381512B91A008F3B45 /* PushOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4940371512B91A008F3B45 /* PushOverlayView.m */; };
 		FF5D4F35151E8D3B003EFE00 /* shadow_sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */; };
-		FF5D4F3B151E94D7003EFE00 /* tutorial_overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5D4F3A151E94D6003EFE00 /* tutorial_overlay@2x.png */; };
 		FF5FFCA314FAC07800B2636D /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5FFCA214FAC07800B2636D /* Chord.m */; };
 		FF5FFCA714FADA2E00B2636D /* NoteCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5FFCA614FADA2E00B2636D /* NoteCollection.m */; };
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
@@ -120,6 +119,9 @@
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 		FFD0C69E1502875C00BB6C9F /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */; };
 		FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD0C6A11502878500BB6C9F /* MainMenu.xib */; };
+		FFE7239C154127F300CDC2F7 /* penguin_soft.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE7239B154127ED00CDC2F7 /* penguin_soft.png */; };
+		FFE723A0154129BE00CDC2F7 /* UIViewController+RoundedCorners.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE7239F154129B800CDC2F7 /* UIViewController+RoundedCorners.m */; };
+		FFE723A415412D7E00CDC2F7 /* penguin_soft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFE723A315412D7600CDC2F7 /* penguin_soft@2x.png */; };
 		FFFB35A115313F6A00E81B86 /* ShowTipsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFB35A015313F6A00E81B86 /* ShowTipsCell.m */; };
 		FFFB35A415313F9D00E81B86 /* ShowTipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFB35A315313F9D00E81B86 /* ShowTipsCell.xib */; };
 		FFFD06C515115D8C000275C8 /* PullHeaderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFFD06C415115C23000275C8 /* PullHeaderTableViewController.m */; };
@@ -220,7 +222,6 @@
 		FF4940361512B91A008F3B45 /* PushOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushOverlayView.h; path = ../PushOverlayView.h; sourceTree = "<group>"; };
 		FF4940371512B91A008F3B45 /* PushOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushOverlayView.m; path = ../PushOverlayView.m; sourceTree = "<group>"; };
 		FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shadow_sidebar@2x.png"; sourceTree = "<group>"; };
-		FF5D4F3A151E94D6003EFE00 /* tutorial_overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial_overlay@2x.png"; sourceTree = "<group>"; };
 		FF5FFCA114FAC07800B2636D /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
 		FF5FFCA214FAC07800B2636D /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
 		FF5FFCA514FADA2E00B2636D /* NoteCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCollection.h; sourceTree = "<group>"; };
@@ -272,6 +273,10 @@
 		FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContainerViewController.h; path = ../ContainerViewController.h; sourceTree = "<group>"; };
 		FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContainerViewController.m; path = ../ContainerViewController.m; sourceTree = "<group>"; };
 		FFD0C6A11502878500BB6C9F /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../MainMenu.xib; sourceTree = "<group>"; };
+		FFE7239B154127ED00CDC2F7 /* penguin_soft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = penguin_soft.png; sourceTree = "<group>"; };
+		FFE7239E154129B300CDC2F7 /* UIViewController+RoundedCorners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RoundedCorners.h"; sourceTree = "<group>"; };
+		FFE7239F154129B800CDC2F7 /* UIViewController+RoundedCorners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RoundedCorners.m"; sourceTree = "<group>"; };
+		FFE723A315412D7600CDC2F7 /* penguin_soft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "penguin_soft@2x.png"; sourceTree = "<group>"; };
 		FFFB359F15313F6A00E81B86 /* ShowTipsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTipsCell.h; sourceTree = "<group>"; };
 		FFFB35A015313F6A00E81B86 /* ShowTipsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTipsCell.m; sourceTree = "<group>"; };
 		FFFB35A315313F9D00E81B86 /* ShowTipsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowTipsCell.xib; sourceTree = "<group>"; };
@@ -365,13 +370,15 @@
 		C85A84A814D4AA2900394052 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				FFE7239B154127ED00CDC2F7 /* penguin_soft.png */,
+				FFE723A315412D7600CDC2F7 /* penguin_soft@2x.png */,
 				C85A84A014D4AA0800394052 /* Icon.png */,
 				C85A84A214D4AA1000394052 /* Icon@2x.png */,
 				C85A84A414D4AA1E00394052 /* Icon-Small.png */,
 				C85A84A514D4AA1E00394052 /* Icon-Small@2x.png */,
+				FF168EE51531150B00483E86 /* tip@2x.png */,
 				FF9678FF14FD4E99004E9402 /* ButtonMenu.png */,
 				FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */,
-				FF5D4F3A151E94D6003EFE00 /* tutorial_overlay@2x.png */,
 				FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */,
 				C85A84A914D4AB4D00394052 /* playmode_Ascending.png */,
 				C85A84AB14D4AB4D00394052 /* playmode_Descending.png */,
@@ -434,8 +441,6 @@
 				FF002B8B14DE0C1A00BF9A22 /* Interval.m */,
 				FF5FFCA114FAC07800B2636D /* Chord.h */,
 				FF5FFCA214FAC07800B2636D /* Chord.m */,
-				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
-				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
 				FF23C99E1514FCAF0048BE98 /* Stats.h */,
 				FF23C99F1514FCAF0048BE98 /* Stats.m */,
 				FF659B3A14D62932000E7EC2 /* SoundEngine.h */,
@@ -449,6 +454,10 @@
 			children = (
 				FFB50C50151D32A60095016C /* UIColor+DesignColors.h */,
 				FFB50C51151D32A60095016C /* UIColor+DesignColors.m */,
+				FFE7239E154129B300CDC2F7 /* UIViewController+RoundedCorners.h */,
+				FFE7239F154129B800CDC2F7 /* UIViewController+RoundedCorners.m */,
+				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
+				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -485,7 +494,6 @@
 		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
 			isa = PBXGroup;
 			children = (
-				FF168EE51531150B00483E86 /* tip@2x.png */,
 				FF5D4F0F151D8F10003EFE00 /* Helpers */,
 				FF36DBC414D4A36D0056D087 /* Model */,
 				FF36DBC314D4A3610056D087 /* View */,
@@ -664,10 +672,11 @@
 				FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */,
 				FF6A76D11512407C006D9230 /* MainMenuCell.xib in Resources */,
 				FF5D4F35151E8D3B003EFE00 /* shadow_sidebar@2x.png in Resources */,
-				FF5D4F3B151E94D7003EFE00 /* tutorial_overlay@2x.png in Resources */,
 				FF168EE61531150B00483E86 /* tip@2x.png in Resources */,
 				FF168EE815311FB500483E86 /* Tips.plist in Resources */,
 				FFFB35A415313F9D00E81B86 /* ShowTipsCell.xib in Resources */,
+				FFE7239C154127F300CDC2F7 /* penguin_soft.png in Resources */,
+				FFE723A415412D7E00CDC2F7 /* penguin_soft@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +720,7 @@
 				FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */,
 				FF168EE415310D5500483E86 /* Tip.m in Sources */,
 				FFFB35A115313F6A00E81B86 /* ShowTipsCell.m in Sources */,
+				FFE723A0154129BE00CDC2F7 /* UIViewController+RoundedCorners.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

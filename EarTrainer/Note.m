@@ -1,5 +1,4 @@
 #import "Note.h"
-#import "Defaults.h"
 
 @implementation Note
 

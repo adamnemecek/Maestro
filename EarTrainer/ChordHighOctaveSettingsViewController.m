@@ -1,5 +1,4 @@
 #import "ChordHighOctaveSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation ChordHighOctaveSettingsViewController
 

@@ -1,5 +1,4 @@
 #import "ChordDifficultySettingsViewController.h"
-#import "Defaults.h"
 
 @implementation ChordDifficultySettingsViewController
 

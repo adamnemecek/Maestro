@@ -1,5 +1,6 @@
 #import "ContainerViewController.h"
+#import "Tip.h"
 
-@interface TipsViewController : ContainerViewController
+@interface TipsViewController : ContainerViewController <TipDelegate>
 
 @end

@@ -1,5 +1,4 @@
 #import "PlaymodeSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation PlaymodeSettingsViewController {
     NSArray *playmodes;

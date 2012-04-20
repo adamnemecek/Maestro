@@ -1,5 +1,4 @@
 #import "ChordPlaymodeSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation ChordPlaymodeSettingsViewController
 

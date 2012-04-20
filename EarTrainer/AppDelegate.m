@@ -1,6 +1,4 @@
 #import "AppDelegate.h"
-#import "UIColor+DesignColors.h"
-#import "Defaults.h"
 #import "SoundEngine.h"
 #import "IntervalTrainerViewController.h"
 
@@ -50,10 +48,7 @@
     _window.rootViewController = _navController;
     [_window makeKeyAndVisible];
     
-//    [_navController.view setUserInteractionEnabled:NO];
-//    Tip *tip = [Tip randomTip];
-//    [tip setDelegate:self];
-//    [_window addSubview:tip];
+    [self loadTip];
     
     return YES;
 }
@@ -86,7 +81,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [[SoundEngine sharedInstance] setAlive:YES];
-    [self loadTip];
+//    [self loadTip];
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */

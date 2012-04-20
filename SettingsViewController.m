@@ -1,6 +1,4 @@
 #import "SettingsViewController.h"
-#import "Defaults.h"
-
 #import "ShowTipsCell.h"
 
 #import "DifficultySettingsViewController.h"

@@ -1,5 +1,4 @@
 #import "PullHeaderTableViewController.h"
-#import "UIColor+DesignColors.h"
 
 @interface PullHeaderTableViewController (Private)
 -(void)addPullToRefreshHeader;

@@ -1,5 +1,4 @@
 #import "TempoSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation TempoSettingsViewController {
     NSArray *tempos;

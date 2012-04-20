@@ -1,6 +1,4 @@
 #import "IntervalTrainerViewController.h"
-#import "Defaults.h"
-#import "NoteCollection.h"
 #import "Interval.h"
 
 @implementation IntervalTrainerViewController
@@ -21,8 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [self.navigationController.view setUserInteractionEnabled:NO];
 }
 
 #pragma mark - Overide super

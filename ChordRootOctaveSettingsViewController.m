@@ -1,5 +1,4 @@
 #import "ChordRootOctaveSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation ChordRootOctaveSettingsViewController
 

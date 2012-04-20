@@ -1,5 +1,4 @@
 #import "RootOctaveSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation RootOctaveSettingsViewController
 

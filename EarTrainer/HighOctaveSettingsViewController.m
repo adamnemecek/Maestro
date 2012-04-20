@@ -1,5 +1,4 @@
 #import "HighOctaveSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation HighOctaveSettingsViewController
 

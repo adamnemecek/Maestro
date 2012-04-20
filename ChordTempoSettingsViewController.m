@@ -1,5 +1,4 @@
 #import "ChordTempoSettingsViewController.h"
-#import "Defaults.h"
 
 @implementation ChordTempoSettingsViewController
 

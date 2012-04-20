@@ -1,5 +1,4 @@
 #import "DifficultySettingsViewController.h"
-#import "Defaults.h"
 
 @implementation DifficultySettingsViewController {
     NSArray *difficultyLevels;

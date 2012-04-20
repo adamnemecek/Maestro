@@ -1,6 +1,4 @@
 #import "ChordTrainerViewController.h"
-#import "Defaults.h"
-#import "NoteCollection.h"
 #import "Chord.h"
 
 @implementation ChordTrainerViewController

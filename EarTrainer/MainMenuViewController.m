@@ -1,15 +1,13 @@
 #import "MainMenuViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "IntervalTrainerViewController.h"
 #import "ChordTrainerViewController.h"
 #import "TipsViewController.h"
+#import "AboutViewController.h"
 
 #import "MainMenuCell.h"
 
 @implementation MainMenuViewController {
     NSArray *items;
-    NSArray *section1;
-    NSArray *section2;
 }
 
 @synthesize delegate;
@@ -24,10 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     items    = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", @"Tips", @"About", nil];
-//    section1 = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", nil];
-//    section2 = [NSArray arrayWithObjects:@"Tips", @"About", nil];
-    
-//    self.view.layer.cornerRadius = 4.0;
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
@@ -111,19 +105,9 @@
                     selectedViewController = [[TipsViewController alloc] initWithStyle:UITableViewStylePlain];
                     break;
                 case 3:
-                    [self.delegate mainMenuSelectedCurrentView:self];
-                    return;
-                    break;
-            }
-            break;
-        case 1:
-            switch (indexPath.row) {
-                case 0:
-                    selectedViewController = [[TipsViewController alloc] initWithStyle:UITableViewStylePlain];
-                    break;
-                case 1:
-                    [self.delegate mainMenuSelectedCurrentView:self];
-                    return;
+                    selectedViewController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+//                    [self.delegate mainMenuSelectedCurrentView:self];
+//                    return;
                     break;
             }
             break;
