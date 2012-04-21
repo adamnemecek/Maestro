@@ -62,20 +62,20 @@ static SoundEngine *inst = nil;
     
     if ([[[properties objectForKey:@"keyProps"] objectAtIndex:0] intValue] == 0) {          // Ascending
         for (Note *note in [properties objectForKey:@"keyNotes"]) {
-//            if (!_isAlive) break;
+            if (!_isAlive) break;
             [self playNote:note];
             [NSThread sleepForTimeInterval:tempo];
         }
     } else if ([[[properties objectForKey:@"keyProps"] objectAtIndex:0] intValue] == 1) {   // Descending
         for (int i = (((NSArray *)[properties objectForKey:@"keyNotes"]).count - 1); i >= 0; i--) {
-//            if (!_isAlive) break;
+            if (!_isAlive) break;
             Note *note = [[properties objectForKey:@"keyNotes"] objectAtIndex:i];
             [self playNote:note];
             [NSThread sleepForTimeInterval:tempo];
         }
     } else {                                                                                // Chord
         for (Note *note in [properties objectForKey:@"keyNotes"]) {
-//            if (!_isAlive) break;
+            if (!_isAlive) break;
             [self playNote:note];
         }
     }
@@ -89,7 +89,7 @@ static SoundEngine *inst = nil;
  * tempo
 */
 - (void)playCollection:(NoteCollection *)collection withProperties:(NSArray *)properties {
-//    if (!_isAlive || _isPlaying) return;
+    if (!_isAlive || _isPlaying) return;
     _isPlaying = YES;
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:collection.notes, properties, nil]
                                                            forKeys:[NSArray arrayWithObjects:@"keyNotes",@"keyProps", nil]];

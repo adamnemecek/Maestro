@@ -1,4 +1,5 @@
 #import "ContainerViewController.h"
+#import "SoundEngine.h"
 
 // TODO: Only let one selection pass for each menu presentation
 
@@ -77,6 +78,7 @@
         [self.navigationController.view.superview insertSubview:shadowView belowSubview:viewToMove];
     }
     if (show) {
+        [[SoundEngine sharedInstance] setAlive:NO];
         if (!_mainMenu) {
             _mainMenu = [[MainMenuViewController alloc] initWithStyle:UITableViewStylePlain];
             CGRect menuFrame = _mainMenu.tableView.frame;
@@ -94,6 +96,7 @@
             _menuShowing = YES;
         }];
     } else {
+        [[SoundEngine sharedInstance] setAlive:YES];
         [self.view setUserInteractionEnabled:YES];
         [pushBackView removeFromSuperview];
         [UIView animateWithDuration:0.325f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{

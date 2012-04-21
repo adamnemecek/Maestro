@@ -1,9 +1,6 @@
 #import "TipsViewController.h"
 
-@implementation TipsViewController {
-    NSArray *tips;
-//    Tip *selectedTip;
-}
+@implementation TipsViewController
 
 #pragma mark Initialization
 
@@ -16,9 +13,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
-    tips = [tipDict objectForKey:@"Tips"];
     
 //    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
 //    [header setBackgroundColor:[UIColor lightGrayColor]];
@@ -47,14 +41,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return tips.count;
+    return [Tip getAllTips].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
-    cell.detailTextLabel.text = [tips objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [[Tip getAllTips] objectAtIndex:indexPath.row];
     return cell;
 }
 

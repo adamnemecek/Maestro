@@ -16,16 +16,13 @@
 #pragma mark - Convienience constructors
 
 + (Tip *)randomTip {
-    NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
-    NSArray *tips = [tipDict objectForKey:@"Tips"];
+    NSArray *tips = [Tip getAllTips];
     NSString *info = [tips objectAtIndex:(arc4random()% tips.count)];
     return [[Tip alloc] initWithTipInfo:info];
 }
 
 +(Tip *)tipAtIndex:(NSInteger)index {
-    NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
-    NSArray *tips = [tipDict objectForKey:@"Tips"];
-    NSString *info = [tips objectAtIndex:index];
+    NSString *info = [[Tip getAllTips] objectAtIndex:index];
     return [[Tip alloc] initWithTipInfo:info];
 }
 
@@ -51,6 +48,13 @@
     infoView.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     [tipView addSubview:infoView];
     return self;
+}
+
+#pragma mark - Get tips
+
++ (NSArray *)getAllTips {
+    NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
+    return [tipDict objectForKey:@"Tips"];
 }
 
 #pragma mark - Reset tip info

@@ -71,6 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[SoundEngine sharedInstance] setAlive:YES];
     playmodeIndex = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
     [self setSelectionsAndChoices];
@@ -82,9 +83,9 @@
     [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [[SoundEngine sharedInstance] setAlive:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -150,10 +151,6 @@
         alertMessage = [NSString stringWithFormat:@"%@", currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-//        NSString *promptMessage = [NSString stringWithFormat:@"%@ \n %@", [(NoteCollection *)[self getSelectionWithIndex:indexPath.row] getNoteNames],
-//                                  ((NoteCollection *)[self getSelectionWithIndex:indexPath.row]).longName];
-//        [self.navigationItem setPrompt:promptMessage];
-        
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
     }
 }
@@ -239,17 +236,12 @@
         
         NSMutableArray *rowsToDelete = [NSMutableArray array];
         for (int i = 0; i < [choiceIndices count]; i++) {
-//            NSLog(@"i: %i",i);
             int currentIndex, nextIndex;
             int spaceForNextIndex = 0;
             if (i != ([choiceIndices count] - 1)) spaceForNextIndex = 1;
             currentIndex = [[choiceIndices objectAtIndex:i] intValue];
             nextIndex = [[choiceIndices objectAtIndex:(i + spaceForNextIndex)] intValue];
-            
-//            NSLog(@"index current:%i next: %i",currentIndex,nextIndex);
-            
             if (currentIndex == nextIndex) {
-//                NSLog(@"choices to loop: %i", (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]));
                 for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]); j++) {
                     [rowsToDelete addObject:[NSIndexPath indexPathForRow:([[self getAllSelections] count] - j) inSection:0]];
                 }
@@ -271,7 +263,6 @@
         [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationFade];
         playTypeIsTransitioning = NO;
     }
-//    [self.navigationItem setPrompt:nil];
     [self setUsingTrainingButtons:YES];
 }
 
