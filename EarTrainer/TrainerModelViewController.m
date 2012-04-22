@@ -113,8 +113,8 @@
     else {
         cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
         cell.textLabel.textColor = [UIColor blackColor];
-//        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [[self getSelectionWithIndex:indexPath.row] getNoteNames];
+        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
+//        cell.detailTextLabel.text = [[self getSelectionWithIndex:indexPath.row] getNoteNames];
     }
     if (playType == PLAYTYPE_TRAIN) {
         cell.textLabel.text = [selections objectAtIndex:indexPath.row];
@@ -463,7 +463,7 @@
     [self.tableView reloadData];
     [self.tableView addGestureRecognizer:pinchGesture];
     [playmodeButton setEnabled:YES];
-    [playButton setEnabled:YES];
+    if (playType == PLAYTYPE_TRAIN) [playButton setEnabled:YES];
     if (currentSelection) [skipButton setEnabled:YES];
     [playTypeButton setEnabled:YES];
 }

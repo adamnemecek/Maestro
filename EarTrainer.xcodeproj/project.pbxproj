@@ -94,6 +94,7 @@
 		FF659B3414D60B5A000E7EC2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3314D60B5A000E7EC2 /* SettingsViewController.m */; };
 		FF659B3C14D62932000E7EC2 /* SoundEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FF659B3B14D62932000E7EC2 /* SoundEngine.m */; };
 		FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */; };
+		FF6876D41543710D0079CE83 /* menu_texture@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6876D31543710D0079CE83 /* menu_texture@2x.png */; };
 		FF68C26E14F9B745008894CB /* ChordTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68C26D14F9B745008894CB /* ChordTrainerViewController.m */; };
 		FF68C27214F9BD35008894CB /* TrainerModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF68C27114F9BD35008894CB /* TrainerModelViewController.m */; };
 		FF6A4A8614E8410A00CE4145 /* RootOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6A4A8514E8410A00CE4145 /* RootOctaveSettingsViewController.m */; };
@@ -231,6 +232,7 @@
 		FF659B3A14D62932000E7EC2 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		FF659B3B14D62932000E7EC2 /* SoundEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEngine.m; sourceTree = "<group>"; };
 		FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FF6876D31543710D0079CE83 /* menu_texture@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_texture@2x.png"; sourceTree = "<group>"; };
 		FF68C26C14F9B745008894CB /* ChordTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTrainerViewController.h; sourceTree = "<group>"; };
 		FF68C26D14F9B745008894CB /* ChordTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordTrainerViewController.m; sourceTree = "<group>"; };
 		FF68C27014F9BD35008894CB /* TrainerModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainerModelViewController.h; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		C85A84A814D4AA2900394052 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				FF6876D31543710D0079CE83 /* menu_texture@2x.png */,
 				FFE7239B154127ED00CDC2F7 /* penguin_soft.png */,
 				FFE723A315412D7600CDC2F7 /* penguin_soft@2x.png */,
 				C85A84A014D4AA0800394052 /* Icon.png */,
@@ -677,6 +680,7 @@
 				FFFB35A415313F9D00E81B86 /* ShowTipsCell.xib in Resources */,
 				FFE7239C154127F300CDC2F7 /* penguin_soft.png in Resources */,
 				FFE723A415412D7E00CDC2F7 /* penguin_soft@2x.png in Resources */,
+				FF6876D41543710D0079CE83 /* menu_texture@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

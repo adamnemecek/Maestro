@@ -108,6 +108,7 @@ static SoundEngine *inst = nil;
     AudioServicesPlaySystemSound(note);
 }
 
+/* Deprecated */
 - (void)playSoundWithName:(NSString *)name {
     SystemSoundID note = [self loadSoundWithName:name];
     AudioServicesPlaySystemSound(note);

@@ -24,7 +24,7 @@
     items    = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", @"Tips", @"About", nil];
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.tableView setBackgroundColor:[UIColor darkGrayColor]];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu_texture.png"]];
 }
 
 - (void)viewDidUnload {

@@ -17,18 +17,18 @@ typedef enum {
 }INTERVALS;
 
 typedef enum {
-    min,
     maj,
+    min,
     aug,
     dim,
-    min7,
     maj7,
+    min7,
     mM7,
     dom7,
-    hDim7,
-    dim7,
     augM7,
-    aug7
+    aug7,
+    hDim7,
+    dim7
 }CHORDS;
 
 @interface NoteCollection : NSObject

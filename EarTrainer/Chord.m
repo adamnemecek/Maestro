@@ -1,7 +1,7 @@
 #import "Chord.h"
 #import "Note.h"
 
-// TODO: Handle augmented with chords (i.e. G# not Ab) or diminished (i.e. Bbb not A)
+// TODO: Handle notes when augmented (i.e. G# not Ab) or diminished (i.e. Bbb not A)
 
 @implementation Chord
 
@@ -11,18 +11,18 @@
     self = [super initWithIndex:chord];
     
     INTERVALS spacing[12][3] = {
-        {m3,M3,-1},                    // Minor
         {M3,m3,-1},                    // Major
+        {m3,M3,-1},                    // Minor
         {M3,M3,-1},                    // Augmented
         {m3,m3,-1},                    // Diminished
-        {m3,M3,m3},                    // Minor 7th
         {M3,m3,M3},                    // Major 7th
+        {m3,M3,m3},                    // Minor 7th
         {m3,M3,M3},                    // Minor-Major Seventh
         {M3,m3,m3},                    // Dominant 7th
-        {m3,m3,M3},                    // Half-Diminished 7th
-        {m3,m3,m3},                    // Diminished 7th
         {M3,M3,m3},                    // Augmented-Major Seventh
-        {M3,M3,M2}                     // Augmented Seventh    
+        {M3,M3,M2},                    // Augmented Seventh    
+        {m3,m3,M3},                    // Half-Diminished 7th
+        {m3,m3,m3}                     // Diminished 7th
     };
     _chord = chord;
     self.shortName = [[Chord shortNames] objectAtIndex:_chord];
@@ -47,12 +47,36 @@
 }
 
 + (NSArray *)longNames {
-    return [NSArray arrayWithObjects:@"Minor",@"Major",@"Augmented",@"Diminished",
-            @"Minor Seventh",@"Major Seventh",@"Minor-Major Seventh",@"Dominant Seventh",
-            @"Half-Diminished Seventh",@"Diminished Seventh",@"Augmented-Major Seventh",@"Augmented Seventh", nil];
+    return [NSArray arrayWithObjects:
+            @"Major",
+            @"Minor",
+            @"Augmented",
+            @"Diminished",
+            @"Major Seventh",
+            @"Minor Seventh",
+            @"Minor-Major Seventh",
+            @"Dominant Seventh",
+            @"Augmented-Major Seventh",
+            @"Augmented Seventh",
+            @"Half-Diminished Seventh",
+            @"Diminished Seventh",
+            nil];
 }
 
 + (NSArray *)shortNames {
-    return [NSArray arrayWithObjects:@"Min",@"Maj",@"Aug",@"Dim",@"Min7",@"Maj7",@"MinMaj7",@"Dom7",@"1/2Dim7",@"Dim7",@"AugMaj7",@"Aug7", nil];
+    return [NSArray arrayWithObjects:
+            @"Maj",
+            @"Min",
+            @"Aug",
+            @"Dim",
+            @"Maj7",
+            @"Min7",
+            @"MinMaj7",
+            @"Dom7",
+            @"AugMaj7",
+            @"Aug7",
+            @"1/2Dim7",
+            @"Dim7",
+            nil];
 }
 @end
