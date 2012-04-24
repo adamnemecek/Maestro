@@ -14,6 +14,7 @@
 @implementation TrainerModelViewController {
     PLAYMODE playmodeIndex;
     PLAYTYPE playType;
+    NSInteger currentDifficulty;
     NoteCollection *currentSelection;
     BOOL playTypeIsTransitioning;
     UIPinchGestureRecognizer *pinchGesture;
@@ -42,6 +43,9 @@
     // Show toolbar
     [self.navigationController setToolbarHidden:NO animated:NO];
     
+    // Grab the current difficulty
+    currentDifficulty = [self getDifficulty];
+    
     // Setup toolbar items
     UIBarButtonItem *flex1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     playmodeButton = [[UIBarButtonItem alloc] initWithImage:[self getCurrentPlaymodeImage] style:UIBarButtonItemStyleBordered target:self action:@selector(changePlaymode:)];
@@ -51,7 +55,7 @@
     [skipButton setStyle:UIBarButtonItemStyleBordered];
     UIBarButtonItem *flex2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     flex2.width = 30.0;
-    playTypeButton = [[UIBarButtonItem alloc] initWithTitle:@"Practice" style:UIBarButtonItemStyleBordered target:self
+    playTypeButton = [[UIBarButtonItem alloc] initWithTitle:@"Listen" style:UIBarButtonItemStyleBordered target:self
                                                                                    action:@selector(changePlayType:)];
     
     self.toolbarItems = [NSArray arrayWithObjects:flex1,playmodeButton,playButton,skipButton,flex2, playTypeButton,nil];
@@ -75,6 +79,14 @@
     playmodeIndex = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
     [self setSelectionsAndChoices];
+    
+    if (currentDifficulty != [self getDifficulty]) {
+        [sessionStats resetStats];
+        skipButton.enabled = NO;
+        currentSelection = nil;
+        currentDifficulty = [self getDifficulty];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -191,6 +203,10 @@
 
 #pragma mark Defaults
 
+- (NSInteger)getDifficulty {
+    return 0;
+}
+
 - (PLAYMODE)getPlaymode {
     return PLAYMODE_ASCENDING;
 }
@@ -264,6 +280,7 @@
         playTypeIsTransitioning = NO;
     }
     [self setUsingTrainingButtons:YES];
+    [sessionStats resetStats];
 }
 
 #pragma mark - Practice mode
@@ -369,7 +386,7 @@
     playType = type;
     switch (playType) {
         case PLAYTYPE_TRAIN:
-            [playTypeButton setTitle:@"Practice"];
+            [playTypeButton setTitle:@"Listen"];
             [self setupTrainingMode];
             break;
         case PLAYTYPE_PRACTICE:

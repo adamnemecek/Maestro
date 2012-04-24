@@ -65,6 +65,10 @@
     }
 }
 
+- (NSInteger)getDifficulty {
+    return [[Defaults sharedInstance] getChallengeLevel];
+}
+
 - (PLAYMODE)getPlaymode {
     return [[Defaults sharedInstance] getPlaymode];
 }

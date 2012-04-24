@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "SoundEngine.h"
+#import "Tip.h"
 #import "IntervalTrainerViewController.h"
 
 @implementation AppDelegate {
@@ -21,10 +22,7 @@
     Tip *currentTip = (Tip *)[_window viewWithTag:1];
     if (currentTip == nil) {
         [_navController.view setUserInteractionEnabled:NO];
-        Tip *tip = (showFirstTimeTip) ? [Tip tipAtIndex:0]  : [Tip randomTip];
-        [tip setTag:1];
-        [tip setDelegate:self];
-        [_window addSubview:tip];
+        (showFirstTimeTip) ? [[Tip tipAtIndex:0] run]  : [[Tip randomTip] run];
     } else {
         [currentTip resetTipInfo];
     }

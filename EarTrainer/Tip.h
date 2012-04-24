@@ -1,21 +1,31 @@
 #import <UIKit/UIKit.h>
 
-@class Tip;
+#define kTipTag 99
 
-@protocol TipDelegate <NSObject>
--(void)TipPresentationFinished:(Tip *)tip;
-@end
+typedef enum {
+    TIP_QUICK,
+    TIP_INTERVAL,
+    TIP_CHORD
+}TIP_TYPE;
+
+#define kTipKeyText @"tip"
+#define kTipKeyType @"type"
 
 @interface Tip : UIView
 
-@property (nonatomic, weak) id <TipDelegate> delegate;
-
 @property (nonatomic, strong, readonly) UIImageView *tipView;
 @property (nonatomic, strong, readonly) UITextView *infoView;
+@property (nonatomic, readonly) TIP_TYPE type;
 
 +(Tip *)randomTip;
 +(Tip *)tipAtIndex:(NSInteger)index;
--(id)initWithTipInfo:(NSString *)tipInfo;
++(Tip *)tipWithType:(TIP_TYPE)tipType atIndex:(NSInteger)index;
+-(id)initTip:(NSDictionary *)tip;
+-(void)run;
+-(void)close;
++(NSArray *)getGeneralTips;
++(NSArray *)getIntervalTips;
++(NSArray *)getChordTips;
 +(NSArray *)getAllTips;
 -(void)resetTipInfo;
 @end

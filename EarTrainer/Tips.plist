@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Tips</key>
+	<key>Quick Tips</key>
 	<array>
 		<string>This is a tip. A tip will show up when you start the app unless you turn it off in the settings menu.</string>
 		<string>A quick way to switch between training and listening modes is by pinching. Pinch out for listening mode and in for training.</string>
@@ -15,6 +15,99 @@
 		<string>If you are having a hard time guessing the intervals try listening mode. Tap any interval in this mode to hear how it sounds.</string>
 		<string>Has this app improved your ability to recognize intervals or chords? If so why not give us a good rating or share it with your friends.</string>
 		<string>Try listening mode to get a good idea of how each interval sounds and how an interval sounds compared to other intervals.</string>
+	</array>
+	<key>Interval Tips</key>
+	<array>
+		<string>Interval tip!</string>
+		<string>Intervals have 2 notes.</string>
+		<string>HELP!</string>
+	</array>
+	<key>Chord Tips</key>
+	<array>
+		<string>Chord tip!</string>
+		<string>Chords have 3 or 4 notes.</string>
+		<string>Don&apos;t ask</string>
+	</array>
+	<key>Tips</key>
+	<array>
+		<dict>
+			<key>tip</key>
+			<string>This is a tip. A tip will show up when you start the app unless you turn it off in the settings menu.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>A quick way to switch between training and listening modes is by pinching. Pinch out for listening mode and in for training.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Think you mastered all the intervals? Try switching up the playmodes for a new challenge.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>If you think the intervals are playing too slow or too fast you can change the tempo in the settings menu.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Changing the root and high octaves in settings will set a range of octaves that intervals can be played in.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Want to stay in one octave while training? You can set the low and high octaves to both be C3 or C4. This will keep you in one octave.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>If you are new to intervals we recommend you start on beginner difficulty. As you train you can work your way up to pro.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Want to know how well you are doing? Scroll up to view stats for your current session.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>If you are having a hard time guessing the intervals try listening mode. Tap any interval in this mode to hear how it sounds.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Has this app improved your ability to recognize intervals or chords? If so why not give us a good rating or share it with your friends.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Try listening mode to get a good idea of how each interval sounds and how an interval sounds compared to other intervals.</string>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Interval tip!</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>tip</key>
+			<string>Chord tip!</string>
+			<key>type</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 </dict>
 </plist>

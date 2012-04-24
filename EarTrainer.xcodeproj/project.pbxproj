@@ -117,6 +117,8 @@
 		FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C51151D32A60095016C /* UIColor+DesignColors.m */; };
 		FFB55A481502F3F800614D6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB55A461502F3F700614D6D /* AboutViewController.m */; };
 		FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB55A471502F3F700614D6D /* AboutViewController.xib */; };
+		FFBE2586154507DF00746A19 /* tip_chord@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE2584154507DF00746A19 /* tip_chord@2x.png */; };
+		FFBE2587154507DF00746A19 /* tip_interval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE2585154507DF00746A19 /* tip_interval@2x.png */; };
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
 		FFD0C69E1502875C00BB6C9F /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD0C69C1502875C00BB6C9F /* ContainerViewController.m */; };
 		FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD0C6A11502878500BB6C9F /* MainMenu.xib */; };
@@ -270,6 +272,8 @@
 		FFB55A451502F3F700614D6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		FFB55A461502F3F700614D6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		FFB55A471502F3F700614D6D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		FFBE2584154507DF00746A19 /* tip_chord@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_chord@2x.png"; sourceTree = "<group>"; };
+		FFBE2585154507DF00746A19 /* tip_interval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_interval@2x.png"; sourceTree = "<group>"; };
 		FFBE9A1114DDADA600C755DB /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		FFBE9A1214DDADA600C755DB /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		FFD0C69B1502875C00BB6C9F /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContainerViewController.h; path = ../ContainerViewController.h; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 				C85A84A414D4AA1E00394052 /* Icon-Small.png */,
 				C85A84A514D4AA1E00394052 /* Icon-Small@2x.png */,
 				FF168EE51531150B00483E86 /* tip@2x.png */,
+				FFBE2585154507DF00746A19 /* tip_interval@2x.png */,
+				FFBE2584154507DF00746A19 /* tip_chord@2x.png */,
 				FF9678FF14FD4E99004E9402 /* ButtonMenu.png */,
 				FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */,
 				FF5D4F34151E8D3B003EFE00 /* shadow_sidebar@2x.png */,
@@ -681,6 +687,8 @@
 				FFE7239C154127F300CDC2F7 /* penguin_soft.png in Resources */,
 				FFE723A415412D7E00CDC2F7 /* penguin_soft@2x.png in Resources */,
 				FF6876D41543710D0079CE83 /* menu_texture@2x.png in Resources */,
+				FFBE2586154507DF00746A19 /* tip_chord@2x.png in Resources */,
+				FFBE2587154507DF00746A19 /* tip_interval@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

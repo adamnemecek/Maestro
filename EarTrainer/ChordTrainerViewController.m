@@ -60,6 +60,10 @@
     }
 }
 
+- (NSInteger)getDifficulty {
+    return [[Defaults sharedInstance] getChordChallengeLevel];
+}
+
 - (PLAYMODE)getPlaymode {
     return [[Defaults sharedInstance] getChordPlaymode];
 }

@@ -9,4 +9,5 @@
 -(void)addToStats:(BOOL)right;
 -(CGFloat)getPercentRight;
 -(CGFloat)getPercentWrong;
+-(void)resetStats;
 @end

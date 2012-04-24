@@ -37,6 +37,7 @@ typedef enum {
 - (NSArray *)getAllSelections;
 - (NSArray *)getAllSelectionsAbbreviated;
 - (void)setSelectionsAndChoices;
+- (NSInteger)getDifficulty;
 - (PLAYMODE)getPlaymode;
 - (int)getTempo;
 - (void)savePlaymode:(PLAYMODE)playmode;

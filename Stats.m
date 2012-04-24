@@ -19,4 +19,10 @@
 - (CGFloat)getPercentWrong {
     return ((float)_wrong / (float)_total);
 }
+
+- (void)resetStats {
+    _right = 0;
+    _wrong = 0;
+    _total = 0;
+}
 @end
