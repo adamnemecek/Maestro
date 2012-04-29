@@ -14,19 +14,14 @@
 		<string>Want to know how well you are doing? Scroll up to view stats for your current session.</string>
 		<string>If you are having a hard time guessing the intervals try listening mode. Tap any interval in this mode to hear how it sounds.</string>
 		<string>Has this app improved your ability to recognize intervals or chords? If so why not give us a good rating or share it with your friends.</string>
-		<string>Try listening mode to get a good idea of how each interval sounds and how an interval sounds compared to other intervals.</string>
 	</array>
 	<key>Interval Tips</key>
 	<array>
-		<string>Interval tip!</string>
-		<string>Intervals have 2 notes.</string>
-		<string>HELP!</string>
+		<string></string>
 	</array>
 	<key>Chord Tips</key>
 	<array>
-		<string>Chord tip!</string>
-		<string>Chords have 3 or 4 notes.</string>
-		<string>Don&apos;t ask</string>
+		<string></string>
 	</array>
 	<key>Tips</key>
 	<array>
@@ -95,18 +90,6 @@
 			<string>Try listening mode to get a good idea of how each interval sounds and how an interval sounds compared to other intervals.</string>
 			<key>type</key>
 			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>tip</key>
-			<string>Interval tip!</string>
-			<key>type</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>tip</key>
-			<string>Chord tip!</string>
-			<key>type</key>
-			<integer>2</integer>
 		</dict>
 	</array>
 </dict>

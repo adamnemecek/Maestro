@@ -11,6 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "FlurryAnalytics.h"
     #import "UIColor+DesignColors.h"
     #import "UIViewController+RoundedCorners.h"
     #import "Defaults.h"

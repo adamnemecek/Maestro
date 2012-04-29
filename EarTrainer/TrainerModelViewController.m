@@ -126,7 +126,6 @@
         cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
         cell.textLabel.textColor = [UIColor blackColor];
         cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
-//        cell.detailTextLabel.text = [[self getSelectionWithIndex:indexPath.row] getNoteNames];
     }
     if (playType == PLAYTYPE_TRAIN) {
         cell.textLabel.text = [selections objectAtIndex:indexPath.row];

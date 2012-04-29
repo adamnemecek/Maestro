@@ -29,9 +29,18 @@
     if (showFirstTimeTip) showFirstTimeTip = NO;
 }
 
+#pragma mark Exception handler
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 #pragma mark - Application cycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [FlurryAnalytics startSession:@"5RQGEC439LBCUI8FHFV9"];
+    
     if (![[Defaults sharedInstance] getHereBefore]) {
         showFirstTimeTip = YES;
         [[Defaults sharedInstance] initialDefaults];

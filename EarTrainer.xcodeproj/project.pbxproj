@@ -85,6 +85,7 @@
 		FF2A6B57150EC96C003BC92E /* ChordRootOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2A6B56150EC96C003BC92E /* ChordRootOctaveSettingsViewController.m */; };
 		FF2A6B5B150ECAEE003BC92E /* ChordHighOctaveSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2A6B5A150ECAEE003BC92E /* ChordHighOctaveSettingsViewController.m */; };
 		FF2A6B5E150EF9A4003BC92E /* ChordTempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2A6B5D150EF9A3003BC92E /* ChordTempoSettingsViewController.m */; };
+		FF330428154D13FB008248AB /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF330427154D13FB008248AB /* libFlurryAnalytics.a */; };
 		FF36DBBC14D49BEF0056D087 /* IntervalTrainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */; };
 		FF47C62B14F0493E0054139E /* TempoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF47C62A14F0493E0054139E /* TempoSettingsViewController.m */; };
 		FF4940381512B91A008F3B45 /* PushOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF4940371512B91A008F3B45 /* PushOverlayView.m */; };
@@ -218,6 +219,8 @@
 		FF2A6B5A150ECAEE003BC92E /* ChordHighOctaveSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordHighOctaveSettingsViewController.m; sourceTree = "<group>"; };
 		FF2A6B5C150EF9A2003BC92E /* ChordTempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChordTempoSettingsViewController.h; path = ../ChordTempoSettingsViewController.h; sourceTree = "<group>"; };
 		FF2A6B5D150EF9A3003BC92E /* ChordTempoSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChordTempoSettingsViewController.m; path = ../ChordTempoSettingsViewController.m; sourceTree = "<group>"; };
+		FF330426154D13FB008248AB /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		FF330427154D13FB008248AB /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		FF36DBBA14D49BEF0056D087 /* IntervalTrainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalTrainerViewController.h; sourceTree = "<group>"; };
 		FF36DBBB14D49BEF0056D087 /* IntervalTrainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalTrainerViewController.m; sourceTree = "<group>"; };
 		FF47C62914F0493E0054139E /* TempoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TempoSettingsViewController.h; path = ../TempoSettingsViewController.h; sourceTree = "<group>"; };
@@ -300,6 +303,7 @@
 				FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */,
 				FF8E8C4214D4942F00CC8818 /* Foundation.framework in Frameworks */,
 				FF8E8C4414D4942F00CC8818 /* CoreGraphics.framework in Frameworks */,
+				FF330428154D13FB008248AB /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +398,15 @@
 				C85A84AA14D4AB4D00394052 /* playmode_Chord.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		FF330424154D13BE008248AB /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FF330426154D13FB008248AB /* FlurryAnalytics.h */,
+				FF330427154D13FB008248AB /* libFlurryAnalytics.a */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		FF36DBC214D4A34F0056D087 /* Controller */ = {
@@ -503,6 +516,7 @@
 		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				FF330424154D13BE008248AB /* Libraries */,
 				FF5D4F0F151D8F10003EFE00 /* Helpers */,
 				FF36DBC414D4A36D0056D087 /* Model */,
 				FF36DBC314D4A3610056D087 /* View */,
@@ -804,6 +818,10 @@
 				GCC_PREFIX_HEADER = "EarTrainer/EarTrainer-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "EarTrainer/EarTrainer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/EarTrainer\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -816,6 +834,10 @@
 				GCC_PREFIX_HEADER = "EarTrainer/EarTrainer-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "EarTrainer/EarTrainer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/EarTrainer\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

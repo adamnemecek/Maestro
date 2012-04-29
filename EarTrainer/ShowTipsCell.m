@@ -12,6 +12,11 @@
 
 - (IBAction)showSwitched:(id)sender {
     [[Defaults sharedInstance] saveShowTips:showTipsSwitch.on];
+    if (showTipsSwitch.on) {
+        [FlurryAnalytics logEvent:@"Showing tips" withParameters:[NSDictionary dictionaryWithObject:@"Showing" forKey:@"ShowingTips"]];
+    } else {
+        [FlurryAnalytics logEvent:@"Showing tips" withParameters:[NSDictionary dictionaryWithObject:@"Not showing" forKey:@"ShowingTips"]];
+    }
 }
 
 + (NSString *)nibName {
