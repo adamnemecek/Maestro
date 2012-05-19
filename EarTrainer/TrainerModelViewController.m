@@ -19,14 +19,14 @@
     BOOL playTypeIsTransitioning;
     UIPinchGestureRecognizer *pinchGesture;
     Stats *sessionStats;
+    NSInteger listeningOctave;
 }
-@synthesize playButton, skipButton, playmodeButton, playTypeButton;
+@synthesize playButton, skipButton, playmodeButton, playTypeButton, octaveSelection,flexSpace,fixedSpace;
 @synthesize selections;
 @synthesize subtitles;
 @synthesize choiceIndices;
 
 #pragma mark - View lifecycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -46,20 +46,20 @@
     // Grab the current difficulty
     currentDifficulty = [self getDifficulty];
     
-    // Setup toolbar items
-    UIBarButtonItem *flex1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    // Setup toolbar
+    octaveSelection = [[UIBarButtonItem alloc] initWithTitle:@"Octave: C4" style:UIBarButtonItemStyleBordered target:self action:nil];
+    flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     playmodeButton = [[UIBarButtonItem alloc] initWithImage:[self getCurrentPlaymodeImage] style:UIBarButtonItemStyleBordered target:self action:@selector(changePlaymode:)];
     playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play:)];
     [playButton setStyle:UIBarButtonItemStyleBordered];
     skipButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(skip:)];
     [skipButton setStyle:UIBarButtonItemStyleBordered];
-    UIBarButtonItem *flex2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    flex2.width = 30.0;
-    playTypeButton = [[UIBarButtonItem alloc] initWithTitle:@"Listen" style:UIBarButtonItemStyleBordered target:self
-                                                                                   action:@selector(changePlayType:)];
+    fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpace.width = 30.0;
+    playTypeButton = [[UIBarButtonItem alloc] initWithTitle:@"Listen" style:UIBarButtonItemStyleBordered target:self action:@selector(changePlayType:)];
+    self.toolbarItems = [NSArray arrayWithObjects:flexSpace,playmodeButton,playButton,skipButton,fixedSpace,playTypeButton,nil];
     
-    self.toolbarItems = [NSArray arrayWithObjects:flex1,playmodeButton,playButton,skipButton,flex2, playTypeButton,nil];
-    
+    listeningOctave = 2; // C4
     playTypeIsTransitioning = NO;
     playType = PLAYTYPE_TRAIN;
     [skipButton setEnabled:NO];
@@ -105,8 +105,12 @@
     [super viewDidDisappear:animated];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Toolbar
+- (void)itemsInToolbar:(NSArray *)items animated:(BOOL)animated {
+    [self.navigationController.toolbar setItems:items animated:animated];
+}
 
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -142,7 +146,6 @@
 }
 
 #pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     BOOL right;
@@ -162,12 +165,11 @@
         alertMessage = [NSString stringWithFormat:@"%@", currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
-        [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row]];
+        [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row andOctave:listeningOctave]];
     }
 }
 
 #pragma mark - UIAlertView delegate
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         currentSelection = [self getRandomSelection];
@@ -176,7 +178,6 @@
 }
 
 #pragma mark - Play notes
-
 - (void)playCollection:(NoteCollection *)collection {
     [[SoundEngine sharedInstance] playCollection:collection withProperties:[NSArray arrayWithObjects:
                                                                             [NSNumber numberWithInt:[self getPlaymode]],
@@ -184,11 +185,10 @@
                                                                             nil]];
 }
 
-/* These methods are to be overridden by subclass */
+/* These methods are to be written by subclass */
 #pragma mark - subclass methods
 
 #pragma mark choices and selections
-
 - (NSArray *)getAllSelections {
     return [NSArray arrayWithObject:@"Mystery Note"];
 }
@@ -201,7 +201,6 @@
 }
 
 #pragma mark Defaults
-
 - (NSInteger)getDifficulty {
     return 0;
 }
@@ -218,30 +217,31 @@
 }
 
 #pragma mark Selection
-
+// Use for training
 - (id)getRandomSelection {
     return nil;
 }
 
-- (id)getSelectionWithIndex:(NSInteger)index {
+// Use for listening
+- (id)getSelectionWithIndex:(NSInteger)index andOctave:(NSInteger)octave {
     return nil;
 }
 
 #pragma mark - Playtype transition
-
 - (void)setPlayTypeTransitionDone {
     playTypeIsTransitioning = NO;
 }
 
 #pragma mark - Refresh rows
-
 - (void)refreshRows:(NSArray *)rowsToRefresh {
     [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Training mode
-
 - (void)setupTrainingMode {
+    // Animate in the right toolbar buttons
+    [self itemsInToolbar:[NSArray arrayWithObjects:flexSpace,playmodeButton,playButton,skipButton,fixedSpace,playTypeButton,nil] animated:YES];
+    
     playTypeIsTransitioning = YES;
     if (choiceIndices) {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
@@ -283,8 +283,9 @@
 }
 
 #pragma mark - Practice mode
-
 - (void)setupPracticeMode {
+    [self itemsInToolbar:[NSArray arrayWithObjects:octaveSelection,playmodeButton,flexSpace,playTypeButton,nil] animated:YES];
+    
     playTypeIsTransitioning = YES;
     if (choiceIndices) {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
@@ -349,7 +350,7 @@
 }
 
 #pragma mark - enabling/disabling
-
+// Enables/Disables buttons depending on our mode
 - (void)setUsingTrainingButtons:(BOOL)using {
     if (using) {
         [playButton setEnabled:YES];
@@ -360,7 +361,7 @@
 }
 
 #pragma mark - Playmode
-
+// Returns the correct playmode image
 - (UIImage *)getCurrentPlaymodeImage {
     NSString *playmodeImageTitle;
     switch (playmodeIndex) {
@@ -378,7 +379,7 @@
 }
 
 #pragma mark - PlayType
-
+// Changes the mode between listening and training
 - (void)setPlayType:(PLAYTYPE)type {
     if (playTypeIsTransitioning) return;
     if (playType == type) return;
@@ -396,7 +397,6 @@
 }
 
 #pragma mark - Actions
-
 - (void)changePlaymode:(id)sender {
     switch (playmodeIndex) {
         case PLAYMODE_ASCENDING:
@@ -439,8 +439,9 @@
 }
 
 #pragma mark - Overide pull header methods
-
+// Build the stats view when the user views the header
 - (void)refreshHeader {
+    // Clears out the header. Needed!
     [super refreshHeader];
     
     //Build stats view
@@ -475,6 +476,7 @@
     [self.headerView insertSubview:percentView belowSubview:percentWrong];
 }
 
+// Reenables things when header view releases
 - (void)enableCommonFunctionality {
     [self.tableView reloadData];
     [self.tableView addGestureRecognizer:pinchGesture];
@@ -483,6 +485,8 @@
     if (currentSelection) [skipButton setEnabled:YES];
     [playTypeButton setEnabled:YES];
 }
+
+// When we are viewing the header view certain functions need to be disabled
 - (void)disableCommonFunctionality {
     [self.tableView reloadData];
     [self.tableView removeGestureRecognizer:pinchGesture];
@@ -493,9 +497,8 @@
 }
 
 #pragma mark - Pinch gesture
-
 - (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
-//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);    
+//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);
     if (gesture.scale > 1.4 && gesture.velocity > 1.3) [self setPlayType:PLAYTYPE_PRACTICE];
     else if (gesture.scale < 0.6 && gesture.velocity < - 1.3) [self setPlayType:PLAYTYPE_TRAIN];
 }

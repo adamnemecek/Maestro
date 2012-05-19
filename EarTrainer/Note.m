@@ -38,6 +38,13 @@
     return midi;
 }
 
+// Has a range of only the selected octave
++ (Note *)getRandomNoteInOctave:(NSInteger)octave {
+    NSInteger lowNote = [self midiFromOctave:octave];
+    NSInteger highNote = lowNote;
+    return [[Note alloc] initNoteWithMidi:((arc4random()%((highNote - lowNote) + 1)) + lowNote)];
+}
+
 + (Note *)getRandomNote {
     NSInteger lowNote =  [Note midiFromOctave:[[Defaults sharedInstance] getRootOctave]];
     NSInteger highNote = [Note midiFromOctave:[[Defaults sharedInstance] getHighOctave]];

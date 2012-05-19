@@ -1,5 +1,6 @@
 #import "IntervalTrainerViewController.h"
 #import "Interval.h"
+#import "Note.h"
 
 @implementation IntervalTrainerViewController {
     Interval *lastInterval;
@@ -112,7 +113,7 @@
     return interval;
 }
 
-- (id)getSelectionWithIndex:(NSInteger)index {
-    return [[Interval alloc] initInterval:index];
+- (id)getSelectionWithIndex:(NSInteger)index andOctave:(NSInteger)octave {
+    return [[Interval alloc] initInterval:index withRoot:[Note getRandomNoteInOctave:octave]];
 }
 @end

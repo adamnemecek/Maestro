@@ -8,6 +8,11 @@
 @synthesize chord = _chord;
 
 - (id)initChord:(CHORDS)chord {
+    self = [self initChord:chord withRoot:[Note getRandomChordNote]];
+    return self;
+}
+
+- (id)initChord:(CHORDS)chord withRoot:(Note *)root {
     self = [super initWithIndex:chord];
     
     INTERVALS spacing[12][3] = {
@@ -28,7 +33,6 @@
     self.shortName = [[Chord shortNames] objectAtIndex:_chord];
     self.longName = [[Chord longNames] objectAtIndex:_chord];
     
-    Note *root   = [Note getRandomChordNote];
     Note *third = [[Note alloc] initNoteWithMidi:(root.midiId + spacing[chord][0])];
     Note *fifth  = [[Note alloc] initNoteWithMidi:(third.midiId + spacing[chord][1])];
     Note *seventh = (spacing[chord][2] == -1) ? nil : [[Note alloc] initNoteWithMidi:(fifth.midiId + spacing[chord][2])];

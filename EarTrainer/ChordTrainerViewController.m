@@ -1,5 +1,6 @@
 #import "ChordTrainerViewController.h"
 #import "Chord.h"
+#import "Note.h"
 
 @implementation ChordTrainerViewController {
     Chord *lastChord;
@@ -107,7 +108,7 @@
     return chord;
 }
 
-- (id)getSelectionWithIndex:(NSInteger)index {
-    return [[Chord alloc] initChord:index];
+- (id)getSelectionWithIndex:(NSInteger)index andOctave:(NSInteger)octave {
+    return [[Chord alloc] initChord:index withRoot:[Note getRandomNoteInOctave:octave]];
 }
 @end
