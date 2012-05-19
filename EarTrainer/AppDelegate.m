@@ -5,6 +5,7 @@
 
 @implementation AppDelegate {
     BOOL showFirstTimeTip;
+    CFTimeInterval leaveTime;
 }
 
 @synthesize navController = _navController;
@@ -19,7 +20,7 @@
 
 - (void)loadTip {
     if (![[Defaults sharedInstance] getShowTips]) return;
-    Tip *currentTip = (Tip *)[_window viewWithTag:1];
+    Tip *currentTip = (Tip *)[_window viewWithTag:kTipTag];
     if (currentTip == nil) {
         [_navController.view setUserInteractionEnabled:NO];
         (showFirstTimeTip) ? [[Tip tipAtIndex:0] run]  : [[Tip randomTip] run];
@@ -71,7 +72,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[SoundEngine sharedInstance] setAlive:NO];
+    leaveTime = CACurrentMediaTime();
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -80,6 +81,15 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    // If we have left the app for 25 seconds or longer than load a tip when we come back on
+    CFTimeInterval timeNow = CACurrentMediaTime();
+    if ((int)(timeNow - leaveTime) >= 25) {
+        // Only load tips in trainer view controllers
+        if ([_navController.visibleViewController isKindOfClass:[TrainerModelViewController class]])
+            // Make sure the menu isn't showing
+            if (!((ContainerViewController *) _navController.visibleViewController).menuShowing)
+                [self loadTip];
+    }
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
@@ -88,7 +98,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     [[SoundEngine sharedInstance] setAlive:YES];
-//    [self loadTip];
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */

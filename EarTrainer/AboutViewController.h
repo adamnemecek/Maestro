@@ -5,6 +5,7 @@
 @interface AboutViewController : UIViewController <PushOverlayViewDelegate, MainMenuViewControllerDelegate>
 
 @property (strong, nonatomic) MainMenuViewController *mainMenu;
+@property (nonatomic) BOOL menuShowing;
 
 - (IBAction)openWebsite:(id)sender;
 

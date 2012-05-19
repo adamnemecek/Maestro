@@ -8,12 +8,12 @@
 @end
 
 @implementation ContainerViewController {
-    BOOL _menuShowing;
     UIImageView *shadowView;
     PushOverlayView *pushBackView;
 }
 
 @synthesize mainMenu = _mainMenu;
+@synthesize menuShowing = _menuShowing;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -7,6 +7,7 @@
 @interface ContainerViewController : PullHeaderTableViewController <PushOverlayViewDelegate, MainMenuViewControllerDelegate, SettingsViewControllerDelegate>
 
 @property (strong, nonatomic) MainMenuViewController *mainMenu;
+@property (nonatomic) BOOL menuShowing;
 
 -(void)showMenu:(id)sender;
 -(void)showSettings:(id)sender;
