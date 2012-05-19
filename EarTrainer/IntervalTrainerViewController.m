@@ -1,7 +1,9 @@
 #import "IntervalTrainerViewController.h"
 #import "Interval.h"
 
-@implementation IntervalTrainerViewController
+@implementation IntervalTrainerViewController {
+    Interval *lastInterval;
+}
 
 #pragma mark - Initialization
 
@@ -83,8 +85,31 @@
 }
 
 - (id)getRandomSelection {
-    if (!self.choiceIndices) return [Interval getRandomInterval];
-    else return [Interval getRandomIntervalFromChoices:self.choiceIndices];
+    Interval *interval;
+    if (!self.choiceIndices) {
+        if (!lastInterval) {
+            interval = [Interval getRandomInterval];
+            lastInterval = interval;
+        } else {
+            interval = [Interval getRandomInterval];
+            while (interval.interval == lastInterval.interval) {
+                interval = [Interval getRandomInterval];
+            }
+            lastInterval = interval;
+        }
+    } else {
+        if (!lastInterval) {
+            interval = [Interval getRandomIntervalFromChoices:self.choiceIndices];
+            lastInterval = interval;
+        } else {
+            interval = [Interval getRandomIntervalFromChoices:self.choiceIndices];
+            while (interval.interval == lastInterval.interval) {
+                interval = [Interval getRandomIntervalFromChoices:self.choiceIndices];
+            }
+            lastInterval = interval;
+        }
+    }
+    return interval;
 }
 
 - (id)getSelectionWithIndex:(NSInteger)index {

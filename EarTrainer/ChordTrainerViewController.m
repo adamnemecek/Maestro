@@ -1,7 +1,9 @@
 #import "ChordTrainerViewController.h"
 #import "Chord.h"
 
-@implementation ChordTrainerViewController
+@implementation ChordTrainerViewController {
+    Chord *lastChord;
+}
 
 #pragma mark - Initialization
 
@@ -78,8 +80,31 @@
 }
 
 - (id)getRandomSelection {
-    if (!self.choiceIndices) return [Chord getRandomChord];
-    else return [Chord getRandomChordFromChoices:self.choiceIndices];
+    Chord *chord;
+    if (!self.choiceIndices) {
+        if (!lastChord) {
+            chord = [Chord getRandomChord];
+            lastChord = chord;
+        } else {
+            chord = [Chord getRandomChord];
+            while (chord.chord == lastChord.chord) {
+                chord = [Chord getRandomChord];
+            }
+            lastChord = chord;
+        }
+    } else {
+        if (!lastChord) {
+            chord = [Chord getRandomChordFromChoices:self.choiceIndices];
+            lastChord = chord;
+        } else {
+            chord = [Chord getRandomChordFromChoices:self.choiceIndices];
+            while (chord.chord == lastChord.chord) {
+                chord = [Chord getRandomChordFromChoices:self.choiceIndices];
+            }
+            lastChord = chord;
+        }
+    }
+    return chord;
 }
 
 - (id)getSelectionWithIndex:(NSInteger)index {
