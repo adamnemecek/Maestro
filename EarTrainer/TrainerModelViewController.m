@@ -47,7 +47,7 @@
     currentDifficulty = [self getDifficulty];
     
     // Setup toolbar
-    octaveSelection = [[UIBarButtonItem alloc] initWithTitle:@"Octave: C4" style:UIBarButtonItemStyleBordered target:self action:nil];
+    octaveSelection = [[UIBarButtonItem alloc] initWithTitle:@"Octave: C4" style:UIBarButtonItemStyleBordered target:self action:@selector(openListeningOctaveSelection)];
     flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     playmodeButton = [[UIBarButtonItem alloc] initWithImage:[self getCurrentPlaymodeImage] style:UIBarButtonItemStyleBordered target:self action:@selector(changePlaymode:)];
     playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(play:)];
@@ -394,6 +394,43 @@
             [self setupPracticeMode];
             break;
     }
+}
+
+#pragma mark - Listening octaves
+- (void)openListeningOctaveSelection {
+    [[[UIActionSheet alloc] initWithTitle:@"Octaves" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+                        otherButtonTitles:@"C2", @"C3", @"C4", @"C5", nil] showFromToolbar:self.navigationController.toolbar];
+}
+
+#pragma mark - Actionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *octaveTitle;
+    switch (buttonIndex) {
+        case 0:
+            octaveTitle = @"C2";
+            listeningOctave = 0;
+            break;
+        case 1:
+            octaveTitle = @"C3";
+            listeningOctave = 1;
+            break;
+        case 2:
+            octaveTitle = @"C4";
+            listeningOctave = 2;
+            break;
+        case 3:
+            octaveTitle = @"C5";
+            listeningOctave = 3;
+            break;
+        default:
+            // Get rid of the string except for the octave part
+            octaveTitle = [octaveSelection.title stringByReplacingOccurrencesOfString:@"Octave: " withString:@""];
+            break;
+    }
+    // For some reason the toolbar resets back to training mode so we have to set it back
+    [self itemsInToolbar:[NSArray arrayWithObjects:octaveSelection,playmodeButton,flexSpace,playTypeButton,nil] animated:NO];
+    
+    [octaveSelection setTitle:[NSString stringWithFormat:@"Octave: %@", octaveTitle]];
 }
 
 #pragma mark - Actions
