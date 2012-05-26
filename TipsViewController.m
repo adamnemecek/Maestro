@@ -95,15 +95,15 @@
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
+//            cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
             cell.detailTextLabel.text = [[Tip getGeneralTips] objectAtIndex:indexPath.row];
             break;
         case 1:
-            cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
+//            cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
             cell.detailTextLabel.text = [[Tip getIntervalTips] objectAtIndex:indexPath.row];
             break;
         case 2:
-            cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
+//            cell.textLabel.text = [NSString stringWithFormat:@"Tip %i",(indexPath.row + 1)];
             cell.detailTextLabel.text = [[Tip getChordTips] objectAtIndex:indexPath.row];
             break;
     }
