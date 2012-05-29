@@ -36,7 +36,6 @@
 }
 
 #pragma mark - Actions
-
 - (IBAction)openWebsite:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://freezing-sky-8242.heroku.com/"]];
 }
@@ -47,7 +46,6 @@
 }
 
 #pragma mark - Menu animation
-
 - (void)openMenu:(BOOL)show {
     float offsetScalar = 0.83;
     UIView *viewToMove = self.navigationController.view;
@@ -92,13 +90,11 @@
 }
 
 #pragma mark - Push view delegate
-
 - (void)tapEnded:(PushOverlayView *)view {
     [self openMenu:NO];
 }
 
 #pragma mark - Main menu delegate
-
 - (void)mainMenuSelectedCurrentView:(MainMenuViewController *)viewController {
     [self openMenu:NO];
 }

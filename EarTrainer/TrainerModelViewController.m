@@ -155,14 +155,15 @@
         NSInteger choiceIndex = (!choiceIndices) ? indexPath.row : [[choiceIndices objectAtIndex:indexPath.row] integerValue];
         if (currentSelection.index == choiceIndex) {
             alertTitle = @"Correct";
+            alertMessage = [NSString stringWithFormat:@"%@", currentSelection.longName];
             right = YES;
         }
         else {
             alertTitle = @"Wrong";
+            alertMessage = [NSString stringWithFormat:@"Answer: %@", currentSelection.longName];
             right = NO;
         }
         [sessionStats addToStats:right];
-        alertMessage = [NSString stringWithFormat:@"%@", currentSelection.longName];
         [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row andOctave:listeningOctave]];
