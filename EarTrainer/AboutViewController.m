@@ -37,12 +37,27 @@
 
 #pragma mark - Actions
 - (IBAction)openWebsite:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://freezing-sky-8242.heroku.com/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://penguinsoftapps.com/"]];
+}
+
+- (IBAction)contact:(id)sender {
+    [self sendEmailTo:@"brian@penguinsoftapps.com" withCC:@"" withBCC:@"" withSubject:@"Maestro" withBody:@""];
 }
 
 - (void)showMenu:(id)sender {
     if (!_menuShowing) [self openMenu:YES];
     else [self openMenu:NO];
+}
+
+- (void)sendEmailTo:(NSString*)to withCC:(NSString*)cc withBCC:(NSString*)bcc withSubject:(NSString*)subject withBody:(NSString*)body {
+	NSString * url = [NSString stringWithFormat:@"mailto:?to=%@&cc=%@&bcc=%@&subject=%@&body=%@",
+					  [to stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+					  [cc stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+					  [bcc stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+					  [subject stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding],
+					  [body stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
 }
 
 #pragma mark - Menu animation
