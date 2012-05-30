@@ -2,6 +2,7 @@
 
 @interface Tip (Private)
 -(UIView *)viewToDisable;
+-(UIImage *)tipImageForType:(TIP_TYPE)tipType;
 @end
 
 @implementation Tip {
@@ -13,7 +14,6 @@
 @synthesize type;
 
 #pragma mark - Convienience constructors
-
 + (Tip *)randomTip {
     NSArray *tips = [Tip getAllTips];
     NSDictionary *info = [tips objectAtIndex:(arc4random()% tips.count)];
@@ -42,33 +42,15 @@
 }
 
 #pragma mark - Initialization
-
 - (id)initTip:(NSDictionary *)tip {
     self = [super initWithFrame:CGRectMake(0, 0, 320, 640)];
     self.tag = kTipTag;
     
     type = (TIP_TYPE)[[tip objectForKey:kTipKeyType] intValue];
     
-    NSString *image;
-    switch (type) {
-        case TIP_QUICK:
-            image = @"tip.png";
-            break;
-        case TIP_INTERVAL:
-            image = @"tip_interval.png";
-            break;
-        case TIP_CHORD:
-            image = @"tip_chord.png";
-            break;
-        default:
-            image = @"tip.png";
-            break;
-    }
-    
-    tipView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:image]];
+    tipView = [[UIImageView alloc] initWithImage:[self tipImageForType:type]];
     tipView.frame = CGRectMake(22, 76, tipView.frame.size.width, tipView.frame.size.height);
     tipView.alpha = 0.8;
-    
     infoView = [[UITextView alloc] initWithFrame:CGRectMake(0, 33, tipView.frame.size.width, tipView.frame.size.height - 33)];
     infoView.backgroundColor = [UIColor clearColor];
     [infoView setUserInteractionEnabled:NO];
@@ -82,8 +64,26 @@
     return self;
 }
 
-#pragma mark - Get tips
+- (UIImage *)tipImageForType:(TIP_TYPE)tipType {
+    NSString *image;
+    switch (tipType) {
+        case TIP_QUICK:
+            image = @"tip.png";
+            break;
+        case TIP_INTERVAL:
+            image = @"tip_interval.png";
+            break;
+        case TIP_CHORD:
+            image = @"tip_chord.png";
+            break;
+        default:
+            image = @"tip.png";
+            break;
+    }
+    return [UIImage imageNamed:image];
+}
 
+#pragma mark - Get tips
 + (NSArray *)getGeneralTips {
     NSDictionary *tipDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Tips" ofType:@"plist"]];
     return [tipDict objectForKey:@"Quick Tips"];
@@ -105,21 +105,21 @@
 }
 
 #pragma mark - Reset tip info
-
 - (void)resetTipInfo {
     NSArray *tips = [Tip getAllTips];
-    NSString *info = [[tips objectAtIndex:(arc4random()% tips.count)] objectForKey:kTipKeyText];
+    NSInteger randomTip = arc4random()% tips.count;
+    NSString *info = [[tips objectAtIndex:randomTip] objectForKey:kTipKeyText];
+    type = (TIP_TYPE)[[[tips objectAtIndex:randomTip] objectForKey:kTipKeyType] intValue];
+    [tipView setImage:[self tipImageForType:type]];
     infoView.text = info;
 }
 
 #pragma mark - View to disable
-
 - (UIView *)viewToDisable {
     return [UIApplication sharedApplication].keyWindow.rootViewController.view;
 }
 
 #pragma mark - Run & close
-
 - (void)run {
     self.alpha = 0.0;
     [[UIApplication sharedApplication].keyWindow addSubview:self];
@@ -139,7 +139,6 @@
 }
 
 #pragma mark - Touch events
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     isDragging = NO;
 }

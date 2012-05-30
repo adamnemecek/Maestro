@@ -7,7 +7,6 @@
 }
 
 #pragma mark - Initialization
-
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self.navigationItem setTitle:@"Interval Trainer"];
@@ -16,7 +15,6 @@
 }
 
 #pragma mark - View lifecycle
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
@@ -26,7 +24,6 @@
 }
 
 #pragma mark - Overide super
-
 - (NSArray *)getAllSelections {
     return [Interval longNames];
 }

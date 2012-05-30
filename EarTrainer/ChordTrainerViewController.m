@@ -7,7 +7,6 @@
 }
 
 #pragma mark - Initialization
-
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self.navigationItem setTitle:@"Chord Trainer"];
@@ -16,13 +15,11 @@
 }
 
 #pragma mark - View lifecycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
 #pragma mark - Overide super
-
 - (NSArray *)getAllSelections {
     return [Chord longNames];
 }

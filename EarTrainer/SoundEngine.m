@@ -17,7 +17,6 @@ static SoundEngine *inst = nil;
 }
 
 #pragma mark Init
-
 - (id)init {
     self = [super init];
     _isAlive = YES;
@@ -26,7 +25,6 @@ static SoundEngine *inst = nil;
 }
 
 #pragma mark - Shared instance
-
 + (SoundEngine *)sharedInstance {
     if (!inst)
         inst = [SoundEngine new];
@@ -38,13 +36,11 @@ static SoundEngine *inst = nil;
 }
 
 #pragma mark Engine status
-
 - (void)setAlive:(BOOL)alive {
     _isAlive = alive;
 }
 
 #pragma mark - Threading
-
 - (void)playOnNewThread:(NSDictionary *)properties {
     
     float tempo;
@@ -83,7 +79,6 @@ static SoundEngine *inst = nil;
 }
 
 #pragma mark - Play collection object
-
 /* properties order:
  * playmode
  * tempo
@@ -97,7 +92,6 @@ static SoundEngine *inst = nil;
 }
 
 #pragma mark - Load and play sound
-
 - (void)playNote:(Note *)note {
     [self playSoundWithMidiId:note.midiId];
 }

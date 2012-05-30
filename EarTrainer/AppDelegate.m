@@ -11,18 +11,12 @@
 @synthesize navController = _navController;
 @synthesize window = _window;
 
-#pragma mark - Tip delegate
-
-- (void)TipPresentationFinished:(Tip *)tip {
-    [_navController.view setUserInteractionEnabled:YES];
-    [tip removeFromSuperview];
-}
-
+#pragma mark - Tips
 - (void)loadTip {
     if (![[Defaults sharedInstance] getShowTips]) return;
-    Tip *currentTip = (Tip *)[_window viewWithTag:kTipTag];
+    Tip *currentTip = (Tip *)[_window viewWithTag:kTipTag]; // Get the tip if there is one
     if (currentTip == nil) {
-        [_navController.view setUserInteractionEnabled:NO];
+        // If this is the first time we entered the app open the first tip, otherwise grab a random one
         (showFirstTimeTip) ? [[Tip tipAtIndex:0] run]  : [[Tip randomTip] run];
     } else {
         [currentTip resetTipInfo];
@@ -31,13 +25,11 @@
 }
 
 #pragma mark Exception handler
-
 void uncaughtExceptionHandler(NSException *exception) {
     [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
 #pragma mark - Application cycle
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [FlurryAnalytics startSession:@"5RQGEC439LBCUI8FHFV9"];
@@ -111,5 +103,4 @@ void uncaughtExceptionHandler(NSException *exception) {
      See also applicationDidEnterBackground:.
      */
 }
-
 @end

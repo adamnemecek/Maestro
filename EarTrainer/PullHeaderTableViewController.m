@@ -16,7 +16,6 @@
 @synthesize isShowing;
 
 #pragma mark - Initialization
-
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self setupStringForPull:@"Pull down to see awesome..." release:@"Release to see awesome..." andShowing:@"Awesome..."];
@@ -32,7 +31,6 @@
 }
 
 #pragma mark - Set up
-
 - (void)setupStringForPull:(NSString *)pullString release:(NSString *)releaseString andShowing:(NSString *)showingString {
     textPull = pullString;
     textRelease = releaseString;
@@ -54,14 +52,12 @@
 }
 
 #pragma mark update header
-
 - (void)refreshHeader {
     for (UIView *view in headerView.subviews)
         [view removeFromSuperview];
 }
 
 #pragma mark - Dragging
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (isShowing || !makeHeader) return;
     [self refreshHeader];
@@ -93,7 +89,6 @@
 }
 
 #pragma mark - Stats
-
 - (void)showHeader {
     isShowing = YES;
     [self disableCommonFunctionality];
@@ -120,7 +115,6 @@
 }
 
 #pragma mark sublcass methods
-
 - (void)enableCommonFunctionality {
     
 }

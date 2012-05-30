@@ -67,6 +67,9 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    [self setOctaveSelection:nil];
+    [self setFlexSpace:nil];
+    [self setFixedSpace:nil];
     [self setPlaymodeButton:nil];
     [self setPlayButton:nil];
     [self setSkipButton:nil];

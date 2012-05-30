@@ -25,7 +25,6 @@
 }
 
 #pragma mark - View lifecycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -49,7 +48,6 @@
 }
 
 #pragma mark - Actions
-
 - (void)showMenu:(id)sender {
     if (!_menuShowing) [self openMenu:YES];
     else [self openMenu:NO];
@@ -63,7 +61,6 @@
 }
 
 #pragma mark - Menu animation
-
 - (void)openMenu:(BOOL)show {
     float offsetScalar = 0.83;
     UIView *viewToMove = self.navigationController.view;
@@ -110,13 +107,11 @@
 }
 
 #pragma mark - Push view delegate
-
 - (void)tapEnded:(PushOverlayView *)view {
     [self openMenu:NO];
 }
 
 #pragma mark - Menu delegate
-
 - (void)mainMenuSelectedCurrentView:(MainMenuViewController *)viewController {
     [self openMenu:NO];
 }
@@ -131,7 +126,6 @@
 }
 
 #pragma mark - Settings delegate
-
 - (void)SettingsViewControllerDidFinish:(SettingsViewController *)controller {
     [self dismissModalViewControllerAnimated:YES];
 }

@@ -5,7 +5,6 @@ static Defaults *inst = nil;
 @implementation Defaults
 
 #pragma mark - Shared instance
-
 + (Defaults *)sharedInstance {
     if (!inst)
         inst = [Defaults new];
@@ -17,7 +16,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark - Initial defaults
-
 - (void)initialDefaults {
     [self saveHereBefore:YES];
     [self saveShowTips:YES];
@@ -36,7 +34,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark - Saving defaults
-
 - (void)saveHereBefore:(BOOL)hereBefore {
     [[NSUserDefaults standardUserDefaults] setBool:hereBefore forKey:@"keyHereBefore"];
 }
@@ -50,7 +47,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark Interval
-
 - (void)saveChallengeLevel:(NSInteger)level {
     [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"keyIntervalChallengeLevel"];
 }
@@ -72,7 +68,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark Chord
-
 - (void)saveChordChallengeLevel:(NSInteger)level {
     [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"keyChordChallengeLevel"];
 }
@@ -94,7 +89,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark - Retrieving defaults
-
 - (BOOL)getHereBefore {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"keyHereBefore"];
 }
@@ -108,7 +102,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark Interval
-
 - (NSInteger)getChallengeLevel {
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyIntervalChallengeLevel"];
 }
@@ -130,7 +123,6 @@ static Defaults *inst = nil;
 }
 
 #pragma mark Chord
-
 - (NSInteger)getChordChallengeLevel {
     return [[NSUserDefaults standardUserDefaults] integerForKey:@"keyChordChallengeLevel"];
 }
