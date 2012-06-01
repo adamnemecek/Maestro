@@ -41,7 +41,7 @@
 }
 
 - (IBAction)contact:(id)sender {
-    [self sendEmailTo:@"brian@penguinsoftapps.com" withCC:@"" withBCC:@"" withSubject:@"Maestro" withBody:@""];
+    [self sendEmailTo:@"contact@penguinsoftapps.com" withCC:@"" withBCC:@"" withSubject:@"Maestro" withBody:@""];
 }
 
 - (void)showMenu:(id)sender {
