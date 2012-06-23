@@ -21,7 +21,7 @@ static SoundEngine *inst = nil;
     self = [super init];
     _isAlive = YES;
     _isPlaying = NO;
-    AudioSessionInitialize(NULL, NULL, NULL, NULL); // Initialize audio session
+//    AudioSessionInitialize(NULL, NULL, NULL, NULL); // Initialize audio session
     return self;
 }
 
