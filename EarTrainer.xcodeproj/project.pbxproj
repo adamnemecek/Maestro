@@ -118,6 +118,7 @@
 		FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C51151D32A60095016C /* UIColor+DesignColors.m */; };
 		FFB55A481502F3F800614D6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB55A461502F3F700614D6D /* AboutViewController.m */; };
 		FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB55A471502F3F700614D6D /* AboutViewController.xib */; };
+		FFB61CB0159418CF00540648 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB61CAF159418CF00540648 /* AVFoundation.framework */; };
 		FFBE2586154507DF00746A19 /* tip_chord@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE2584154507DF00746A19 /* tip_chord@2x.png */; };
 		FFBE2587154507DF00746A19 /* tip_interval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE2585154507DF00746A19 /* tip_interval@2x.png */; };
 		FFBE9A1314DDADA600C755DB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = FFBE9A1214DDADA600C755DB /* Note.m */; };
@@ -275,6 +276,7 @@
 		FFB55A451502F3F700614D6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		FFB55A461502F3F700614D6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		FFB55A471502F3F700614D6D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		FFB61CAF159418CF00540648 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FFBE2584154507DF00746A19 /* tip_chord@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_chord@2x.png"; sourceTree = "<group>"; };
 		FFBE2585154507DF00746A19 /* tip_interval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_interval@2x.png"; sourceTree = "<group>"; };
 		FFBE9A1114DDADA600C755DB /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFB61CB0159418CF00540648 /* AVFoundation.framework in Frameworks */,
 				FF6A76D71512562A006D9230 /* QuartzCore.framework in Frameworks */,
 				FF659B3E14D62955000E7EC2 /* AudioToolbox.framework in Frameworks */,
 				FF8E8C4014D4942F00CC8818 /* UIKit.framework in Frameworks */,
@@ -504,6 +507,7 @@
 		FF8E8C3E14D4942F00CC8818 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFB61CAF159418CF00540648 /* AVFoundation.framework */,
 				FF6A76D61512562A006D9230 /* QuartzCore.framework */,
 				FF659B3D14D62955000E7EC2 /* AudioToolbox.framework */,
 				FF8E8C3F14D4942F00CC8818 /* UIKit.framework */,
@@ -597,7 +601,7 @@
 		FF8E8C3214D4942F00CC8818 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 			};
 			buildConfigurationList = FF8E8C3514D4942F00CC8818 /* Build configuration list for PBXProject "EarTrainer" */;
 			compatibilityVersion = "Xcode 3.2";

@@ -21,6 +21,7 @@ static SoundEngine *inst = nil;
     self = [super init];
     _isAlive = YES;
     _isPlaying = NO;
+    AudioSessionInitialize(NULL, NULL, NULL, NULL); // Initialize audio session
     return self;
 }
 
@@ -35,6 +36,17 @@ static SoundEngine *inst = nil;
     inst = nil;
 }
 
+#pragma mark - Session
+- (void)startAudioSession {
+//    AudioSessionSetActive(true); // Activate audio session
+//    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+}
+
+- (void)endAudioSession {
+//    AudioSessionSetActive(false);
+//    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+}
+
 #pragma mark Engine status
 - (void)setAlive:(BOOL)alive {
     _isAlive = alive;
@@ -42,7 +54,6 @@ static SoundEngine *inst = nil;
 
 #pragma mark - Threading
 - (void)playOnNewThread:(NSDictionary *)properties {
-    
     float tempo;
     switch ([[[properties objectForKey:@"keyProps"] objectAtIndex:1] intValue]) {
         case 0:
@@ -98,17 +109,19 @@ static SoundEngine *inst = nil;
 
 - (void)playSoundWithMidiId:(NSInteger)midiId {
 //    NSLog(@"playing with Id: %i",midiId);
+//    AVAudioPlayer *note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];
+//    [note play];
     SystemSoundID note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];
     AudioServicesPlaySystemSound(note);
 }
 
-/* Deprecated */
-- (void)playSoundWithName:(NSString *)name {
-    SystemSoundID note = [self loadSoundWithName:name];
-    AudioServicesPlaySystemSound(note);
-}
-
 - (SystemSoundID)loadSoundWithName:(NSString *)name {
+    
+//    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:name withExtension:@"aiff"];
+//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:nil];
+//    [player prepareToPlay];
+//    return player;
+    
     SystemSoundID note;
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"aiff"];
 	CFURLRef url = (__bridge CFURLRef) [NSURL fileURLWithPath:path];

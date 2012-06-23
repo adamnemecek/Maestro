@@ -18,7 +18,7 @@
 }
 
 - (NSString *)getNoteNames {
-    NSString *notes = [NSString stringWithString:@""];
+    NSString *notes = @"";
     int noteCount = 0;
     for (Note *note in _notes) {
         noteCount++;
