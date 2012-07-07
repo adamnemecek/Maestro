@@ -251,14 +251,14 @@
 		FF6A76D61512562A006D9230 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FF7D7CE414E77C9B006E6362 /* PlaymodeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaymodeSettingsViewController.h; sourceTree = "<group>"; };
 		FF7D7CE514E77C9B006E6362 /* PlaymodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaymodeSettingsViewController.m; sourceTree = "<group>"; };
-		FF8E8C3B14D4942F00CC8818 /* EarTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF8E8C3B14D4942F00CC8818 /* maestro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = maestro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8E8C3F14D4942F00CC8818 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FF8E8C4114D4942F00CC8818 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FF8E8C4314D4942F00CC8818 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FF8E8C4714D4942F00CC8818 /* EarTrainer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EarTrainer-Info.plist"; sourceTree = "<group>"; };
+		FF8E8C4714D4942F00CC8818 /* maestro-Info.plist */ = {isa = PBXFileReference; path = "maestro-Info.plist"; sourceTree = "<group>"; };
 		FF8E8C4914D4942F00CC8818 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF8E8C4B14D4942F00CC8818 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FF8E8C4D14D4942F00CC8818 /* EarTrainer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EarTrainer-Prefix.pch"; sourceTree = "<group>"; };
+		FF8E8C4D14D4942F00CC8818 /* maestro-Prefix.pch */ = {isa = PBXFileReference; path = "maestro-Prefix.pch"; sourceTree = "<group>"; };
 		FF8E8C4E14D4943000CC8818 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FF8E8C4F14D4943000CC8818 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FF937B31150FC9C300C572DC /* DifficultySettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifficultySettingsViewController.h; sourceTree = "<group>"; };
@@ -490,7 +490,7 @@
 		FF8E8C3014D4942F00CC8818 = {
 			isa = PBXGroup;
 			children = (
-				FF8E8C4514D4942F00CC8818 /* EarTrainer */,
+				FF8E8C4514D4942F00CC8818 /* maestro */,
 				FF8E8C3E14D4942F00CC8818 /* Frameworks */,
 				FF8E8C3C14D4942F00CC8818 /* Products */,
 			);
@@ -499,7 +499,7 @@
 		FF8E8C3C14D4942F00CC8818 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF8E8C3B14D4942F00CC8818 /* EarTrainer.app */,
+				FF8E8C3B14D4942F00CC8818 /* maestro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -517,7 +517,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FF8E8C4514D4942F00CC8818 /* EarTrainer */ = {
+		FF8E8C4514D4942F00CC8818 /* maestro */ = {
 			isa = PBXGroup;
 			children = (
 				FF330424154D13BE008248AB /* Libraries */,
@@ -529,6 +529,7 @@
 				FF8E8C4F14D4943000CC8818 /* AppDelegate.m */,
 				FF8E8C4614D4942F00CC8818 /* Supporting Files */,
 			);
+			name = maestro;
 			path = EarTrainer;
 			sourceTree = "<group>";
 		};
@@ -538,10 +539,10 @@
 				FF168EE715311FB500483E86 /* Tips.plist */,
 				C85A84A814D4AA2900394052 /* images */,
 				C82DC2AC14D63287008CC4C6 /* Samples */,
-				FF8E8C4714D4942F00CC8818 /* EarTrainer-Info.plist */,
+				FF8E8C4714D4942F00CC8818 /* maestro-Info.plist */,
 				FF8E8C4814D4942F00CC8818 /* InfoPlist.strings */,
 				FF8E8C4B14D4942F00CC8818 /* main.m */,
-				FF8E8C4D14D4942F00CC8818 /* EarTrainer-Prefix.pch */,
+				FF8E8C4D14D4942F00CC8818 /* maestro-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -578,9 +579,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF8E8C3A14D4942F00CC8818 /* EarTrainer */ = {
+		FF8E8C3A14D4942F00CC8818 /* maestro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF8E8C5914D4943000CC8818 /* Build configuration list for PBXNativeTarget "EarTrainer" */;
+			buildConfigurationList = FF8E8C5914D4943000CC8818 /* Build configuration list for PBXNativeTarget "maestro" */;
 			buildPhases = (
 				FF8E8C3714D4942F00CC8818 /* Sources */,
 				FF8E8C3814D4942F00CC8818 /* Frameworks */,
@@ -590,9 +591,9 @@
 			);
 			dependencies = (
 			);
-			name = EarTrainer;
+			name = maestro;
 			productName = EarTrainer;
-			productReference = FF8E8C3B14D4942F00CC8818 /* EarTrainer.app */;
+			productReference = FF8E8C3B14D4942F00CC8818 /* maestro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -603,7 +604,7 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 			};
-			buildConfigurationList = FF8E8C3514D4942F00CC8818 /* Build configuration list for PBXProject "EarTrainer" */;
+			buildConfigurationList = FF8E8C3514D4942F00CC8818 /* Build configuration list for PBXProject "maestro" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -615,7 +616,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF8E8C3A14D4942F00CC8818 /* EarTrainer */,
+				FF8E8C3A14D4942F00CC8818 /* maestro */,
 			);
 		};
 /* End PBXProject section */
@@ -826,14 +827,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EarTrainer/EarTrainer-Prefix.pch";
+				GCC_PREFIX_HEADER = "EarTrainer/maestro-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				INFOPLIST_FILE = "EarTrainer/EarTrainer-Info.plist";
+				INFOPLIST_FILE = "EarTrainer/maestro-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EarTrainer\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = maestro;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -846,14 +847,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brian Stewart";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EarTrainer/EarTrainer-Prefix.pch";
+				GCC_PREFIX_HEADER = "EarTrainer/maestro-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				INFOPLIST_FILE = "EarTrainer/EarTrainer-Info.plist";
+				INFOPLIST_FILE = "EarTrainer/maestro-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/EarTrainer\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = maestro;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1D7BB2B7-CFAA-44FE-83D6-8B27B595E558";
 				WRAPPER_EXTENSION = app;
@@ -863,7 +864,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FF8E8C3514D4942F00CC8818 /* Build configuration list for PBXProject "EarTrainer" */ = {
+		FF8E8C3514D4942F00CC8818 /* Build configuration list for PBXProject "maestro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF8E8C5714D4943000CC8818 /* Debug */,
@@ -872,7 +873,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF8E8C5914D4943000CC8818 /* Build configuration list for PBXNativeTarget "EarTrainer" */ = {
+		FF8E8C5914D4943000CC8818 /* Build configuration list for PBXNativeTarget "maestro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF8E8C5A14D4943000CC8818 /* Debug */,
