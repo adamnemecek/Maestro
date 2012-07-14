@@ -29,7 +29,7 @@
     [super viewDidLoad];
     
     [self roundNavCorners];
-    [self.tableView setBackgroundColor:[UIColor offWhiteColor]];
+    [self.tableView setBackgroundColor:[UIColor offWhiteColorWithAlpha:1.0]];
     
     // Setup nav buttons
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered

@@ -13,6 +13,9 @@
     #import <Foundation/Foundation.h>
     #import "FlurryAnalytics.h"
     #import "Defaults.h"
-    #import "UIColor+DesignColors.h"
+    #import "Common.h"
+    #import "NSObject+Blocks.h"
+    #import "UIColor+BSColors.h"
     #import "UIViewController+RoundedCorners.h"
+    #import "BSAlert.h"
 #endif

@@ -167,7 +167,7 @@
             right = NO;
         }
         [sessionStats addToStats:right];
-        [[[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
+        [[[BSAlert alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else {
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row andOctave:listeningOctave]];
     }
@@ -490,13 +490,13 @@
                                                                    self.headerView.frame.size.height * 0.30,
                                                                    self.headerView.frame.size.width  * 0.4,
                                                                    self.headerView.frame.size.height * 0.40)];
-    [percentView setBackgroundColor:[UIColor statsRightColor]];
+    [percentView setBackgroundColor:[UIColor niceGreenColorWithAlpha:1.0]];
     
     UIView *percentWrong = [[UIView alloc] initWithFrame:CGRectMake(percentView.frame.origin.x + (percentView.frame.size.width * (1.0 - [sessionStats getPercentWrong])),
                                                                     self.headerView.frame.size.height * 0.30,
                                                                     percentView.frame.size.width * [sessionStats getPercentWrong],
                                                                     self.headerView.frame.size.height * 0.40)];
-    [percentWrong setBackgroundColor:[UIColor statsWrongColor]];
+    [percentWrong setBackgroundColor:[UIColor niceRedColorWithAlpha:1.0]];
                            
     UILabel *right = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
     UILabel *wrong = [[UILabel alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width * 0.7, 0,
@@ -509,8 +509,8 @@
     wrong.textAlignment = UITextAlignmentCenter;
     right.backgroundColor = [UIColor clearColor];
     wrong.backgroundColor = [UIColor clearColor];
-    [right setTextColor:[UIColor statsRightColor]];
-    [wrong setTextColor:[UIColor statsWrongColor]];
+    [right setTextColor:[UIColor niceGreenColorWithAlpha:1.0]];
+    [wrong setTextColor:[UIColor niceRedColorWithAlpha:1.0]];
     [self.headerView addSubview:right];
     [self.headerView addSubview:wrong];
     [self.headerView addSubview:percentWrong];
@@ -539,7 +539,7 @@
 
 #pragma mark - Pinch gesture
 - (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
-//    NSLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);
+//    dbgLog(@"pinch scale: %f velocity: %f",pinchGesture.scale,pinchGesture.velocity);
     if (gesture.scale > 1.4 && gesture.velocity > 1.3) [self setPlayType:PLAYTYPE_PRACTICE];
     else if (gesture.scale < 0.6 && gesture.velocity < - 1.3) [self setPlayType:PLAYTYPE_TRAIN];
 }

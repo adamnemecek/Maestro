@@ -45,7 +45,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section  {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
-    [headerView setBackgroundColor:[UIColor offWhiteColor]];
+    [headerView setBackgroundColor:[UIColor offWhiteColorWithAlpha:1.0]];
     [headerView setAlpha:0.7];
     
     NSString *header;
@@ -109,7 +109,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [cell setBackgroundColor:[UIColor offWhiteColor]];
+    [cell setBackgroundColor:[UIColor offWhiteColorWithAlpha:1.0]];
 }
 
 #pragma mark - Table view delegate

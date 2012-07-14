@@ -108,7 +108,7 @@ static SoundEngine *inst = nil;
 }
 
 - (void)playSoundWithMidiId:(NSInteger)midiId {
-//    NSLog(@"playing with Id: %i",midiId);
+    dbgLog(@"playing with Id: %i",midiId);
 //    AVAudioPlayer *note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];
 //    [note play];
     SystemSoundID note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8967867F15B202FF008BB8B0 /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967867E15B202FF008BB8B0 /* NSObject+Blocks.m */; };
+		8967868215B20308008BB8B0 /* BSAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967868115B20308008BB8B0 /* BSAlert.m */; };
+		8967868515B20319008BB8B0 /* UIColor+BSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967868415B20319008BB8B0 /* UIColor+BSColors.m */; };
+		8967868815B20381008BB8B0 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967868715B20381008BB8B0 /* Common.m */; };
 		C82DC2E914D63287008CC4C6 /* piano_36.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C82DC2AD14D63287008CC4C6 /* piano_36.aiff */; };
 		C82DC2EA14D63287008CC4C6 /* piano_37.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C82DC2AE14D63287008CC4C6 /* piano_37.aiff */; };
 		C82DC2EB14D63287008CC4C6 /* piano_38.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C82DC2AF14D63287008CC4C6 /* piano_38.aiff */; };
@@ -115,7 +119,6 @@
 		FF96790114FD4E99004E9402 /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9678FF14FD4E99004E9402 /* ButtonMenu.png */; };
 		FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */; };
 		FF9EE5E3150BFB8100C49DEE /* TipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9EE5E2150BFB8100C49DEE /* TipsViewController.m */; };
-		FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB50C51151D32A60095016C /* UIColor+DesignColors.m */; };
 		FFB55A481502F3F800614D6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB55A461502F3F700614D6D /* AboutViewController.m */; };
 		FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB55A471502F3F700614D6D /* AboutViewController.xib */; };
 		FFB61CB0159418CF00540648 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB61CAF159418CF00540648 /* AVFoundation.framework */; };
@@ -133,6 +136,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8967867D15B202FF008BB8B0 /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blocks.h"; sourceTree = "<group>"; };
+		8967867E15B202FF008BB8B0 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
+		8967868015B20308008BB8B0 /* BSAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAlert.h; sourceTree = "<group>"; };
+		8967868115B20308008BB8B0 /* BSAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAlert.m; sourceTree = "<group>"; };
+		8967868315B20319008BB8B0 /* UIColor+BSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BSColors.h"; sourceTree = "<group>"; };
+		8967868415B20319008BB8B0 /* UIColor+BSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BSColors.m"; sourceTree = "<group>"; };
+		8967868615B20381008BB8B0 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Common.h; path = maestro/Common.h; sourceTree = SOURCE_ROOT; };
+		8967868715B20381008BB8B0 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Common.m; path = maestro/Common.m; sourceTree = SOURCE_ROOT; };
 		C82DC2AD14D63287008CC4C6 /* piano_36.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = piano_36.aiff; sourceTree = "<group>"; };
 		C82DC2AE14D63287008CC4C6 /* piano_37.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = piano_37.aiff; sourceTree = "<group>"; };
 		C82DC2AF14D63287008CC4C6 /* piano_38.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = piano_38.aiff; sourceTree = "<group>"; };
@@ -271,8 +282,6 @@
 		FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonMenu@2x.png"; path = "../ButtonMenu@2x.png"; sourceTree = "<group>"; };
 		FF9EE5E1150BFB8100C49DEE /* TipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TipsViewController.h; path = ../TipsViewController.h; sourceTree = "<group>"; };
 		FF9EE5E2150BFB8100C49DEE /* TipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TipsViewController.m; path = ../TipsViewController.m; sourceTree = "<group>"; };
-		FFB50C50151D32A60095016C /* UIColor+DesignColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+DesignColors.h"; path = "../UIColor+DesignColors.h"; sourceTree = "<group>"; };
-		FFB50C51151D32A60095016C /* UIColor+DesignColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+DesignColors.m"; path = "../UIColor+DesignColors.m"; sourceTree = "<group>"; };
 		FFB55A451502F3F700614D6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		FFB55A461502F3F700614D6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		FFB55A471502F3F700614D6D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
@@ -477,10 +486,16 @@
 		FF5D4F0F151D8F10003EFE00 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				FFB50C50151D32A60095016C /* UIColor+DesignColors.h */,
-				FFB50C51151D32A60095016C /* UIColor+DesignColors.m */,
+				8967868615B20381008BB8B0 /* Common.h */,
+				8967868715B20381008BB8B0 /* Common.m */,
+				8967867D15B202FF008BB8B0 /* NSObject+Blocks.h */,
+				8967867E15B202FF008BB8B0 /* NSObject+Blocks.m */,
 				FFE7239E154129B300CDC2F7 /* UIViewController+RoundedCorners.h */,
 				FFE7239F154129B800CDC2F7 /* UIViewController+RoundedCorners.m */,
+				8967868315B20319008BB8B0 /* UIColor+BSColors.h */,
+				8967868415B20319008BB8B0 /* UIColor+BSColors.m */,
+				8967868015B20308008BB8B0 /* BSAlert.h */,
+				8967868115B20308008BB8B0 /* BSAlert.m */,
 				FF1B4A2E14DDB3EF00DBAB5A /* Defaults.h */,
 				FF1B4A2F14DDB3EF00DBAB5A /* Defaults.m */,
 			);
@@ -747,10 +762,13 @@
 				FF937B3E150FF23600C572DC /* MainMenuCell.m in Sources */,
 				FF4940381512B91A008F3B45 /* PushOverlayView.m in Sources */,
 				FF23C9A01514FCAF0048BE98 /* Stats.m in Sources */,
-				FFB50C52151D32A60095016C /* UIColor+DesignColors.m in Sources */,
 				FF168EE415310D5500483E86 /* Tip.m in Sources */,
 				FFFB35A115313F6A00E81B86 /* ShowTipsCell.m in Sources */,
 				FFE723A0154129BE00CDC2F7 /* UIViewController+RoundedCorners.m in Sources */,
+				8967867F15B202FF008BB8B0 /* NSObject+Blocks.m in Sources */,
+				8967868215B20308008BB8B0 /* BSAlert.m in Sources */,
+				8967868515B20319008BB8B0 /* UIColor+BSColors.m in Sources */,
+				8967868815B20381008BB8B0 /* Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

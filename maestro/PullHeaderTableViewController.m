@@ -40,7 +40,7 @@
 - (void)addPullToRefreshHeader {
     if (!makeHeader) return;
     headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - HEADER_HEIGHT, 320, HEADER_HEIGHT)];
-    headerView.backgroundColor = [UIColor offWhiteColor];
+    headerView.backgroundColor = [UIColor offWhiteColorWithAlpha:1.0];
 
     headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, HEADER_HEIGHT)];
     headerLabel.backgroundColor = [UIColor clearColor];
