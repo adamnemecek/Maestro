@@ -11,6 +11,7 @@
 
 @synthesize mainMenu = _mainMenu;
 @synthesize menuShowing = _menuShowing;
+@synthesize version;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,9 +26,11 @@
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"] style:UIBarButtonItemStyleBordered
                                                                               target:self action:@selector(showMenu:)]];
     _menuShowing = NO;
+    version.text = [NSString stringWithFormat:@"Version %@", currentVersion()];
 }
 
 - (void)viewDidUnload {
+    [self setVersion:nil];
     [super viewDidUnload];
 }
 

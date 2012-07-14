@@ -13,11 +13,17 @@
 }
 
 - (CGFloat)getPercentRight {
+    if (_total == 0)    // We can't divide by zero so return nothing
+        return 0.0;
+    else
     return ((float)_right / (float)_total);
 }
 
 - (CGFloat)getPercentWrong {
-    return ((float)_wrong / (float)_total);
+    if (_total == 0)
+        return 0.0;
+    else
+        return ((float)_wrong / (float)_total);
 }
 
 - (void)resetStats {

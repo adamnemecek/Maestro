@@ -3,16 +3,16 @@
 #import "SoundEngine.h"
 #import "NoteCollection.h"
 
-@interface TrainerModelViewController (Private)
--(UIImage *)getCurrentPlaymodeImage;
--(void)setPlayType:(PLAYTYPE)type;
--(void)setUsingTrainingButtons:(BOOL)using;
--(void)setPlayTypeTransitionDone;
--(void)handlePinch:(UIPinchGestureRecognizer *)gesture;
-@end
+//@interface TrainerModelViewController (Private)
+//-(UIImage *)getCurrentPlaymodeImage;
+//-(void)setPlayType:(PLAYTYPE)type;
+//-(void)setUsingTrainingButtons:(BOOL)using;
+//-(void)setPlayTypeTransitionDone;
+//-(void)handlePinch:(UIPinchGestureRecognizer *)gesture;
+//@end
 
 @implementation TrainerModelViewController {
-    PLAYMODE playmodeIndex;
+    PLAYMODE _playmode;
     PLAYTYPE playType;
     NSInteger currentDifficulty;
     NoteCollection *currentSelection;
@@ -26,7 +26,7 @@
 @synthesize subtitles;
 @synthesize choiceIndices;
 
-#pragma mark - View lifecycle
+#pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,19 +34,7 @@
     pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.tableView addGestureRecognizer:pinchGesture];
     
-    // Setup stats object
-    sessionStats = [Stats new];
-    
-    // Setup header strings
-    [self setupStringForPull:@"Pull to see stats..." release:@"Release see stats..." andShowing:@"stats..."];
-    
-    // Show toolbar
-    [self.navigationController setToolbarHidden:NO animated:NO];
-    
-    // Grab the current difficulty
-    currentDifficulty = [self getDifficulty];
-    
-    // Setup toolbar
+    // build toolbar
     octaveSelection = [[UIBarButtonItem alloc] initWithTitle:@"Octave: C4" style:UIBarButtonItemStyleBordered target:self action:@selector(openListeningOctaveSelection)];
     flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     playmodeButton = [[UIBarButtonItem alloc] initWithImage:[self getCurrentPlaymodeImage] style:UIBarButtonItemStyleBordered target:self action:@selector(changePlaymode:)];
@@ -59,11 +47,22 @@
     playTypeButton = [[UIBarButtonItem alloc] initWithTitle:@"Listen" style:UIBarButtonItemStyleBordered target:self action:@selector(changePlayType:)];
     self.toolbarItems = [NSArray arrayWithObjects:flexSpace,playmodeButton,playButton,skipButton,fixedSpace,playTypeButton,nil];
     
+    [skipButton setEnabled:NO]; // Skip button isn't enabled until we first play
+    
+    // Show toolbar
+    [self.navigationController setToolbarHidden:NO animated:NO];
+    
+    // Grab the current difficulty
+    currentDifficulty = [self getDifficulty];
+    
+    // Setup stats object
+    sessionStats = [Stats new];
+    
     listeningOctave = 2; // C4
     playTypeIsTransitioning = NO;
     playType = PLAYTYPE_TRAIN;
-    [skipButton setEnabled:NO];
 }
+
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -78,11 +77,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [[SoundEngine sharedInstance] setAlive:YES];
-    playmodeIndex = [self getPlaymode];
+    
+    // These can be changed in the settings, so we want to to call them every time the view appears
+    _playmode = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
+    
+    // Fills the selections, subtitles, and choiceIndices arrays
     [self setSelectionsAndChoices];
     
+    // If we changed the difficulty level in the settings then we reset the trainer
     if (currentDifficulty != [self getDifficulty]) {
         [sessionStats resetStats];
         skipButton.enabled = NO;
@@ -93,19 +98,9 @@
     [self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[SoundEngine sharedInstance] setAlive:NO];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
 }
 
 #pragma mark - Toolbar
@@ -119,25 +114,33 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger rows = [selections count];
-    if (playType == PLAYTYPE_TRAIN) rows = [selections count];
-    else rows = [[self getAllSelections] count];
-    return rows;
+    if (playType == PLAYTYPE_TRAIN)
+        return selections.count;
+    else
+        return [self getAllSelections].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    if (!currentSelection && playType == PLAYTYPE_TRAIN) cell.textLabel.textColor = [UIColor lightGrayColor];
-    else {
-        cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
-        cell.textLabel.textColor = [UIColor blackColor];
-        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
-    }
+    
+    // Training
     if (playType == PLAYTYPE_TRAIN) {
+        if (!currentSelection)  // If we haven't started training then make the cells gray
+            cell.textLabel.textColor = [UIColor lightGrayColor];
+        else
+            cell.textLabel.textColor = [UIColor blackColor];
+        
         cell.textLabel.text = [selections objectAtIndex:indexPath.row];
         cell.detailTextLabel.text = [subtitles objectAtIndex:indexPath.row];
+    } else {  // Practicing
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [[self getAllSelections] objectAtIndex:indexPath.row];
+
     }
+    
+    // If we are showing the stats header view then gray the cells and disable user input
     if (self.isShowing) {
         [cell setUserInteractionEnabled:NO];
         cell.textLabel.textColor = [UIColor grayColor];
@@ -151,30 +154,37 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    BOOL right;
+    
     if (playType == PLAYTYPE_TRAIN) {
         if (!currentSelection) return;
         NSString *alertTitle, *alertMessage;
+        BOOL right;
+        
+        // choiceIndices is nil if we are on pro difficulty
         NSInteger choiceIndex = (!choiceIndices) ? indexPath.row : [[choiceIndices objectAtIndex:indexPath.row] integerValue];
+        
         if (currentSelection.index == choiceIndex) {
             alertTitle = @"Correct";
             alertMessage = [NSString stringWithFormat:@"%@", currentSelection.longName];
             right = YES;
-        }
-        else {
+        } else {
             alertTitle = @"Wrong";
             alertMessage = [NSString stringWithFormat:@"Answer: %@", currentSelection.longName];
             right = NO;
         }
         [sessionStats addToStats:right];
+        
+        // Alert the user if he was correct or not
         [[[BSAlert alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
-    } else {
+    } else { // Training mode
+        // Simply play the note corresponding to the row
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row andOctave:listeningOctave]];
     }
 }
 
 #pragma mark - UIAlertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // Select a new interval/chord when the user closes the alert
     if (buttonIndex == 0) {
         currentSelection = [self getRandomSelection];
         [self playCollection:currentSelection];
@@ -231,16 +241,6 @@
     return nil;
 }
 
-#pragma mark - Playtype transition
-- (void)setPlayTypeTransitionDone {
-    playTypeIsTransitioning = NO;
-}
-
-#pragma mark - Refresh rows
-- (void)refreshRows:(NSArray *)rowsToRefresh {
-    [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 #pragma mark - Training mode
 - (void)setupTrainingMode {
     // Animate in the right toolbar buttons
@@ -272,8 +272,14 @@
             }
         }
         [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self performSelector:@selector(refreshRows:) withObject:rowsToRefresh afterDelay:0.31]; 
-        [self performSelector:@selector(setPlayTypeTransitionDone) withObject:nil afterDelay:0.32];
+        
+        [self performBlock:^{
+                [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
+        } AfterTimeInterval:0.31];
+        [self performBlock:^{
+                playTypeIsTransitioning = NO;
+        } AfterTimeInterval:0.32];
+        
     } else {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
         for (int i = 0; i < [[self getAllSelections] count]; i++) {
@@ -338,8 +344,14 @@
             }
         }
         [self.tableView insertRowsAtIndexPaths:rowsToInsert withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self performSelector:@selector(refreshRows:) withObject:rowsToRefresh afterDelay:0.31];
-        [self performSelector:@selector(setPlayTypeTransitionDone) withObject:nil afterDelay:0.32];
+        
+        [self performBlock:^{
+            [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
+        } AfterTimeInterval:0.31];
+        [self performBlock:^{
+            playTypeIsTransitioning = NO;
+        } AfterTimeInterval:0.32];
+        
     } else {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
         for (int i = 0; i < [[self getAllSelections] count]; i++) {
@@ -368,7 +380,7 @@
 // Returns the correct playmode image
 - (UIImage *)getCurrentPlaymodeImage {
     NSString *playmodeImageTitle;
-    switch (playmodeIndex) {
+    switch (_playmode) {
         case PLAYMODE_ASCENDING:
             playmodeImageTitle = kImage_Playmode_Ascending;
             break;
@@ -439,18 +451,18 @@
 
 #pragma mark - Actions
 - (void)changePlaymode:(id)sender {
-    switch (playmodeIndex) {
+    switch (_playmode) {
         case PLAYMODE_ASCENDING:
-            playmodeIndex = PLAYMODE_DESCENDING;
+            _playmode = PLAYMODE_DESCENDING;
             break;
         case PLAYMODE_DESCENDING:
-            playmodeIndex = PLAYMODE_CHORD;
+            _playmode = PLAYMODE_CHORD;
             break;
         case PLAYMODE_CHORD:
-            playmodeIndex = PLAYMODE_ASCENDING;
+            _playmode = PLAYMODE_ASCENDING;
             break;
     }
-    [self savePlaymode:playmodeIndex];
+    [self savePlaymode:_playmode];
     [(UIBarButtonItem *)sender setImage:[self getCurrentPlaymodeImage]];
 }
 
@@ -480,24 +492,25 @@
 }
 
 #pragma mark - Overide pull header methods
-// Build the stats view when the user views the header
+// Create the stats view when the user views the header
 - (void)refreshHeader {
-    // Clears out the header. Needed!
-    [super refreshHeader];
+    [super refreshHeader]; // Clears out the header for us
     
-    //Build stats view
-    UIView *percentView = [[UIView alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width  * 0.3,
+    // Create green stats bar
+    UIView *percentBar = [[UIView alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width  * 0.3,
                                                                    self.headerView.frame.size.height * 0.30,
                                                                    self.headerView.frame.size.width  * 0.4,
                                                                    self.headerView.frame.size.height * 0.40)];
-    [percentView setBackgroundColor:[UIColor niceGreenColorWithAlpha:1.0]];
+    [percentBar setBackgroundColor:[UIColor niceGreenColorWithAlpha:1.0]];
     
-    UIView *percentWrong = [[UIView alloc] initWithFrame:CGRectMake(percentView.frame.origin.x + (percentView.frame.size.width * (1.0 - [sessionStats getPercentWrong])),
+    // Create red bar to show the amount wrong
+    UIView *percentWrong = [[UIView alloc] initWithFrame:CGRectMake(percentBar.frame.origin.x + (percentBar.frame.size.width * (1.0 - [sessionStats getPercentWrong])),
                                                                     self.headerView.frame.size.height * 0.30,
-                                                                    percentView.frame.size.width * [sessionStats getPercentWrong],
+                                                                    percentBar.frame.size.width * [sessionStats getPercentWrong],
                                                                     self.headerView.frame.size.height * 0.40)];
     [percentWrong setBackgroundColor:[UIColor niceRedColorWithAlpha:1.0]];
-                           
+    
+    // Create labels                        
     UILabel *right = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
     UILabel *wrong = [[UILabel alloc] initWithFrame:CGRectMake(self.headerView.frame.size.width * 0.7, 0,
                                                                self.headerView.frame.size.width * 0.3, self.headerView.frame.size.height)];
@@ -511,10 +524,12 @@
     wrong.backgroundColor = [UIColor clearColor];
     [right setTextColor:[UIColor niceGreenColorWithAlpha:1.0]];
     [wrong setTextColor:[UIColor niceRedColorWithAlpha:1.0]];
+    
+    [self.headerView addSubview:percentBar];
+    [self.headerView addSubview:percentWrong];
+    
     [self.headerView addSubview:right];
     [self.headerView addSubview:wrong];
-    [self.headerView addSubview:percentWrong];
-    [self.headerView insertSubview:percentView belowSubview:percentWrong];
 }
 
 // Reenables things when header view releases

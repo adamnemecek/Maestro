@@ -7,6 +7,8 @@
 @property (strong, nonatomic) MainMenuViewController *mainMenu;
 @property (nonatomic) BOOL menuShowing;
 
+@property (weak, nonatomic) IBOutlet UILabel *version;
+
 - (IBAction)openWebsite:(id)sender;
 - (IBAction)contact:(id)sender;
 

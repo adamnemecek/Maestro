@@ -10,7 +10,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self.navigationItem setTitle:@"Chord Trainer"];
-    [FlurryAnalytics logAllPageViews:self];
+//    [FlurryAnalytics logAllPageViews:self];
     return self;
 }
 
