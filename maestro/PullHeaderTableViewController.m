@@ -59,7 +59,6 @@
 
 #pragma mark - Dragging
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    dbgLog(@"Scroll view start");
     if (isShowing || !makeHeader) return;
     [self refreshHeader];
     isDragging = YES;
@@ -76,7 +75,6 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    dbgLog(@"Scroll view end");
     if (!makeHeader) return;
     isDragging = NO;
     if (!isShowing) {

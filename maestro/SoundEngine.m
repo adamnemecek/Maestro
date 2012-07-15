@@ -2,26 +2,20 @@
 #import "Note.h"
 #import "NoteCollection.h"
 
-// TODO: Generate own sounds probably with audio queue services
-
-@interface SoundEngine (Private)
--(SystemSoundID)loadSoundWithName:(NSString *)name;
--(void)playOnNewThread:(NSDictionary *)properties;
-@end
-
 static SoundEngine *inst = nil;
 
 @implementation SoundEngine {
     BOOL _isAlive;
     BOOL _isPlaying;
+    AVAudioPlayer *_note;
 }
 
 #pragma mark Init
 - (id)init {
     self = [super init];
+    [[AVAudioSession sharedInstance] setDelegate:self];
     _isAlive = YES;
     _isPlaying = NO;
-//    AudioSessionInitialize(NULL, NULL, NULL, NULL); // Initialize audio session
     return self;
 }
 
@@ -38,94 +32,61 @@ static SoundEngine *inst = nil;
 
 #pragma mark - Session
 - (void)startAudioSession {
-//    AudioSessionSetActive(true); // Activate audio session
-//    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    dbgLog(@"Audio session start");
+    NSError *error = nil;
+    [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    
+    if (error)
+        dbgLog(@"%@",error.description);
 }
 
 - (void)endAudioSession {
-//    AudioSessionSetActive(false);
-//    [[AVAudioSession sharedInstance] setActive:NO error:nil];
-}
-
-#pragma mark Engine status
-- (void)setAlive:(BOOL)alive {
-    _isAlive = alive;
-}
-
-#pragma mark - Threading
-- (void)playOnNewThread:(NSDictionary *)properties {
-    float tempo;
-    switch ([[[properties objectForKey:@"keyProps"] objectAtIndex:1] intValue]) {
-        case 0:
-            tempo = 1.0;
-            break;
-        case 1:
-            tempo = 0.6;
-            break;
-        case 2:
-            tempo = 0.30;
-            break;
-    }
+    dbgLog(@"Audio session end");
+    NSError *error = nil;
+    [[AVAudioSession sharedInstance] setActive:NO error:&error];
     
-    if ([[[properties objectForKey:@"keyProps"] objectAtIndex:0] intValue] == 0) {          // Ascending
-        for (Note *note in [properties objectForKey:@"keyNotes"]) {
-            if (!_isAlive) break;
-            [self playNote:note];
-            [NSThread sleepForTimeInterval:tempo];
-        }
-    } else if ([[[properties objectForKey:@"keyProps"] objectAtIndex:0] intValue] == 1) {   // Descending
-        for (int i = (((NSArray *)[properties objectForKey:@"keyNotes"]).count - 1); i >= 0; i--) {
-            if (!_isAlive) break;
-            Note *note = [[properties objectForKey:@"keyNotes"] objectAtIndex:i];
-            [self playNote:note];
-            [NSThread sleepForTimeInterval:tempo];
-        }
-    } else {                                                                                // Chord
-        for (Note *note in [properties objectForKey:@"keyNotes"]) {
-            if (!_isAlive) break;
-            [self playNote:note];
-        }
-    }
-    _isPlaying = NO;
+    if (error)
+        dbgLog(@"%@",error.description);
 }
 
 #pragma mark - Play collection object
-/* properties order:
- * playmode
- * tempo
-*/
-- (void)playCollection:(NoteCollection *)collection withProperties:(NSArray *)properties {
-    if (!_isAlive || _isPlaying) return;
-    _isPlaying = YES;
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:collection.notes, properties, nil]
-                                                           forKeys:[NSArray arrayWithObjects:@"keyNotes",@"keyProps", nil]];
-    [NSThread detachNewThreadSelector:@selector(playOnNewThread:) toTarget:self withObject:dictionary];
+- (void)playCollection:(NoteCollection *)collection withTempo:(float)tempo andPlayOrder:(NSInteger)playOrder {    
+    dbgLog(@"playing: %@",collection.shortName);
+    dbgLog(@"%@",[collection getNoteNames]);
 }
 
-#pragma mark - Load and play sound
+#pragma mark - Play audio
 - (void)playNote:(Note *)note {
-    [self playSoundWithMidiId:note.midiId];
+    _note = [self loadNoteWithMidiId:note.midiId];
+    if (_note)
+        [_note play];
 }
 
-- (void)playSoundWithMidiId:(NSInteger)midiId {
-    dbgLog(@"playing with Id: %i",midiId);
-//    AVAudioPlayer *note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];
-//    [note play];
-    SystemSoundID note = [self loadSoundWithName:[NSString stringWithFormat:@"piano_%i",midiId]];
-    AudioServicesPlaySystemSound(note);
-}
-
-- (SystemSoundID)loadSoundWithName:(NSString *)name {
+#pragma mark - Load audio
+- (AVAudioPlayer *)loadNoteWithMidiId:(NSInteger)midiId {
+    NSError *error = nil;
+    NSURL *url = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"piano_%i",midiId] withExtension:@"aiff"];
+    AVAudioPlayer *note = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     
-//    NSURL *soundURL = [[NSBundle mainBundle] URLForResource:name withExtension:@"aiff"];
-//    AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:nil];
-//    [player prepareToPlay];
-//    return player;
+    if (error)
+        dbgLog(@"error loading sound: %@",error.description);
     
-    SystemSoundID note;
-    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"aiff"];
-	CFURLRef url = (__bridge CFURLRef) [NSURL fileURLWithPath:path];
-	AudioServicesCreateSystemSoundID(url, &note);
+    [note prepareToPlay];
+    
+    note.volume = 0.3;
+    
     return note;
+}
+
+#pragma mark - AVAudioPlayer delegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    dbgLog(@"Sound finished");
+}
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+    dbgLog(@"Interruption began");
+}
+
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player {
+    dbgLog(@"Interruption ended");
 }
 @end

@@ -13,9 +13,6 @@
     _midiId = midiId;
     _name = [notes objectAtIndex:(midiId % 12)];
     
-//    NSLog(@"%i",_midiId);
-//    NSLog(@"%@",_name);
-    
     return self;
 }
 

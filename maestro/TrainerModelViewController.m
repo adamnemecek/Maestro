@@ -3,14 +3,6 @@
 #import "SoundEngine.h"
 #import "NoteCollection.h"
 
-//@interface TrainerModelViewController (Private)
-//-(UIImage *)getCurrentPlaymodeImage;
-//-(void)setPlayType:(PLAYTYPE)type;
-//-(void)setUsingTrainingButtons:(BOOL)using;
-//-(void)setPlayTypeTransitionDone;
-//-(void)handlePinch:(UIPinchGestureRecognizer *)gesture;
-//@end
-
 @implementation TrainerModelViewController {
     PLAYMODE _playmode;
     PLAYTYPE playType;
@@ -78,8 +70,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[SoundEngine sharedInstance] setAlive:YES];
-    
     // These can be changed in the settings, so we want to to call them every time the view appears
     _playmode = [self getPlaymode];
     [playmodeButton setImage:[self getCurrentPlaymodeImage]];
@@ -96,11 +86,6 @@
     }
     
     [self.tableView reloadData];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[SoundEngine sharedInstance] setAlive:NO];
 }
 
 #pragma mark - Toolbar
@@ -193,10 +178,7 @@
 
 #pragma mark - Play notes
 - (void)playCollection:(NoteCollection *)collection {
-    [[SoundEngine sharedInstance] playCollection:collection withProperties:[NSArray arrayWithObjects:
-                                                                            [NSNumber numberWithInt:[self getPlaymode]],
-                                                                            [NSNumber numberWithInt:[self getTempo]],
-                                                                            nil]];
+    [[SoundEngine sharedInstance] playCollection:collection withTempo:2.0 andPlayOrder:0];
 }
 
 /* These methods are to be written by subclass */
@@ -275,10 +257,10 @@
         
         [self performBlock:^{
                 [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
-        } AfterTimeInterval:0.31];
+        } afterTimeInterval:0.31];
         [self performBlock:^{
                 playTypeIsTransitioning = NO;
-        } AfterTimeInterval:0.32];
+        } afterTimeInterval:0.32];
         
     } else {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
@@ -347,10 +329,10 @@
         
         [self performBlock:^{
             [self.tableView reloadRowsAtIndexPaths:rowsToRefresh withRowAnimation:UITableViewRowAnimationAutomatic];
-        } AfterTimeInterval:0.31];
+        } afterTimeInterval:0.31];
         [self performBlock:^{
             playTypeIsTransitioning = NO;
-        } AfterTimeInterval:0.32];
+        } afterTimeInterval:0.32];
         
     } else {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];

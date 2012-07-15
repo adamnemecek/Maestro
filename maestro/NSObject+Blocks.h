@@ -9,5 +9,6 @@
 
 @interface NSObject (Blocks)
 
--(void)performBlock:(void (^)(void))block AfterTimeInterval:(NSTimeInterval)time;
+-(void)performBlock:(void (^)(void))block afterTimeInterval:(NSTimeInterval)time;
+-(void)performBlockInBackground:(void (^)(void))block afterTimeInterval:(NSTimeInterval)time;
 @end

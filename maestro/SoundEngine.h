@@ -1,11 +1,9 @@
 #import <Foundation/Foundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
-@class Note;
 @class NoteCollection;
 
-@interface SoundEngine : NSObject
+@interface SoundEngine : NSObject <AVAudioPlayerDelegate>
 
 +(SoundEngine *)sharedInstance;
 +(void)destroySharedInstance;
@@ -13,10 +11,7 @@
 - (void)startAudioSession;
 - (void)endAudioSession;
 
-- (void)setAlive:(BOOL)alive;
-
--(void)playCollection:(NoteCollection *)collection withProperties:(NSArray *)properties;
-
--(void)playNote:(Note *)note;
--(void)playSoundWithMidiId:(NSInteger)midiId;
+-(void)playCollection:(NoteCollection *)collection
+        withTempo:(float)tempo
+        andPlayOrder:(NSInteger)playOrder;
 @end
