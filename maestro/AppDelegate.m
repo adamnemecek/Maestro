@@ -35,16 +35,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     
 #if DEBUG
     dbgLog(@"Build: %@",currentVersion());
+#elif TARGET_OS_IPHONE
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [FlurryAnalytics startSession:@"5RQGEC439LBCUI8FHFV9"];
 #endif
-    
-//#if TARGET_IPHONE_SIMULATOR
-//#endif
-    
-//#if TARGET_OS_IPHONE
-//#endif
-    
-//    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-//    [FlurryAnalytics startSession:@"5RQGEC439LBCUI8FHFV9"];
     
     if (![[Defaults sharedInstance] getHereBefore]) {
         showFirstTimeTip = YES;

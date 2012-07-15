@@ -4,16 +4,6 @@
 @class SoundEngine;
 @class NoteCollection;
 
-#define kImage_Playmode_Ascending   @"playmode_Ascending"
-#define kImage_Playmode_Descending  @"playmode_Descending"
-#define kImage_Playmode_Chord       @"playmode_Chord"
-
-typedef enum {
-    PLAYMODE_ASCENDING,
-    PLAYMODE_DESCENDING,
-    PLAYMODE_CHORD
-}PLAYMODE;
-
 typedef enum {
     PLAYTYPE_TRAIN,
     PLAYTYPE_PRACTICE,

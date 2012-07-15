@@ -14,9 +14,9 @@
     NSInteger listeningOctave;
 }
 @synthesize playButton, skipButton, playmodeButton, playTypeButton, octaveSelection,flexSpace,fixedSpace;
-@synthesize selections;
-@synthesize subtitles;
-@synthesize choiceIndices;
+@synthesize selections    = _selections;
+@synthesize subtitles     = _subtitles;
+@synthesize choiceIndices = _choiceIndices;
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
@@ -54,7 +54,6 @@
     playTypeIsTransitioning = NO;
     playType = PLAYTYPE_TRAIN;
 }
-
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -100,7 +99,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (playType == PLAYTYPE_TRAIN)
-        return selections.count;
+        return _selections.count;
     else
         return [self getAllSelections].count;
 }
@@ -116,8 +115,8 @@
         else
             cell.textLabel.textColor = [UIColor blackColor];
         
-        cell.textLabel.text = [selections objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [subtitles objectAtIndex:indexPath.row];
+        cell.textLabel.text = [_selections objectAtIndex:indexPath.row];
+        cell.detailTextLabel.text = [_subtitles objectAtIndex:indexPath.row];
     } else {  // Practicing
         cell.textLabel.textColor = [UIColor blackColor];
         cell.textLabel.text = [[self getAllSelectionsAbbreviated] objectAtIndex:indexPath.row];
@@ -146,7 +145,7 @@
         BOOL right;
         
         // choiceIndices is nil if we are on pro difficulty
-        NSInteger choiceIndex = (!choiceIndices) ? indexPath.row : [[choiceIndices objectAtIndex:indexPath.row] integerValue];
+        NSInteger choiceIndex = (!_choiceIndices) ? indexPath.row : [[_choiceIndices objectAtIndex:indexPath.row] integerValue];
         
         if (currentSelection.index == choiceIndex) {
             alertTitle = @"Correct";
@@ -163,6 +162,7 @@
         [[[BSAlert alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"Next" otherButtonTitles:nil, nil] show];
     } else { // Training mode
         // Simply play the note corresponding to the row
+        [[SoundEngine sharedInstance] clearEngine];
         [self playCollection:(NoteCollection *)[self getSelectionWithIndex:indexPath.row andOctave:listeningOctave]];
     }
 }
@@ -172,13 +172,14 @@
     // Select a new interval/chord when the user closes the alert
     if (buttonIndex == 0) {
         currentSelection = [self getRandomSelection];
+        [[SoundEngine sharedInstance] clearEngine]; // Clear space for new notes
         [self playCollection:currentSelection];
     }
 }
 
 #pragma mark - Play notes
 - (void)playCollection:(NoteCollection *)collection {
-    [[SoundEngine sharedInstance] playCollection:collection withTempo:2.0 andPlayOrder:0];
+    [[SoundEngine sharedInstance] playCollection:collection withTempo:tempoFromType([self getTempo]) andPlayOrder:[self getPlaymode]];
 }
 
 /* These methods are to be written by subclass */
@@ -229,21 +230,21 @@
     [self itemsInToolbar:[NSArray arrayWithObjects:flexSpace,playmodeButton,playButton,skipButton,fixedSpace,playTypeButton,nil] animated:YES];
     
     playTypeIsTransitioning = YES;
-    if (choiceIndices) {
+    if (_choiceIndices) {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
-        for (int i = 0; i < [selections count]; i++) {
+        for (int i = 0; i < [_selections count]; i++) {
             [rowsToRefresh addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
         
         NSMutableArray *rowsToDelete = [NSMutableArray array];
-        for (int i = 0; i < [choiceIndices count]; i++) {
+        for (int i = 0; i < [_choiceIndices count]; i++) {
             int currentIndex, nextIndex;
             int spaceForNextIndex = 0;
-            if (i != ([choiceIndices count] - 1)) spaceForNextIndex = 1;
-            currentIndex = [[choiceIndices objectAtIndex:i] intValue];
-            nextIndex = [[choiceIndices objectAtIndex:(i + spaceForNextIndex)] intValue];
+            if (i != ([_choiceIndices count] - 1)) spaceForNextIndex = 1;
+            currentIndex = [[_choiceIndices objectAtIndex:i] intValue];
+            nextIndex = [[_choiceIndices objectAtIndex:(i + spaceForNextIndex)] intValue];
             if (currentIndex == nextIndex) {
-                for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]); j++) {
+                for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[_choiceIndices objectAtIndex:i] intValue]); j++) {
                     [rowsToDelete addObject:[NSIndexPath indexPathForRow:([[self getAllSelections] count] - j) inSection:0]];
                 }
                 break;
@@ -279,10 +280,10 @@
     [self itemsInToolbar:[NSArray arrayWithObjects:octaveSelection,playmodeButton,flexSpace,playTypeButton,nil] animated:YES];
     
     playTypeIsTransitioning = YES;
-    if (choiceIndices) {
+    if (_choiceIndices) {
         NSMutableArray *rowsToRefresh = [NSMutableArray array];
-        for (int i = 0; i < [selections count]; i++) {
-            [rowsToRefresh addObject:[NSIndexPath indexPathForRow:[[choiceIndices objectAtIndex:i] integerValue] inSection:0]];
+        for (int i = 0; i < [_selections count]; i++) {
+            [rowsToRefresh addObject:[NSIndexPath indexPathForRow:[[_choiceIndices objectAtIndex:i] integerValue] inSection:0]];
         }
         
         /***
@@ -295,17 +296,17 @@
          * In that case we find how many choices are left after the last cell and add them
          ***/
         NSMutableArray *rowsToInsert = [NSMutableArray array];
-        for (int i = 0; i < [selections count]; i++) {
+        for (int i = 0; i < [_selections count]; i++) {
             int currentIndex, nextIndex;
             int nextCellIndex = 0;
             UITableViewCell *cell, *nextCell;
             cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            if (i != ([selections count] - 1)) nextCellIndex = 1;
+            if (i != ([_selections count] - 1)) nextCellIndex = 1;
             nextCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(i + nextCellIndex) inSection:0]];
             
             if (cell == nextCell) {
-                for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[choiceIndices objectAtIndex:i] intValue]); j++) {
-                    [rowsToInsert addObject:[NSIndexPath indexPathForRow:([[choiceIndices objectAtIndex:i] intValue] + j) inSection:0]];
+                for (int j = 1; j <= (([[self getAllSelections] count] - 1) - [[_choiceIndices objectAtIndex:i] intValue]); j++) {
+                    [rowsToInsert addObject:[NSIndexPath indexPathForRow:([[_choiceIndices objectAtIndex:i] intValue] + j) inSection:0]];
                 }
                 break;
             }
@@ -359,6 +360,10 @@
 }
 
 #pragma mark - Playmode
+#define kImage_Playmode_Ascending   @"playmode_Ascending"
+#define kImage_Playmode_Descending  @"playmode_Descending"
+#define kImage_Playmode_Chord       @"playmode_Chord"
+
 // Returns the correct playmode image
 - (UIImage *)getCurrentPlaymodeImage {
     NSString *playmodeImageTitle;
@@ -459,6 +464,7 @@
 
 - (void)skip:(id)sender {
     currentSelection = [self getRandomSelection];
+    [[SoundEngine sharedInstance] clearEngine];
     [self playCollection:currentSelection];
 }
 

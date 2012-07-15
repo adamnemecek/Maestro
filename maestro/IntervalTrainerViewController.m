@@ -7,6 +7,15 @@
 }
 
 #pragma mark - Initialization
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.navigationItem.title = @"Interval Trainer";
+        [FlurryAnalytics logPageView];
+    }
+    return self;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     [self.navigationItem setTitle:@"Interval Trainer"];

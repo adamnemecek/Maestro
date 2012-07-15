@@ -31,3 +31,25 @@ void _dbgLog(const char* pszFile, int line, NSString* fmt, ...) {
 NSString* currentVersion(void) {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
+
+float tempoFromType(TEMPO tempo) {
+    switch (tempo) {
+        case SLOW:
+            return 1.0;
+            break;
+        case MEDIUM:
+            return 0.60;
+            break;
+        case FAST:
+            return 0.30;
+            break;
+    }
+}
+
+
+
+
+
+
+
+

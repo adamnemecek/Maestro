@@ -102,7 +102,7 @@
                     selectedViewController = [[TipsViewController alloc] initWithStyle:UITableViewStylePlain];
                     break;
                 case 3:
-                    selectedViewController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+                    selectedViewController = [[AboutViewController alloc] init];
 //                    [self.delegate mainMenuSelectedCurrentView:self];
 //                    return;
                     break;

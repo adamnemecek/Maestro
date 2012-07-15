@@ -13,5 +13,7 @@
 
 -(void)playCollection:(NoteCollection *)collection
         withTempo:(float)tempo
-        andPlayOrder:(NSInteger)playOrder;
+        andPlayOrder:(NSInteger)playmode;
+
+- (void)clearEngine;
 @end

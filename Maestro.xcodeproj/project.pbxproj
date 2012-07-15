@@ -120,7 +120,7 @@
 		FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF96790014FD4E99004E9402 /* ButtonMenu@2x.png */; };
 		FF9EE5E3150BFB8100C49DEE /* TipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9EE5E2150BFB8100C49DEE /* TipsViewController.m */; };
 		FFB55A481502F3F800614D6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB55A461502F3F700614D6D /* AboutViewController.m */; };
-		FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB55A471502F3F700614D6D /* AboutViewController.xib */; };
+		FFB55A491502F3F800614D6D /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB55A471502F3F700614D6D /* AboutView.xib */; };
 		FFB61CB0159418CF00540648 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB61CAF159418CF00540648 /* AVFoundation.framework */; };
 		FFBE2586154507DF00746A19 /* tip_chord@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE2584154507DF00746A19 /* tip_chord@2x.png */; };
 		FFBE2587154507DF00746A19 /* tip_interval@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFBE2585154507DF00746A19 /* tip_interval@2x.png */; };
@@ -284,7 +284,7 @@
 		FF9EE5E2150BFB8100C49DEE /* TipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TipsViewController.m; path = ../TipsViewController.m; sourceTree = "<group>"; };
 		FFB55A451502F3F700614D6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		FFB55A461502F3F700614D6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
-		FFB55A471502F3F700614D6D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		FFB55A471502F3F700614D6D /* AboutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutView.xib; sourceTree = "<group>"; };
 		FFB61CAF159418CF00540648 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FFBE2584154507DF00746A19 /* tip_chord@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_chord@2x.png"; sourceTree = "<group>"; };
 		FFBE2585154507DF00746A19 /* tip_interval@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_interval@2x.png"; sourceTree = "<group>"; };
@@ -452,13 +452,13 @@
 				FF168EE315310D5500483E86 /* Tip.m */,
 				FF4940361512B91A008F3B45 /* PushOverlayView.h */,
 				FF4940371512B91A008F3B45 /* PushOverlayView.m */,
+				FF937B3C150FF23600C572DC /* MainMenuCell.h */,
+				FF937B3D150FF23600C572DC /* MainMenuCell.m */,
 				FFFB359F15313F6A00E81B86 /* ShowTipsCell.h */,
 				FFFB35A015313F6A00E81B86 /* ShowTipsCell.m */,
 				FFFB35A315313F9D00E81B86 /* ShowTipsCell.xib */,
-				FF937B3C150FF23600C572DC /* MainMenuCell.h */,
-				FF937B3D150FF23600C572DC /* MainMenuCell.m */,
 				FF6A76D01512407C006D9230 /* MainMenuCell.xib */,
-				FFB55A471502F3F700614D6D /* AboutViewController.xib */,
+				FFB55A471502F3F700614D6D /* AboutView.xib */,
 				FFD0C6A11502878500BB6C9F /* MainMenu.xib */,
 			);
 			name = View;
@@ -711,7 +711,7 @@
 				FF96790114FD4E99004E9402 /* ButtonMenu.png in Resources */,
 				FF96790214FD4E99004E9402 /* ButtonMenu@2x.png in Resources */,
 				FFD0C6A21502878500BB6C9F /* MainMenu.xib in Resources */,
-				FFB55A491502F3F800614D6D /* AboutViewController.xib in Resources */,
+				FFB55A491502F3F800614D6D /* AboutView.xib in Resources */,
 				FF6A76D11512407C006D9230 /* MainMenuCell.xib in Resources */,
 				FF5D4F35151E8D3B003EFE00 /* shadow_sidebar@2x.png in Resources */,
 				FF168EE61531150B00483E86 /* tip@2x.png in Resources */,

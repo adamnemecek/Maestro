@@ -1,21 +1,19 @@
 #import "AboutViewController.h"
 
-@interface AboutViewController (Private)
--(void)openMenu:(BOOL)show;
-@end
-
 @implementation AboutViewController {
     UIImageView *shadowView;
     PushOverlayView *pushBackView;
 }
 
-@synthesize mainMenu = _mainMenu;
+@synthesize mainMenu    = _mainMenu;
 @synthesize menuShowing = _menuShowing;
-@synthesize version;
+@synthesize version     = _version;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    self.title = @"Maestro";
+- (id)init {
+    self = [super initWithNibName:@"AboutView" bundle:nil];
+    if (self) {
+        self.title = @"Maestro";
+    }
     return self;
 }
 
@@ -26,7 +24,7 @@
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"] style:UIBarButtonItemStyleBordered
                                                                               target:self action:@selector(showMenu:)]];
     _menuShowing = NO;
-    version.text = [NSString stringWithFormat:@"Version %@", currentVersion()];
+    _version.text = [NSString stringWithFormat:@"Version %@", currentVersion()];
 }
 
 - (void)viewDidUnload {
