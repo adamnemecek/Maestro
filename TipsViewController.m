@@ -4,10 +4,12 @@
 @implementation TipsViewController
 
 #pragma mark Initialization
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    [self.navigationItem setTitle:@"Tips"];
-    self.makeHeader = NO;   // Don't create a pull header for this view
+- (id)init {
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (self) {        
+        self.navigationItem.title = @"Tips";
+        self.makeHeader = NO;   // Don't create a pull header for this view
+    }
     return self;
 }
 

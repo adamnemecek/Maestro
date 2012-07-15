@@ -49,8 +49,14 @@
 
 #pragma mark - Actions
 - (void)showMenu:(id)sender {
-    if (!_menuShowing) [self openMenu:YES];
-    else [self openMenu:NO];
+    if (!_menuShowing) {
+        [[SoundEngine sharedInstance] stop]; // Stop playing if we open the menu
+        [_mainMenu deselect]; // Make sure you can select items in menu
+        [self openMenu:YES];
+    }
+    else {
+        [self openMenu:NO];
+    }
 }
 
 - (void)showSettings:(id)sender {

@@ -7,7 +7,8 @@
 #import "MainMenuCell.h"
 
 @implementation MainMenuViewController {
-    NSArray *items;
+    NSArray *_items;
+    BOOL _selected;
 }
 
 @synthesize delegate;
@@ -20,7 +21,9 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    items    = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", @"Tips", @"About", nil];
+    _items = [NSArray arrayWithObjects:@"Interval Trainer", @"Chord Trainer", @"Tips", @"About", nil];
+    
+    _selected = NO;
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu_texture.png"]];
@@ -35,21 +38,6 @@
     [self.tableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -60,14 +48,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [items count];
+    return _items.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MainMenuCell *cell = (MainMenuCell *)[tableView dequeueReusableCellWithIdentifier:[MainMenuCell reuseIdentifier]];
     if (!cell) cell = [[[NSBundle mainBundle] loadNibNamed:[MainMenuCell nibName] owner:self options:nil] objectAtIndex:0];
     if (!_currentIndexPath && indexPath.row == 0) _currentIndexPath = indexPath;
-    cell.viewTitle.text = [items objectAtIndex:indexPath.row];
+    cell.viewTitle.text = [_items objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -79,37 +67,43 @@
 //    [cell setBackgroundColor:[UIColor clearColor]];
 //}
 
+#pragma mark - Deselection
+- (void)deselect {
+    _selected = NO;
+}
+
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if ([indexPath isEqual:_currentIndexPath]) {
-        [self.delegate mainMenuSelectedCurrentView:self];
-        return;
+    if (!_selected) {
+        _selected = YES;
+        if ([indexPath isEqual:_currentIndexPath]) {
+            [self.delegate mainMenuSelectedCurrentView:self];
+            return;
+        }
+        
+        UIViewController *selectedViewController;
+        switch (indexPath.section) {
+            case 0:
+                switch (indexPath.row) {
+                    case 0:
+                        selectedViewController = [[IntervalTrainerViewController alloc] init];
+                        break;
+                    case 1:
+                        selectedViewController = [[ChordTrainerViewController alloc] init];
+                        break;
+                    case 2:
+                        selectedViewController = [[TipsViewController alloc] init];
+                        break;
+                    case 3:
+                        selectedViewController = [[AboutViewController alloc] init];
+                        break;
+                }
+                break;
+        }
+        _currentIndexPath = indexPath;
+        [self.delegate mainMenu:self didSelectViewController:selectedViewController];
     }
-    
-    UIViewController *selectedViewController;
-    switch (indexPath.section) {
-        case 0:
-            switch (indexPath.row) {
-                case 0:
-                    selectedViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
-                    break;
-                case 1:
-                    selectedViewController = [[ChordTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
-                    break;
-                case 2:
-                    selectedViewController = [[TipsViewController alloc] initWithStyle:UITableViewStylePlain];
-                    break;
-                case 3:
-                    selectedViewController = [[AboutViewController alloc] init];
-//                    [self.delegate mainMenuSelectedCurrentView:self];
-//                    return;
-                    break;
-            }
-            break;
-    }
-    _currentIndexPath = indexPath;
-    [self.delegate mainMenu:self didSelectViewController:selectedViewController];
 }
 @end

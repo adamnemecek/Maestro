@@ -7,16 +7,13 @@
 }
 
 #pragma mark - Initialization
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    [self.navigationItem setTitle:@"Chord Trainer"];
-//    [FlurryAnalytics logAllPageViews:self];
+- (id)init {
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (self) {
+        self.navigationItem.title = @"Chord Trainer";
+        [FlurryAnalytics logPageView];
+    }
     return self;
-}
-
-#pragma mark - View lifecycle
-- (void)viewDidLoad {
-    [super viewDidLoad];
 }
 
 #pragma mark - Overide super

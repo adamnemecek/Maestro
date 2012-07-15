@@ -67,4 +67,5 @@ void _dbgLog(const char* pszFile, int line, NSString* fmt, ...);
 
 NSString* currentVersion(void);
 
+UIImage* imageForPlaymode(PLAYMODE);
 float tempoFromType(TEMPO);

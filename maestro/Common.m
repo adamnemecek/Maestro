@@ -32,6 +32,26 @@ NSString* currentVersion(void) {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
+#define kImage_Playmode_Ascending   @"playmode_Ascending"
+#define kImage_Playmode_Descending  @"playmode_Descending"
+#define kImage_Playmode_Chord       @"playmode_Chord"
+
+UIImage *imageForPlaymode(PLAYMODE playmode) {
+    NSString *playmodeImageTitle;
+    switch (playmode) {
+        case PLAYMODE_ASCENDING:
+            playmodeImageTitle = kImage_Playmode_Ascending;
+            break;
+        case PLAYMODE_DESCENDING:
+            playmodeImageTitle = kImage_Playmode_Descending;
+            break;
+        case PLAYMODE_CHORD:
+            playmodeImageTitle = kImage_Playmode_Chord;
+            break;
+    }
+    return [UIImage imageNamed:playmodeImageTitle];
+}
+
 float tempoFromType(TEMPO tempo) {
     switch (tempo) {
         case SLOW:

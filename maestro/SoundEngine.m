@@ -50,13 +50,24 @@ static SoundEngine *inst = nil;
 }
 
 #pragma mark - Play collection object
-- (void)playCollection:(NoteCollection *)collection withTempo:(float)tempo andPlayOrder:(NSInteger)playmode {    
+- (void)playCollection:(NoteCollection *)collection withTempo:(float)tempo andPlayOrder:(PLAYMODE)playmode {    
     if (_playing) return;
     
     dbgLog(@"playing: %@",collection.shortName);
     dbgLog(@"%@",[collection getNoteNames]);
     dbgLog(@"tempo: %f",tempo);
-    dbgLog(@"playmode: %i",playmode);
+    switch (playmode) {
+        case PLAYMODE_ASCENDING:
+            dbgLog(@"playmode: Ascending %i",playmode);
+            break;
+        case PLAYMODE_DESCENDING:
+            dbgLog(@"playmode: Descending %i",playmode);
+            break;
+        case PLAYMODE_CHORD:
+            dbgLog(@"playmode: Chord %i",playmode);
+            break;
+    }
+    
     
     _playing = YES;
     _stop = NO;
@@ -78,20 +89,29 @@ static SoundEngine *inst = nil;
         for (AVAudioPlayer *note in notes) {
             if (_stop) break;
             [note play];
-            [NSThread sleepForTimeInterval:tempo];
+            if (tempo > 0.0) [NSThread sleepForTimeInterval:tempo];
         }
         
         // Give the last note time to finish playing before we end
         [self performBlock:^{
             _playing = NO;
-        } afterTimeInterval:0.17];
+        } afterTimeInterval:0.13];
         
     } afterTimeInterval:0.11];
+}
+
+#pragma mark - Stop playing
+- (void)stop {
+    if (_playing) {
+        dbgLog(@"ENGINE STOPPED");
+        _stop = YES;
+    }
 }
 
 #pragma mark - Clear notes
 - (void)clearEngine {
     if (_playing) return; // Engine CANNOT be cleared while we are playing
+    dbgLog(@"ENGINE CLEARED");
     [_notes removeAllObjects];
 }
 
@@ -113,8 +133,8 @@ static SoundEngine *inst = nil;
     if (error)
         dbgLog(@"error loading sound: %@",error.description);
     
-//    [note prepareToPlay];
-//    note.volume = 0.3;
+    [note prepareToPlay];
+    note.volume = 0.6;
     return note;
 }
 

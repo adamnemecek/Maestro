@@ -8,28 +8,12 @@
 
 #pragma mark - Initialization
 - (id)init {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
         self.navigationItem.title = @"Interval Trainer";
         [FlurryAnalytics logPageView];
     }
     return self;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    [self.navigationItem setTitle:@"Interval Trainer"];
-//    [FlurryAnalytics logAllPageViews:self];
-    return self;
-}
-
-#pragma mark - View lifecycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
 }
 
 #pragma mark - Overide super

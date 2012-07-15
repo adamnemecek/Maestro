@@ -40,6 +40,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     [FlurryAnalytics startSession:@"5RQGEC439LBCUI8FHFV9"];
 #endif
     
+    [BSAlert alert];
+    
     if (![[Defaults sharedInstance] getHereBefore]) {
         showFirstTimeTip = YES;
         [[Defaults sharedInstance] initialDefaults];
@@ -48,7 +50,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
     [[UIToolbar appearance] setTintColor:[UIColor brownColor]];
     
-    IntervalTrainerViewController *intTrainerViewController = [[IntervalTrainerViewController alloc] initWithStyle:UITableViewStylePlain];
+    IntervalTrainerViewController *intTrainerViewController = [[IntervalTrainerViewController alloc] init];
     _navController = [[UINavigationController alloc] initWithRootViewController:intTrainerViewController];
     
     _window.rootViewController = _navController;

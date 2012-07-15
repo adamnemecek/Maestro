@@ -8,12 +8,14 @@
 +(SoundEngine *)sharedInstance;
 +(void)destroySharedInstance;
 
-- (void)startAudioSession;
-- (void)endAudioSession;
+-(void)startAudioSession;
+-(void)endAudioSession;
 
 -(void)playCollection:(NoteCollection *)collection
         withTempo:(float)tempo
-        andPlayOrder:(NSInteger)playmode;
+        andPlayOrder:(PLAYMODE)playmode;
 
-- (void)clearEngine;
+-(void)stop;
+
+-(void)clearEngine;
 @end

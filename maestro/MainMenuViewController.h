@@ -12,4 +12,6 @@
 @property (nonatomic, weak) id <MainMenuViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
+-(void)deselect;
+
 @end
