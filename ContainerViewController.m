@@ -1,8 +1,6 @@
 #import "ContainerViewController.h"
 #import "SoundEngine.h"
 
-// TODO: Only let one selection pass for each menu presentation
-
 @interface ContainerViewController (Private)
 -(void)openMenu:(BOOL)show;
 @end

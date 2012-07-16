@@ -32,15 +32,12 @@ void uncaughtExceptionHandler(NSException *exception) {
 #pragma mark - Application cycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
-#if DEBUG
     dbgLog(@"Build: %@",currentVersion());
-#elif TARGET_OS_IPHONE
+    
+#if TARGET_OS_IPHONE
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [FlurryAnalytics startSession:@"5RQGEC439LBCUI8FHFV9"];
 #endif
-    
-    [BSAlert alert];
     
     if (![[Defaults sharedInstance] getHereBefore]) {
         showFirstTimeTip = YES;
@@ -56,7 +53,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     _window.rootViewController = _navController;
     [_window makeKeyAndVisible];
     
-//    [self loadTip];
+    [self loadTip];
     
     return YES;
 }

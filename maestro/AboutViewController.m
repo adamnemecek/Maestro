@@ -46,8 +46,13 @@
 }
 
 - (void)showMenu:(id)sender {
-    if (!_menuShowing) [self openMenu:YES];
-    else [self openMenu:NO];
+    if (!_menuShowing) {
+        [_mainMenu deselect]; // Make sure you can select items in menu
+        [self openMenu:YES];
+    }
+    else {
+        [self openMenu:NO];
+    }
 }
 
 - (void)sendEmailTo:(NSString*)to withCC:(NSString*)cc withBCC:(NSString*)bcc withSubject:(NSString*)subject withBody:(NSString*)body {

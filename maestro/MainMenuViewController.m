@@ -63,10 +63,6 @@
     return MENU_CELL_HEIGHT;
 }
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [cell setBackgroundColor:[UIColor clearColor]];
-//}
-
 #pragma mark - Deselection
 - (void)deselect {
     _selected = NO;
